@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% load i18n %}
+{% load bootstrap_calendar %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="span12">
+        {% bootstrap_controls 'from-inline pull-right' %}
+    </div>
+</div>
+<div class="clear-fix">
+</div>
+<div class="row">
+    <div class="col-md-8">
+        {% bootstrap_calendar '' %}
+    </div>
+    <div class="col-md-4">
+        <textarea id="" name="" class="form-control" rows="10"></textarea>
+    </div>
+</div>
+{% endblock %}
