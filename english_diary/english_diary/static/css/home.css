@@ -1,0 +1,26 @@
+textarea#diary-content {
+    margin: 20px auto;
+}
+
+button.prev:active,
+button.prev:focus,
+button.prev:hover,
+button.prev {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+button.next:active,
+button.next:focus,
+button.next:hover,
+button.next{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.month-title {
+    text-align: center;
+    font-size: 20px;
+}
