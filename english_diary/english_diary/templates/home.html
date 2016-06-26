@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% load i18n %}
+{% load bootstrap_calendar %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 month-title">
+                <div class="btn-group">
+                    <button class="prev" data-calendar-nav="prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <span>2016년 6월</span>
+                    <button class="next" data-calendar-nav="next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="clear-fix">
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                {% bootstrap_calendar '' %}
+            </div>
+            <div class="col-md-4">
+                <textarea id="diary-content" name="" class="form-control" rows="25"></textarea>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
