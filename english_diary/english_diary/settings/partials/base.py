@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_bootstrap_calendar',
+
+    'english_diary',
 ]
 
 MIDDLEWARE_CLASSES = [
