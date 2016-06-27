@@ -1,3 +1,6 @@
+# .swp
+*.swp
+
 # Database
 db.sqlite3
 
