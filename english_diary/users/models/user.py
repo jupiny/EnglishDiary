@@ -10,6 +10,10 @@ class User(AbstractUser):
         null=True,
     )
 
-    # TODO: ImageField with pillow
+    profile_image = models.ImageField(
+        blank=True,
+        null=True,
+    )
 
-    # TODO: created_at, updated_at
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
