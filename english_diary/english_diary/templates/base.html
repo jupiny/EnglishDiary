@@ -1,4 +1,4 @@
-{% load staticfiles %}{% load i18n %}{% load bootstrap_calendar %}<!DOCTYPE html>
+{% load staticfiles %}<!DOCTYPE html>
 
 <head>
 
@@ -18,7 +18,11 @@
     <link href="{% static "css/heroic-features.css" %}" rel="stylesheet">
     <link href="{% static "css/signin.css" %}" rel="stylesheet">
     <link href="{% static "css/home.css" %}" rel="stylesheet">
-    {% bootstrap_calendar_css %}
+    <link href="{% static "css/datepicker.css" %}" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,9 +40,10 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/bootstrap.js" %}"></script>
+    <script src="{% static "js/bootstrap-datepicker.js" %}"></script>
 
-    {% bootstrap_calendar_js %}
-    {% bootstrap_calendar_init %}
+    {% block custom_javascripts %}
+    {% endblock %}
+
 </body>
