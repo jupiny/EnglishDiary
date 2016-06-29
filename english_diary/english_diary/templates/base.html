@@ -1,4 +1,4 @@
-{% load staticfiles %}{% load i18n %}{% load bootstrap_calendar %}<!DOCTYPE html>
+{% load staticfiles %}<!DOCTYPE html>
 
 <head>
 
@@ -18,7 +18,6 @@
     <link href="{% static "css/heroic-features.css" %}" rel="stylesheet">
     <link href="{% static "css/signin.css" %}" rel="stylesheet">
     <link href="{% static "css/home.css" %}" rel="stylesheet">
-    {% bootstrap_calendar_css %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,6 +38,4 @@
     <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/bootstrap.js" %}"></script>
 
-    {% bootstrap_calendar_js %}
-    {% bootstrap_calendar_init %}
 </body>
