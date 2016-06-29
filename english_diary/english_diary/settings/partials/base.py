@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users',
+    'diaries',
     'english_diary',
 ]
 
