@@ -6,5 +6,6 @@ install:
     - pip install -r requirements/development.txt
 script:
     - pep8 .
+    - make test
 notifications:
     slack: yujuteam:eWkDBQrRPDHZp8eyEfKpbLH7
