@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from users.models import User
 
@@ -33,3 +34,8 @@ class Diary(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def formatted_created_at(self):
+        datetime_format = '%Y-%m-%d'
+        return self.created_at.strftime(datetime_format)
