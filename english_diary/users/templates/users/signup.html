@@ -1,1 +1,28 @@
-<h1>Signup</h1>
+{% extends "base.html" %}
+
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+                    <div class="login-card">
+                        <form action="">
+                            <div class="row">
+                                    <input id="user_id" placeholder="아이디" type="text" class="form-control input-user_id col-xl-12 col-sm-12 col-md-12 col-lg-12">
+
+                                    <input id="password" placeholder="비밀번호" type="password" class="form-control input-password col-xl-12 col-sm-12 col-md-12 col-lg-12">
+
+                                    <input id="email" placeholder="이메일" type="email" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                <a class="btn btn-login col-xl-12 col-sm-12 col-md-12 col-lg-12" href="#">회원가입</a>
+
+                                <button class="btn btn-fb-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">페이스북으로 회원가입</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
