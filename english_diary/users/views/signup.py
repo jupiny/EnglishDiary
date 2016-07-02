@@ -1,19 +1,27 @@
 from django.views.generic.base import View
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
+from django.core.urlresolvers import reverse
+from django.shortcuts import render, redirect
 
 
 class SignupView(View):
 
     def get(self, request, *args, **kwargs):
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        email = request.POST.get("email")
-        hash_id = request.POST.get("hash_id")
-        profile_image = request.POST.get("profile_image")
-
         return render(
             request,
             "users/signup.html",
             context={},
         )
+
+    def post(self, request, *args, **kwargs):
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+
+        user = get_user_model().object.create_user(
+            username=username,
+            password=password,
+            email=email,
+        )
+
+        return redirect(reverse("user:login"))
