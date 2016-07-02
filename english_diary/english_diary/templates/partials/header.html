@@ -18,9 +18,9 @@
                     <li>
                         {% if request.user.is_authenticated %}
                         <a href="#">Signed in as {{request.user.username}}</a>
-                        <a href="#">Sign Out</a>
+                        <a href="{% url "users:logout" %}">Sign Out</a>
                         {% else %}
-                        <a href="{% url "signin" %}">Signin</a>
+                        <a href="{% url "users:login" %}">Signin</a>
                         {% endif %}
                     </li>
                     <li>

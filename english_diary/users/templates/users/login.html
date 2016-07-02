@@ -7,16 +7,19 @@
             <div class="row">
                 <div class="col-xl-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
                     <div class="login-card">
-                        <form action="">
+                        <form action="{% url "users:login" %}" method="POST">
+                            {% csrf_token %}
                             <div class="row">
                                 <!-- <div class="input-field col s12 m12 l12"> -->
-                                    <input id="email" placeholder="이메일 주소" type="email" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <input id="username" name="username" placeholder="아이디" type="text" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
+                                    <input id="email" name="email" placeholder="이메일 주소" type="email" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
                                     <!-- <label for="email">Email</label> -->
                                 <!-- </div> -->
                                 <!-- <div class="input-field col s12 m12 l12"> -->
-                                    <input id="password" placeholder="비밀번호" type="password" class="form-control input-password col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <input id="password" name="password" placeholder="비밀번호" type="password" class="form-control input-password col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
                                     <!-- <label for="password">Password</label> -->
                                 <!-- </div> -->
+                                    <input id="next" value="{{ request.GET.next }}" type="hidden">
                                 <button class="btn btn-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">이메일로 로그인</button>
                                 <button class="btn btn-fb-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">페이스북으로 로그인</button>
                                 <a class="btn-signup col-xl-12 col-sm-12 col-md-12 col-lg-12" href="{% url "users:signup" %}">회원가입</a>
