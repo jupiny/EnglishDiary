@@ -29,3 +29,9 @@ button.next{
     text-align: center;
     font-size: 20px;
 }
+
+.btn-save {
+	width: 100%;
+	color: #FFF;
+	background-color: #E53935;
+}
