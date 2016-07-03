@@ -9,5 +9,4 @@ from diaries.models import Diary
 def post_save_diary(sender, instance, created, **kwargs):
     if created:
         instance.word_count = len(instance.content.split())
-        instance.formatted_created_at = instance.created_at.strftime(settings.DATETIME_FORMAT)
         instance.save()

@@ -20,13 +20,6 @@ class DiaryModelTestCase(TestCase):
             content="Today I am very happy!",
         )
 
-    def test_diary_model_should_have_formatted_created_at(self):
-
-        self.assertEqual(
-            self.diary.formatted_created_at,
-            self.diary.created_at.strftime(settings.DATETIME_FORMAT)
-        )
-
     def test_diary_model_should_have_correct_word_count(self):
 
         self.assertEqual(
