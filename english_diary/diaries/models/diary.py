@@ -35,8 +35,6 @@ class Diary(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    formatted_created_at = models.CharField(
+    datetime = models.CharField(
         max_length=10,
-        blank=True,
-        null=True,
     )
