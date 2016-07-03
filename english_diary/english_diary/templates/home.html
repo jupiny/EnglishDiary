@@ -21,14 +21,11 @@
         </div>
     </div>
 </section>
-{% endblock content %}
+{% endblock %}
 {% block custom_javascripts %}
 <script>
+$( document ).ready(function() {
     $('#datepicker').datepicker();
-    $('#datepicker').on("changeDate", function() {
-        $('#my_hidden_input').val(
-        $('#datepicker').datepicker('getFormattedDate')
-        );
-    });
+});
 </script>
 {% endblock %}
