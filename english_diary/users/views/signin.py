@@ -1,15 +1,15 @@
-from django.views.generic.base import View
-from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
+from django.views.generic import View
 
 
-class SignupView(View):
+class SigninView(View):
 
     def get(self, request, *args, **kwargs):
         return render(
             request,
-            "users/signup.html",
+            "users/signin.html",
             context={},
         )
 
@@ -18,12 +18,13 @@ class SignupView(View):
         password = request.POST.get("password")
         email = request.POST.get("email")
 
-        # TODO: validation with test code
-        user = get_user_model().objects.create_user(
+        user = authenticate(
             username=username,
             password=password,
-            email=email,
         )
 
-        # TODO: flash message(success, error)
+        if user:
+            login(request, user)
+            return redirect("home")
+
         return redirect(reverse("users:signin"))
