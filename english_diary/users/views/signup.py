@@ -26,4 +26,4 @@ class SignupView(View):
         )
 
         # TODO: flash message(success, error)
-        return redirect(reverse("users:login"))
+        return redirect(reverse("users:signin"))

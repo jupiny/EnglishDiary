@@ -4,12 +4,12 @@ from django.core.urlresolvers import reverse
 from django.views.generic import View
 
 
-class LoginView(View):
+class SigninView(View):
 
     def get(self, request, *args, **kwargs):
         return render(
             request,
-            "users/login.html",
+            "users/signin.html",
             context={},
         )
 
@@ -27,4 +27,4 @@ class LoginView(View):
             login(request, user)
             return redirect("home")
 
-        return redirect(reverse("users:login"))
+        return redirect(reverse("users:signin"))

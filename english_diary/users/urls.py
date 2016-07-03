@@ -4,7 +4,7 @@ from users.views import *
 
 
 urlpatterns = [
-    url(r'^login/$', LoginView.as_view(), name="login"),
-    url(r'^logout/$', LogoutView.as_view(), name="logout"),
+    url(r'^signin/$', SigninView.as_view(), name="signin"),
+    url(r'^signout/$', SignoutView.as_view(), name="signout"),
     url(r'^signup/$', SignupView.as_view(), name="signup"),
 ]

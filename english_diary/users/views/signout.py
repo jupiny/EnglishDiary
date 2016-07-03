@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
 
-class LogoutView(View):
+class SignoutView(View):
 
     def get(self, request, *args, **kwargs):
         logout(request)
-        return redirect(reverse("users:login"))
+        return redirect(reverse("users:signin"))
