@@ -15,8 +15,11 @@
                 <div id="datepicker" data-date="{{ today }}" data-date-format="yyyy-mm-dd"></div>
             </div>
             <div class="col-md-4 col-sm-12 col-xl-12">
-                <textarea id="diary-content" name="" class="form-control" rows="25"></textarea>
-                <button type="button" class="btn btn-save">저장</button>
+                <form>
+                    <input type="hidden" id="diary-datetime">
+                    <textarea id="diary-content" name="" class="form-control" rows="25"></textarea>
+                    <button type="button" id="diary-save" class="btn btn-save">저장</button>
+                </form>
             </div>
         </div>
     </div>
@@ -26,6 +29,26 @@
 <script>
 $( document ).ready(function() {
     $('#datepicker').datepicker();
+    $('#diary-save').click(function() {
+        var diaryContent = $('#diary-content').val();
+        var diaryDatetime = $('#diary-datetime').val();
+        var diaryCreateAPIUrl = "/api/diary/create/";
+        var data = {
+            datetime: diaryDatetime,
+            content: diaryContent
+        };
+        $.ajax({
+            type: "POST",
+            url: diaryCreateAPIUrl,
+            data: data,
+            success: function(data) {
+                alert("저장되었습니다.");
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 });
 </script>
 {% endblock %}

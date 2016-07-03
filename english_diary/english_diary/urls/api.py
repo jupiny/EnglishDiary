@@ -5,4 +5,5 @@ from diaries.api import *
 
 urlpatterns = [
     url(r'^diary/(?P<datetime>\d{4}-\d{2}-\d{2})/$', DiaryDetailAPIView.as_view(), name="detail"),
+    url(r'^diary/create/$', DiaryCreateAPIView.as_view(), name="create"),
 ]

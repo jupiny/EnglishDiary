@@ -600,11 +600,12 @@
                                 day = "0" + String(day)
                             }
                             var selectedDatetime = year+"-"+month+"-"+day;
-                            var diaryAPIUrl = "/api/diary/" + selectedDatetime;
+                            var diaryDetailAPIUrl = "/api/diary/" + selectedDatetime;
                             var diaryContentTextareaElement = $("#diary-content");
+                            $('#diary-datetime').val(selectedDatetime);
                             $.ajax({
                                 type: "GET",
-                                url: diaryAPIUrl,
+                                url: diaryDetailAPIUrl,
                                 success: function(data) {
                                     var diaryContent = data.content;
                                     diaryContentTextareaElement.val(diaryContent);

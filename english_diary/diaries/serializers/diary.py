@@ -3,7 +3,7 @@ from rest_framework.serializers import ModelSerializer
 from diaries.models import Diary
 
 
-class DiaryDetailSerializer(ModelSerializer):
+class DiaryModelSerializer(ModelSerializer):
 
     class Meta:
         model = Diary

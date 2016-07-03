@@ -1,1 +1,1 @@
-from .detail import DiaryDetailSerializer
+from .diary import DiaryModelSerializer
