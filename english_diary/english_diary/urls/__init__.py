@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name="home"),
     url(r'^', include("users.urls", namespace="users")),
+    url(r'^api/', include("english_diary.urls.api", namespace="api")),
 ]
