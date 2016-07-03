@@ -19,13 +19,13 @@ class DiaryModelTestCase(TestCase):
         self.diary = self.user.diary_set.create(
             content="Today I am very happy!",
         )
-        self.diary.created_at = datetime(2016, 6, 30, 15, 18, 38)
 
     def test_diary_model_should_have_formatted_created_at(self):
 
+        datetime_format = '%Y-%m-%d'
         self.assertEqual(
             self.diary.formatted_created_at,
-            '2016-06-30',
+            self.diary.created_at.strftime(datetime_format)
         )
 
     def test_diary_model_should_have_correct_word_count(self):
