@@ -10,21 +10,23 @@ class DiaryCreateAPIView(APIView):
     def post(self, request, *args, **kwargs):
         datetime = request.POST.get("datetime")
         content = request.POST.get("content")
-        diary = Diary.objects.get(datetime=datetime)
-        
-        # Update Diary
-        if diary:
+        try:
+            diary = Diary.objects.get(datetime=datetime)
+
+            # Update Diary
             diary.datetime = datetime
             diary.content = content
             diary.save()
 
-        # Create Diary
-        else:
-            diary = Diary.objects.create(
+        except Diary.DoesNotExist:
+
+            # Create Diary
+            Diary.objects.create(
                 user=request.user,
                 datetime=datetime,
                 content=content,
             )
+        
         return Response(
             status=status.HTTP_201_CREATED,
             data={
