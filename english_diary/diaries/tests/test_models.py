@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from datetime import datetime
+from django.conf import settings 
 
 from diaries.models import Diary
 
@@ -22,10 +22,9 @@ class DiaryModelTestCase(TestCase):
 
     def test_diary_model_should_have_formatted_created_at(self):
 
-        datetime_format = '%Y-%m-%d'
         self.assertEqual(
             self.diary.formatted_created_at,
-            self.diary.created_at.strftime(datetime_format)
+            self.diary.created_at.strftime(settings.DATETIME_FORMAT)
         )
 
     def test_diary_model_should_have_correct_word_count(self):
