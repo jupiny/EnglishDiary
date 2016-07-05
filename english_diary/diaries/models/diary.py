@@ -3,9 +3,19 @@ from django.conf import settings
 
 from users.models import User
 
+class GetOrNoneManager(models.Manager):
+    """
+    Adds get_or_none method to objects
+    """
+    def get_or_none(self, **kwargs):
+        try:
+            return self.get(**kwargs)
+        except self.model.DoesNotExist:
+            return None 
 
 class Diary(models.Model):
 
+    objects = GetOrNoneManager()
     user = models.ForeignKey(User)
     content = models.TextField()
 

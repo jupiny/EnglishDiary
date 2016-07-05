@@ -9,14 +9,11 @@ class DiaryDetailAPIView(APIView):
 
     def get(self, request, *args, **kwargs):
 
-        try:
-            diary = Diary.objects.get(datetime=kwargs.get("datetime"))
-
+        diary = Diary.objects.get_or_none(datetime=kwargs.get("datetime"))
+        if diary:
             # Diary is exist
             content = diary.content
-
-        except Diary.DoesNotExist:
-
+        else:
             #Diary is not exist
             content = ""
 
