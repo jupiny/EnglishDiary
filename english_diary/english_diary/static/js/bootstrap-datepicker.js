@@ -599,7 +599,7 @@
                             if (day < 10) {
                                 day = "0" + String(day)
                             }
-                            var selectedDatetime = year+"-"+month+"-"+day;
+                            var selectedDatetime = year+"/"+month+"/"+day;
                             var diaryDetailAPIUrl = "/api/diary/" + selectedDatetime;
                             var diaryContentTextareaElement = $("#diary-content");
                             $('#diary-datetime').val(selectedDatetime);
