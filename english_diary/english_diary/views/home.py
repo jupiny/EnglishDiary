@@ -11,6 +11,6 @@ class HomeView(View):
             request,
             "home.html",
             context={
-                "today": today,     
+                "today": today,
             },
         )

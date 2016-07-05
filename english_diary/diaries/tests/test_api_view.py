@@ -13,14 +13,14 @@ class DiaryAPIViewTestCase(APITestCase):
     def setUp(self):
         test_username = "test_username"
         test_password = "test_password"
-        
+
         # Create a user
         self.user = get_user_model().objects.create_user(
             username=test_username,
             password=test_password,
         )
 
-        # Login 
+        # Login
         self.client = APIClient()
         self.client.login(
             username=test_username,
@@ -34,7 +34,7 @@ class DiaryAPIViewTestCase(APITestCase):
         test_content = 'Today I realy want to write diary!'
         test_data = {
             'datetime': test_datetime,
-            'content': test_content, 
+            'content': test_content,
         }
         response = self.client.post(
             test_create_url,

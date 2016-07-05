@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
-from rest_framework.response import Response 
-from rest_framework import status 
+from rest_framework.response import Response
+from rest_framework import status
 
 from diaries.models import Diary
 
@@ -19,7 +19,7 @@ class DiaryDetailAPIView(APIView):
             # Diary is exist
             content = diary.content
         else:
-            #Diary is not exist
+            # Diary is not exist
             content = ""
 
         return Response(
