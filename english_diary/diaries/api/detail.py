@@ -10,6 +10,7 @@ class DiaryDetailAPIView(APIView):
     def get(self, request, *args, **kwargs):
 
         diary = Diary.objects.get_or_none(datetime=kwargs.get("datetime"))
+
         if diary:
             # Diary is exist
             content = diary.content

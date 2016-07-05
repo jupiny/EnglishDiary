@@ -3,6 +3,7 @@ from django.conf import settings
 
 from users.models import User
 
+
 class GetOrNoneManager(models.Manager):
     """
     Adds get_or_none method to objects
@@ -12,6 +13,7 @@ class GetOrNoneManager(models.Manager):
             return self.get(**kwargs)
         except self.model.DoesNotExist:
             return None 
+
 
 class Diary(models.Model):
 
@@ -30,11 +32,9 @@ class Diary(models.Model):
         null=True,
     )
 
-    word_count = models.PositiveIntegerField(
-        blank=True,
-        null=True,
-        default=0,
-    )
+    @property
+    def word_count(self):
+        return len(self.content.split())
 
     diary_type = models.PositiveSmallIntegerField(
         blank=True,
