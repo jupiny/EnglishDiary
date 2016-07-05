@@ -6,30 +6,73 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 col-xl-12 month-title">
-
             </div>
         </div>
         <div class="clear-fix">
         </div>
         <div class="row">
             <div class="col-md-8 col-sm-12 col-xl-12">
-                <div id="datepicker" data-date="" data-date-format="yyyy-mm-dd"></div>
+                <div id="datepicker" data-date="{{ today }}" data-date-format="yyyy-mm-dd"></div>
             </div>
             <div class="col-md-4 col-sm-12 col-xl-12">
-                <textarea id="diary-content" name="" class="form-control" rows="25"></textarea>
+                <form>
+                    <input type="hidden" id="diary-datetime">
+                    <button type="button" id="diary-delete" class="btn btn-delete">삭제</button>
+                    <textarea id="diary-content" name="" class="form-control" rows="25" required></textarea>
+                    <button type="button" id="diary-save" class="btn btn-save">저장</button>
+                </form>
             </div>
         </div>
     </div>
 </section>
-{% endblock content %}
+{% endblock %}
 {% block custom_javascripts %}
 <script>
-      $('#datepicker').data("date", "2016-12-07");
-      $('#datepicker').datepicker();
-      $('#datepicker').on("changeDate", function() {
-          $('#my_hidden_input').val(
-              $('#datepicker').datepicker('getFormattedDate')
-          );
-      });
+$( document ).ready(function() {
+    $('#datepicker').datepicker();
+
+    // Create Diary
+    $('#diary-save').click(function() {
+        var diaryContent = $('#diary-content').val();
+        var diaryDatetime = $('#diary-datetime').val();
+        var diaryCreateAPIUrl = "/api/diary/create/";
+        var data = {
+            datetime: diaryDatetime,
+            content: diaryContent
+        };
+        $.ajax({
+            type: "POST",
+            url: diaryCreateAPIUrl,
+            data: data,
+            success: function(data) {
+                alert("저장되었습니다.");
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+
+    // Delete Diary
+    $('#diary-delete').click(function() {
+        var diaryDatetime = $('#diary-datetime').val();
+        var diaryDeleteAPIUrl = "/api/diary/" + diaryDatetime + "/delete/";
+        var data = {
+            datetime: diaryDatetime,
+        };
+        $.ajax({
+            type: "DELETE",
+            url: diaryDeleteAPIUrl,
+            data: data,
+            success: function(data) {
+                alert("삭제되었습니다.");
+                $('#diary-content').val("");
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
 </script>
 {% endblock %}
