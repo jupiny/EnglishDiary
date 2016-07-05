@@ -35,3 +35,9 @@ button.next{
 	color: #FFF;
 	background-color: #E53935;
 }
+
+.btn-delete {
+	width: 100%;
+	color: #FFF;
+	background-color: #FFBB00;
+}

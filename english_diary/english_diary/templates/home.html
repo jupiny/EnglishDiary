@@ -17,6 +17,7 @@
             <div class="col-md-4 col-sm-12 col-xl-12">
                 <form>
                     <input type="hidden" id="diary-datetime">
+                    <button type="button" id="diary-delete" class="btn btn-delete">삭제</button>
                     <textarea id="diary-content" name="" class="form-control" rows="25" required></textarea>
                     <button type="button" id="diary-save" class="btn btn-save">저장</button>
                 </form>
@@ -29,6 +30,8 @@
 <script>
 $( document ).ready(function() {
     $('#datepicker').datepicker();
+
+    // Create Diary
     $('#diary-save').click(function() {
         var diaryContent = $('#diary-content').val();
         var diaryDatetime = $('#diary-datetime').val();
@@ -43,6 +46,27 @@ $( document ).ready(function() {
             data: data,
             success: function(data) {
                 alert("저장되었습니다.");
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+
+    // Delete Diary
+    $('#diary-delete').click(function() {
+        var diaryDatetime = $('#diary-datetime').val();
+        var diaryDeleteAPIUrl = "/api/diary/" + diaryDatetime + "/delete/";
+        var data = {
+            datetime: diaryDatetime,
+        };
+        $.ajax({
+            type: "DELETE",
+            url: diaryDeleteAPIUrl,
+            data: data,
+            success: function(data) {
+                alert("삭제되었습니다.");
+                $('#diary-content').val("");
             },
             error: function(error) {
                 console.log(error);
