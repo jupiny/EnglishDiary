@@ -45,7 +45,12 @@ $( document ).ready(function() {
             url: diaryCreateAPIUrl,
             data: data,
             success: function(data) {
-                alert("저장되었습니다.");
+                if(data.result) {
+                    alert("저장되었습니다.");
+                }
+                else {
+                    alert("한글을 쓰시면 안되요!");
+                }
             },
             error: function(error) {
                 console.log(error);
