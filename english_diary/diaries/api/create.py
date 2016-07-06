@@ -11,7 +11,6 @@ class DiaryCreateAPIView(APIView):
     def post(self, request, *args, **kwargs):
         datetime = request.POST.get("datetime")
         content = request.POST.get("content")
-        diary = Diary.objects.get_or_none(datetime=datetime)
 
         # Search Korean in text
         has_korean = re.search(
@@ -19,22 +18,15 @@ class DiaryCreateAPIView(APIView):
             content,
         )
 
+        result = False
         if not has_korean:
-            if diary:
-                # Update Diary
-                diary.datetime = datetime
-                diary.content = content
-                diary.save()
-            else:
-                # Create Diary
-                Diary.objects.create(
-                    user=request.user,
-                    datetime=datetime,
-                    content=content,
-                )
+            request.user.diary_set.update_or_create(
+                datetime=datetime,
+                defaults={
+                    "content": content,
+                }
+            )
             result = True
-        else:
-            result = False
 
         return Response(
             status=status.HTTP_201_CREATED,
