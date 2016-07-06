@@ -13,7 +13,7 @@ class GetOrNoneManager(models.Manager):
             return self.get(**kwargs)
         except self.model.DoesNotExist:
             return None
-    
+
 
 class Diary(models.Model):
 

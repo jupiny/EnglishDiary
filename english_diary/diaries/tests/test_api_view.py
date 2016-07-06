@@ -130,7 +130,7 @@ class DiaryAPIViewTestCase(APITestCase):
             Diary.objects.count(),
             0,
         )
-        
+
         def test_search_korean_in_diary_content(self):
             test_create_url = reverse('api:create')
             test_datetime = '2016/07/02'
