@@ -41,3 +41,13 @@ button.next{
 	color: #FFF;
 	background-color: #FFBB00;
 }
+
+textarea#diary-content {
+   height: 450px; 
+}
+
+@media (max-width: 992px) {
+    textarea#diary-content {
+       height: 200px; 
+    }
+}
