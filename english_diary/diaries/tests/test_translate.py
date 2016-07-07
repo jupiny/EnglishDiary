@@ -19,8 +19,6 @@ class TranslateTestCase(TestCase):
         data = {
             "source": "en",
             "target": "ko",
-
-            # TODO: should get real data from diary
             "text": "Hi, This is test.",
         }
 
