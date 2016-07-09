@@ -17,9 +17,9 @@
             <div class="col-md-4 col-sm-12 col-xl-12">
                 <form>
                     <input type="hidden" id="diary-datetime">
-                    <button type="button" id="diary-delete" class="btn btn-delete">삭제</button>
-                    <textarea id="diary-content" name="" class="form-control" rows="25" required></textarea>
-                    <button type="button" id="diary-save" class="btn btn-save">저장</button>
+                    <input type="submit" id="diary-delete" class="btn btn-delete" value="삭제"/>
+                    <textarea id="diary-content" name="" class="form-control" required></textarea>
+                    <input type="submit" id="diary-save" class="btn btn-save" value="저장"/>
                 </form>
             </div>
         </div>
@@ -33,29 +33,32 @@ $( document ).ready(function() {
 
     // Create Diary
     $('#diary-save').click(function() {
-        var diaryContent = $('#diary-content').val();
-        var diaryDatetime = $('#diary-datetime').val();
-        var diaryCreateAPIUrl = "/api/diary/create/";
-        var data = {
-            datetime: diaryDatetime,
-            content: diaryContent
-        };
-        $.ajax({
-            type: "POST",
-            url: diaryCreateAPIUrl,
-            data: data,
-            success: function(data) {
-                if(data.result) {
-                    alert("저장되었습니다.");
+        if($("form")[0].checkValidity()) {
+            var diaryContent = $('#diary-content').val();
+            var diaryDatetime = $('#diary-datetime').val();
+            var diaryCreateAPIUrl = "/api/diary/create/";
+            var data = {
+                datetime: diaryDatetime,
+                content: diaryContent
+            };
+            $.ajax({
+                type: "POST",
+                url: diaryCreateAPIUrl,
+                data: data,
+                success: function(data) {
+                    if(data.result) {
+                        alert("저장되었습니다.");
+                    }
+                    else {
+                        alert("한글을 쓰시면 안되요!");
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
                 }
-                else {
-                    alert("한글을 쓰시면 안되요!");
-                }
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
+            });
+            return false;
+        }
     });
 
     // Delete Diary
@@ -77,6 +80,7 @@ $( document ).ready(function() {
                 console.log(error);
             }
         });
+        return false;
     });
 });
 </script>
