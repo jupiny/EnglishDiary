@@ -31,6 +31,9 @@
 $( document ).ready(function() {
     $('#datepicker').datepicker();
 
+    // Auto click today after page is loaded
+    $('.active').trigger('click');
+
     // Create Diary
     $('#diary-save').click(function() {
         if($("form")[0].checkValidity()) {
