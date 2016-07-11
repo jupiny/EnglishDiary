@@ -548,7 +548,6 @@
 		click: function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-            var prevTarget;
 			var target = $(e.target).closest('span, td, th');
 			if (target.length == 1) {
 				switch(target[0].nodeName.toLowerCase()) {
