@@ -480,6 +480,38 @@
 			yearCont.html(html);
 		},
 
+        showWrittenDiaryDate: function() {
+            var year = this.viewDate.getUTCFullYear(),
+                month = this.viewDate.getUTCMonth();
+            month += 1
+            if (month < 10) {
+                month = "0" + String(month)
+            }
+
+            var CurrentYearMonth = year+"/"+month+"/";
+            var CurrentDays = $("td.day").not('.new').not('.old') 
+            CurrentDays.each(function(index) {
+                var tableDayElement = $(this);
+                day = tableDayElement.text();
+                if (day < 10) {
+                    day = "0" + String(day)
+                }
+                var diaryDetailAPIUrl = "/api/diary/" + CurrentYearMonth+ day;
+                $.ajax({
+                    type: "GET",
+                    url: diaryDetailAPIUrl,
+                    success: function(data) {
+                        if(data.content) {
+                            tableDayElement.addClass('diary-written');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        },
+
 		updateNavArrows: function() {
 			var d = new Date(this.viewDate),
 				year = d.getUTCFullYear(),
@@ -516,6 +548,7 @@
 		click: function(e) {
 			e.stopPropagation();
 			e.preventDefault();
+            var prevTarget;
 			var target = $(e.target).closest('span, td, th');
 			if (target.length == 1) {
 				switch(target[0].nodeName.toLowerCase()) {
@@ -537,6 +570,7 @@
 										break;
 								}
 								this.fill();
+                                this.showWrittenDiaryDate();
 								break;
 							case 'today':
 								var date = new Date();
@@ -568,10 +602,20 @@
 							}
 							this.showMode(-1);
 							this.fill();
+                            this.showWrittenDiaryDate();
 						}
 						break;
 					case 'td':
 						if (target.is('.day') && !target.is('.disabled')){
+
+                            // Day Element Click Effect
+                            var daysElement = $("td.day"); 
+                            daysElement.each(function(index) {
+                                $(this).removeClass('diary-selected');
+                            });
+                            target.addClass('diary-selected');
+                            prevTarget = target;
+
 							var day = parseInt(target.text(), 10)||1;
 							var year = this.viewDate.getUTCFullYear(),
 								month = this.viewDate.getUTCMonth();
@@ -590,8 +634,8 @@
 									month += 1;
 								}
 							}
-							this._setDate(UTCDate(year, month, day,0,0,0,0));
-
+                            //this._setDate(UTCDate(year, month, day,0,0,0,0));
+                           
                             month += 1
                             if (month < 10) {
                                 month = "0" + String(month)
@@ -615,7 +659,6 @@
                                     console.log(error);
                                 }
                             });
-                            
 						}
 						break;
 				}
@@ -627,7 +670,7 @@
 				this.date = date;
 			if (!which || which  == 'view')
 				this.viewDate = date;
-			this.fill();
+            this.fill();
 			this.setValue();
 			this.element.trigger({
 				type: 'changeDate',

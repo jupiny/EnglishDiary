@@ -51,3 +51,12 @@ textarea#diary-content {
        height: 200px; 
     }
 }
+
+.diary-written {
+    background-color: red;
+    color: white;
+}
+
+.diary-selected {
+    background-color: #eeeeee;
+}
