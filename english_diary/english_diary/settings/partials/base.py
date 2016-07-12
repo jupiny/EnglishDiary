@@ -32,7 +32,6 @@ INSTALLED_APPS = [
 
     'users',
     'diaries',
-    'english_diary',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -51,7 +50,9 @@ ROOT_URLCONF = 'english_diary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, "english_diary", "templates"),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
