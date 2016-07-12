@@ -28,3 +28,21 @@ class DiaryDetailAPIView(APIView):
                 "content": content,
             },
         )
+
+    def delete(self, request, *args, **kwargs):
+
+        year = kwargs.get("year")
+        month = kwargs.get("month")
+        day = kwargs.get("day")
+        datetime = year + "/" + month + "/" + day
+        diary = Diary.objects.get_or_none(datetime=datetime)
+
+        if diary:
+            # Diary is exist
+            diary.delete()
+
+        return Response(
+            status=status.HTTP_201_CREATED,
+            data={
+            },
+        )

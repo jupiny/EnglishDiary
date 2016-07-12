@@ -29,7 +29,7 @@ class DiaryAPIViewTestCase(APITestCase):
 
     def test_create_diary(self):
 
-        test_create_url = reverse('api:create')
+        test_create_url = reverse('api:diary:create')
         test_datetime = '2016/07/02'
         test_content = 'Today I realy want to write diary!'
         test_data = {
@@ -75,7 +75,7 @@ class DiaryAPIViewTestCase(APITestCase):
         )
 
         test_detail_url = reverse(
-            'api:detail',
+            'api:diary:detail',
             kwargs={
                 "year": year,
                 "month": month,
@@ -110,7 +110,7 @@ class DiaryAPIViewTestCase(APITestCase):
         )
 
         test_delete_url = reverse(
-            'api:delete',
+            'api:diary:detail',
             kwargs={
                 "year": year,
                 "month": month,
@@ -132,7 +132,7 @@ class DiaryAPIViewTestCase(APITestCase):
         )
 
         def test_search_korean_in_diary_content(self):
-            test_create_url = reverse('api:create')
+            test_create_url = reverse('api:diary:create')
             test_datetime = '2016/07/02'
             test_content = 'Today I 정말 want to write diary!'
             test_data = {
