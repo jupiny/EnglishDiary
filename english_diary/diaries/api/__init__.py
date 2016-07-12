@@ -1,5 +1,2 @@
-from .detail import DiaryDetailAPIView
-from .create import DiaryCreateAPIView
-from .delete import DiaryDeleteAPIView
-from .dictionary import NaverDictionaryAPIView
-from .translate import TranslateAPIView
+from .diary import *
+from .naver import *
