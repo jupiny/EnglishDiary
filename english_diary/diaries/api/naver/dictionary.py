@@ -15,10 +15,10 @@ class NaverDictionaryAPIView(APIView):
 
         response = requests.get(naver_dict_url+find_word)
         dom = BeautifulSoup(response.content, "html.parser")
-        find_word_element = dom.select_one(".fnt_e30").select_one('strong') or None
+        find_word_element = dom.select_one(".fnt_e30") or None
         word_meaning_element = dom.select_one(".fnt_k05") or None
         word_meaning = ""
-        if find_word_element and (find_word_element.text.strip() == find_word):
+        if find_word_element and (find_word_element.select_one('strong').text.strip() == find_word):
             word_meaning = word_meaning_element.text
         return Response(
             status=status.HTTP_201_CREATED,
