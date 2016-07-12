@@ -613,7 +613,6 @@
                                 $(this).removeClass('diary-selected');
                             });
                             target.addClass('diary-selected');
-                            prevTarget = target;
 
 							var day = parseInt(target.text(), 10)||1;
 							var year = this.viewDate.getUTCFullYear(),
@@ -645,13 +644,19 @@
                             var selectedDatetime = year+"/"+month+"/"+day;
                             var diaryDetailAPIUrl = "/api/diary/" + selectedDatetime;
                             var diaryContentTextareaElement = $("#diary-content");
+                            var diaryTranslatedContentTextareaElement = $("#diary-translated-content");
                             $('#diary-datetime').val(selectedDatetime);
                             $.ajax({
                                 type: "GET",
                                 url: diaryDetailAPIUrl,
                                 success: function(data) {
+                                    if(!data.content)
+                                        $('#diary-delete').attr("disabled", true);
+                                    else
+                                        $('#diary-delete').attr("disabled", false);
                                     var diaryContent = data.content;
                                     diaryContentTextareaElement.val(diaryContent);
+                                    diaryTranslatedContentTextareaElement.val("");
                                 },
                                 error: function(error) {
                                     diaryContentTextareaElement.val("");
