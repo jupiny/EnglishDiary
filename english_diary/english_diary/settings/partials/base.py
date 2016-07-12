@@ -34,6 +34,8 @@ INSTALLED_APPS = [
 
     'users',
     'diaries',
+    'english_diary',
+    'analyses',
 ]
 
 MIDDLEWARE_CLASSES = [
