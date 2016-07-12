@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^diary/create/$', DiaryCreateAPIView.as_view(), name="create"),
     url(r'^diary/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/delete/$',
         DiaryDeleteAPIView.as_view(), name="delete"),
+    url(r'^dict/(?P<find_word>\w+)/$', NaverDictionaryAPIView.as_view(), name="dict"),
 ]
