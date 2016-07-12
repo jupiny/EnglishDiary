@@ -2,7 +2,4 @@ Django
 pillow
 djangorestframework
 requests
-<<<<<<< 7889586b751ca53928619a7e2741f1af64e74fc8
 beautifulsoup4
-=======
->>>>>>> update translate API: work well connecting api,js
