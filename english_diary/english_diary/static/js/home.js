@@ -80,30 +80,32 @@ $( document ).ready(function() {
 
     // Translate
     $('#diary-translate').click(function() {
-        var diaryTranslateAPIUrl = "/api/naver/translate/";
-        var diaryContentTextareaElement = $("#diary-content");
-       
-        // input 타입의 .val()로 받으세요(.text로 썼기에 에러났었음)
-        var data = {
-            content: diaryContentTextareaElement.val()
-        };
-        
-        $.ajax({
-            type:"POST",
-            data: data,
-            url: diaryTranslateAPIUrl,
-       
-            // translate.py 의 response 받기
-            success: function(data) {
-                var diaryContent = data.content;
-               //TODO:alert 삭제
-                alert(diaryContent);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-        return false;
+        if($("form")[0].checkValidity()) {
+            var diaryTranslateAPIUrl = "/api/naver/translate/";
+            var diaryContentTextareaElement = $("#diary-content");
+            var diaryTranslatedContentTextareaElement = $("#diary-translated-content");
+           
+            // input 타입의 .val()로 받으세요(.text로 썼기에 에러났었음)
+            var data = {
+                content: diaryContentTextareaElement.val()
+            };
+            
+            $.ajax({
+                type:"POST",
+                data: data,
+                url: diaryTranslateAPIUrl,
+           
+                // translate.py 의 response 받기
+                success: function(data) {
+                    var diaryTranslatedContent = data.content;
+                    diaryTranslatedContentTextareaElement.val(diaryTranslatedContent);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+            return false;
+        }
     });
 
     // Clipboard 
@@ -119,7 +121,7 @@ $( document ).ready(function() {
             data: data,
             url: diaryClipboardAPIUrl,
             success: function(data) {
-                alert("복사되었습니다.");
+                alert("클립보드에 복사되었습니다.");
             },
             error: function(error) {
                 console.log(error);
