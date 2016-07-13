@@ -70,7 +70,7 @@ $( document ).ready(function() {
                 type: "GET",
                 url: naverDictionaryAPIUrl,
                 success: function(data) {
-                    $("#modal-find-word").text(findWord);
+                    $("#modal-searched-word").text(data.searched_word);
                     if(data.word_meaning)
                         $("#modal-word-meaning").text(data.word_meaning);
                     else

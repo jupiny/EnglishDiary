@@ -22,6 +22,7 @@ button.next{
 }
 
 .btn-save {
+    padding: 6px 2px;
 	width: 100%;
 	color: #FFF;
 	background-color: #FFBB00;
@@ -32,6 +33,7 @@ button.next{
 }
 
 .btn-delete {
+    padding: 6px 2px;
 	width: 100%;
 	color: #FFF;
 	background-color: #E53935;
@@ -83,6 +85,7 @@ textarea#diary-translated-content {
 }
 
 .btn-translate {
+    padding: 6px 2px;
     background-color: #A5E752;
     color: #FFF;
     width: 100%;
@@ -134,7 +137,7 @@ input#find-word:focus {
 
 }
 
-#modal-find-word{
+#modal-searched-word{
     font-size: 23px;
     font-weight: 500;
 }
