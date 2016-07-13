@@ -1,16 +1,12 @@
-from diary.models import Diary
+from django.http.response import HttpResponse
+
+from diaries.models import Diary
 
 
-def show_new_words(diary_old, diary_new):
-    return set(diary_new.split()) - set(diary_old.split())
+def count_whole_words(request):
 
+    whole_words = []
+    for diary in Diary.objects.all():
+        whole_words += diary.content.split()
 
-def main():
-    diaries = Diary.objects.order_by("-id")
-    new_words = show_new_words(diaries[0].content - diary[1].content)
-
-    return new_words
-
-
-# TODO : Model 에서 일기 가저오기
-    # 3. model에서 request로 가져오고
+    return HttpResponse(len(set(whole_words)))
