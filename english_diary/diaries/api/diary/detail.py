@@ -13,7 +13,7 @@ class DiaryDetailAPIView(APIView):
         month = kwargs.get("month")
         day = kwargs.get("day")
         datetime = year + "/" + month + "/" + day
-        diary = Diary.objects.get_or_none(datetime=datetime)
+        diary = request.user.diary_set.get_or_none(datetime=datetime)
 
         if diary:
             # Diary is exist
@@ -35,7 +35,7 @@ class DiaryDetailAPIView(APIView):
         month = kwargs.get("month")
         day = kwargs.get("day")
         datetime = year + "/" + month + "/" + day
-        diary = Diary.objects.get_or_none(datetime=datetime)
+        diary = request.user.diary_set.get_or_none(datetime=datetime)
 
         if diary:
             # Diary is exist
