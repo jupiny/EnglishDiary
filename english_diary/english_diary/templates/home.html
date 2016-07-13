@@ -13,27 +13,62 @@
                 <form>
                     <input type="hidden" id="diary-datetime">
                     <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xl-3">
+                        <div class="col-md-2 col-sm-2 col-xl-2">
                             <input type="submit" id="diary-save" class="btn btn-save" value="저장"/>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xl-3">
-                            <input type="submit" id="diary-translate" class="btn btn-translate" value="번역"/>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xl-3">
-                            <button id="clipboard" class="btn btn-clipboard">Copy</button>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xl-3">
+                        <div class="col-md-2 col-sm-2 col-xl-2">
                             <input type="submit" id="diary-delete" class="btn btn-delete" value="삭제"/>
+                        </div>
+                        <div class="col-md-offset-6 col-sm-offset-6 col-xl-offset-6 col-md-2 col-sm-2 col-xl-2">
+                            <button type="submit" id="clipboard" class="btn btn-clipboard">
+                                <i class="fa fa-clipboard" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                     <textarea id="diary-content" name="" class="form-control" placeholder="일기를 적어주세요" required></textarea>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xl-2">
+                            <input type="submit" id="diary-translate" class="btn btn-translate" value="번역"/>
+                        </div>
+                        <div class="col-md-offset-3 col-sm-offset-3 col-xl-offset-3 col-md-7 col-sm-7 col-xl-7">
+                            <div class="input-group">
+                                <input type="text" id="find-word" class="form-control" placeholder="사전 검색">
+                                <span class="input-group-btn">
+                                    <button type="button" id="dictionary" class="btn btn-dictionary" data-toggle="modal" data-target="#dictionaryModal">
+                                       <i class="fa fa-search" aria-hidden="true"></i> 
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                     <textarea id="diary-translated-content" name="" class="form-control" disabled></textarea>
                 </form>
             </div>
-            <input type="text" id="find-word">
-            <button id="dictionary">사전 검색</button>
         </div>
     </div>
+</section>
+
+<!-- Dictionary Modal -->
+<section>
+<div id="dictionaryModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <p class="modal-title"><span id="modal-find-word"></span> 의 검색결과</p>
+      </div>
+      <div class="modal-body">
+        <p id="modal-word-meaning">.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 {% endblock %}
 {% block custom_javascripts %}
 <script src="{% static "js/home.js" %}"></script>

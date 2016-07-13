@@ -64,20 +64,27 @@ $( document ).ready(function() {
     // Dictionary
     $('#dictionary').click(function() {
         var findWord = $('#find-word').val();
-        var naverDictionaryAPIUrl = "/api/naver/dict/" + findWord;
-        $.ajax({
-            type: "GET",
-            url: naverDictionaryAPIUrl,
-            success: function(data) {
-                if(data.word_meaning)
-                    alert(data.word_meaning);
-                else
-                    alert("검색결과가 없습니다.")
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
+        if(findWord) {
+            var naverDictionaryAPIUrl = "/api/naver/dict/" + findWord;
+            $.ajax({
+                type: "GET",
+                url: naverDictionaryAPIUrl,
+                success: function(data) {
+                    $("#modal-find-word").text(findWord);
+                    if(data.word_meaning)
+                        $("#modal-word-meaning").text(data.word_meaning);
+                    else
+                        $("#modal-word-meaning").text("검색결과가 없습니다.");
+                    $('#dictionaryModal').modal('show');
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+        else {
+            alert("검색어를 입력하세요");
+        }
         return false;
     });
 

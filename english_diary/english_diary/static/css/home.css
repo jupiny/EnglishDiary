@@ -42,8 +42,9 @@ button.next{
 }
 
 textarea#diary-content {
-   height: 300px; 
+   height: 280px; 
    margin-top: 10px;
+   margin-bottom: 10px;
    border-radius: 2px;
 }
 textarea#diary-content:focus {
@@ -53,19 +54,21 @@ textarea#diary-content:focus {
 }
 
 textarea#diary-translated-content {
-   height: 300px; 
+   height: 280px; 
    border-radius: 2px;
+   margin-top: 10px;
+   margin-bottom: 10px;
 }
 
 @media (max-width: 992px) {
     textarea#diary-content {
-       height: 200px; 
+       height: 180px; 
     }
 }
 
 @media (max-width: 992px) {
     textarea#diary-translated-content {
-       height: 200px; 
+       height: 180px; 
     }
 }
 
@@ -89,6 +92,12 @@ textarea#diary-translated-content {
     background-color: #75BC00;
 }
 
+.btn-dictionary {
+    background-color: #A5E752;
+    color: #FFF;
+    width: 100%;
+}
+
 .btn-clipboard{
     background-color: #FFF;
     color: #333;
@@ -109,4 +118,35 @@ textarea#diary-translated-content {
 .btn-clipboard:active,
 .btn-clipboard:focus {
     color: #333;
+}
+
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus, 
+.btn-default:active:focus {
+    color: #333;
+}
+
+input#find-word:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+
+}
+
+#modal-find-word{
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.modal-title {
+    font-size: 15px
+}
+
+#modal-word-meaning {
+    color: #999999;
+}
+
+.modal-content {
+    margin-top: 200px;
 }
