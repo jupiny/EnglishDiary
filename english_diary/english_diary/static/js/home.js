@@ -64,23 +64,30 @@ $( document ).ready(function() {
     // Dictionary
     $('#dictionary').click(function() {
         var findWord = $('#find-word').val();
+        var blank_pattern = /[\s]/g;
+        var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
         if(findWord) {
-            var naverDictionaryAPIUrl = "/api/naver/dict/" + findWord;
-            $.ajax({
-                type: "GET",
-                url: naverDictionaryAPIUrl,
-                success: function(data) {
-                    $("#modal-searched-word").text(data.searched_word);
-                    if(data.word_meaning)
-                        $("#modal-word-meaning").text(data.word_meaning);
-                    else
-                        $("#modal-word-meaning").text("검색결과가 없습니다.");
-                    $('#dictionaryModal').modal('show');
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
+            // Check blank and special letters
+            if(blank_pattern.test(findWord) || special_pattern.test(findWord))
+                alert("공백, 특수문자는 입력할 수 없습니다.");
+            else {
+                var naverDictionaryAPIUrl = "/api/naver/dict/" + findWord;
+                $.ajax({
+                    type: "GET",
+                    url: naverDictionaryAPIUrl,
+                    success: function(data) {
+                        $("#modal-searched-word").text(data.searched_word);
+                        if(data.word_meaning)
+                            $("#modal-word-meaning").text(data.word_meaning);
+                        else
+                            $("#modal-word-meaning").text("검색결과가 없습니다.");
+                        $('#dictionaryModal').modal('show');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
         }
         else {
             alert("검색어를 입력하세요");
