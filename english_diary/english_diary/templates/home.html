@@ -6,30 +6,34 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-12 col-xl-12 month-title">
-            </div>
-        </div>
-        <div class="clear-fix">
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-sm-12 col-xl-12">
+            <div class="col-md-7 col-sm-12 col-xl-12">
                 <div id="datepicker" data-date="{{ today }}" data-date-format="yyyy-mm-dd"></div>
             </div>
-            <div class="col-md-4 col-sm-12 col-xl-12">
+            <div class="col-md-5 col-sm-12 col-xl-12">
                 <form>
                     <input type="hidden" id="diary-datetime">
-                    <input type="submit" id="diary-translate" class="btn btn-translate" value="번역"/>
-                    <input type="submit" id="diary-delete" class="btn btn-delete" value="삭제"/>
-                    <textarea id="diary-content" name="" class="form-control" required></textarea>
-                    <input type="submit" id="diary-save" class="btn btn-save" value="저장"/>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xl-3">
+                            <input type="submit" id="diary-save" class="btn btn-save" value="저장"/>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xl-3">
+                            <input type="submit" id="diary-translate" class="btn btn-translate" value="번역"/>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xl-3">
+                            <button id="clipboard" class="btn btn-clipboard">Copy</button>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xl-3">
+                            <input type="submit" id="diary-delete" class="btn btn-delete" value="삭제"/>
+                        </div>
+                    </div>
+                    <textarea id="diary-content" name="" class="form-control" placeholder="일기를 적어주세요" required></textarea>
+                    <textarea id="diary-translated-content" name="" class="form-control" disabled></textarea>
                 </form>
             </div>
             <input type="text" id="find-word">
             <button id="dictionary">사전 검색</button>
-            <button id="clipboard">클립보드에 복사</button>
         </div>
     </div>
-</section>
 {% endblock %}
 {% block custom_javascripts %}
 <script src="{% static "js/home.js" %}"></script>

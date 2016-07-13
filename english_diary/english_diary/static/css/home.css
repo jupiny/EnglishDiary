@@ -1,10 +1,6 @@
 section {
-	padding-top: 4rem;
+	padding-top: 1rem;
 	padding-bottom: 4rem;
-}
-
-textarea#diary-content {
-    margin: 20px auto;
 }
 
 button.prev:active,
@@ -25,25 +21,40 @@ button.next{
     outline: none;
 }
 
-.month-title {
-    text-align: center;
-    font-size: 20px;
-}
-
 .btn-save {
-	width: 100%;
-	color: #FFF;
-	background-color: #E53935;
-}
-
-.btn-delete {
 	width: 100%;
 	color: #FFF;
 	background-color: #FFBB00;
 }
 
+.btn-save:hover {
+	background-color: #DBC000;
+}
+
+.btn-delete {
+	width: 100%;
+	color: #FFF;
+	background-color: #E53935;
+}
+
+.btn-delete:hover  {
+	background-color: #A50000;
+}
+
 textarea#diary-content {
-   height: 450px; 
+   height: 300px; 
+   margin-top: 10px;
+   border-radius: 2px;
+}
+textarea#diary-content:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+
+textarea#diary-translated-content {
+   height: 300px; 
+   border-radius: 2px;
 }
 
 @media (max-width: 992px) {
@@ -52,11 +63,50 @@ textarea#diary-content {
     }
 }
 
+@media (max-width: 992px) {
+    textarea#diary-translated-content {
+       height: 200px; 
+    }
+}
+
 .diary-written {
-    background-color: red;
-    color: white;
+    background-image: url("../img/rsz_stamp_print.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .diary-selected {
-    background-color: #eeeeee;
+    outline: 1px solid #222;
+}
+
+.btn-translate {
+    background-color: #A5E752;
+    color: #FFF;
+    width: 100%;
+}
+
+.btn-translate:hover {
+    background-color: #75BC00;
+}
+
+.btn-clipboard{
+    background-color: #FFF;
+    color: #333;
+    width: 100%;
+    border-color: #CCC;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus, 
+.btn:active:focus {
+    color: #FFF;
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-clipboard:hover,
+.btn-clipboard:active,
+.btn-clipboard:focus {
+    color: #333;
 }

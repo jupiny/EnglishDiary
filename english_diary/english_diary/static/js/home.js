@@ -3,6 +3,7 @@ $( document ).ready(function() {
 
     // Auto click today after page is loaded
     $('.active').trigger('click');
+    $('.active').addClass('diary-selected');
 
     // Create Diary
     $('#diary-save').click(function() {
@@ -22,6 +23,7 @@ $( document ).ready(function() {
                     if(data.result) {
                         alert("저장되었습니다.");
                         $('.diary-selected').addClass('diary-written');
+                        $('#diary-delete').attr("disabled", false);
                     }
                     else {
                         alert("한글을 쓰시면 안되요!");
@@ -49,6 +51,7 @@ $( document ).ready(function() {
             success: function(data) {
                 alert("삭제되었습니다.");
                 $('#diary-content').val("");
+                $('#diary-translated-content').val("");
                 $('.diary-selected').removeClass('diary-written');
             },
             error: function(error) {
