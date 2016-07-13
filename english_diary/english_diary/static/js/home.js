@@ -61,6 +61,13 @@ $( document ).ready(function() {
         return false;
     });
 
+    // Trigger a button click with JavaScript on the Enter key in a text box
+    $("#find-word").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#dictionary").click();
+        }
+    });
+
     // Dictionary
     $('#dictionary').click(function() {
         var findWord = $('#find-word').val();
