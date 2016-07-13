@@ -64,13 +64,14 @@ $( document ).ready(function() {
     // Dictionary
     $('#dictionary').click(function() {
         var findWord = $('#find-word').val();
-        var blank_pattern = /[\s]/g;
         var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
         if(findWord) {
             // Check blank and special letters
-            if(blank_pattern.test(findWord) || special_pattern.test(findWord))
-                alert("공백, 특수문자는 입력할 수 없습니다.");
+            if(special_pattern.test(findWord))
+                alert("특수문자는 입력할 수 없습니다.");
             else {
+                // Blank => "+"
+                findWord.replace(" ","+");
                 var naverDictionaryAPIUrl = "/api/naver/dict/" + findWord;
                 $.ajax({
                     type: "GET",
