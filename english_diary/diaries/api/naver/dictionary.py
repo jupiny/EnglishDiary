@@ -19,7 +19,7 @@ class NaverDictionaryAPIView(APIView):
         word_meaning_element = dom.select_one(".fnt_k05") or None
         searched_word = find_word
         word_meaning = ""
-        if searched_word_element:
+        if searched_word_element and searched_word_element.select_one('strong'):
             searched_word = searched_word_element.select_one('strong').text.strip()
             word_meaning = word_meaning_element.text
         return Response(
