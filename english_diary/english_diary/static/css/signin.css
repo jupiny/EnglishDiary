@@ -25,6 +25,10 @@
 	margin-top: 15px;
 }
 
+.input-username {
+	margin-top: 15px;
+}
+
 .input-password {
 	margin-top: 15px;
 }
@@ -59,6 +63,23 @@ input:focus {
 	text-decoration: underline;
 }
 
+.btn-signin {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	color: #4C4C4C;
+	font-weight: 600;
+	margin-top: 50px;
+}
+
+.btn-signin:focus {
+	text-decoration: none;
+}
+
+.btn-signin:hover {
+	text-decoration: underline;
+}
+
 .btn-findpassword {
 	width: 100%;
 	display: inline-block;
@@ -68,18 +89,13 @@ input:focus {
 	margin-top: 20px;
 }
 
-.btn-findpassword:focus {
-	text-decoration: none;
-}
+/*.btn-findpassword:focus {*/
+	/*text-decoration: none;*/
+/*}*/
 
-.btn-findpassword:hover {
-	text-decoration: underline;
-}
-
-.copyright {
-	color: #fff
-}
-
+/*.btn-findpassword:hover {*/
+	/*text-decoration: underline;*/
+/*}*/
 
 /* autocomplete됐을 때 색상 안 변하게
 input:-webkit-autofill { 

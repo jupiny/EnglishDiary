@@ -3,3 +3,4 @@ pillow
 djangorestframework
 requests
 beautifulsoup4
+pyperclip

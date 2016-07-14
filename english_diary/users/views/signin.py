@@ -16,7 +16,6 @@ class SigninView(View):
     def post(self, request, *args, **kwargs):
         username = request.POST.get("username")
         password = request.POST.get("password")
-        email = request.POST.get("email")
 
         user = authenticate(
             username=username,

@@ -9,20 +9,13 @@
                     <div class="login-card">
                         <form action="{% url "users:signin" %}" method="POST">
                             {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.GET.next }}">
                             <div class="row">
-                                <!-- <div class="input-field col s12 m12 l12"> -->
-                                    <input id="username" name="username" placeholder="닉네임" type="text" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
-                                   <!-- <div class="input-field col s12 m12 l12"> -->
+                                    <input id="username" name="username" placeholder="닉네임" type="text" class="form-control input-username col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
                                     <input id="password" name="password" placeholder="비밀번호" type="password" class="form-control input-password col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
-                                    <!-- <label for="password">Password</label> -->
-                                <!-- </div> -->
-                                    <input id="email" name="email" placeholder="이메일 주소" type="email" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
-                                    <!-- <label for="email">Email</label> -->
-                                <!-- </div> -->
-                                    <button class="btn btn-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">이메일로 로그인</button>
+                                    <button class="btn btn-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">계정으로 로그인</button>
                                 <button class="btn btn-fb-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">페이스북으로 로그인</button>
                                 <a class="btn-signup col-xl-12 col-sm-12 col-md-12 col-lg-12" href="{% url "users:signup" %}">회원가입</a>
-                                <a class="btn-findpassword col-xl-12 col-sm-12 col-md-12 col-lg-12" href="#">비밀번호 찾기</a>
                             </div>
                         </form>
                     </div>

@@ -483,26 +483,84 @@
         showWrittenDiaryDate: function() {
             var year = this.viewDate.getUTCFullYear(),
                 month = this.viewDate.getUTCMonth();
-            month += 1
-            if (month < 10) {
-                month = "0" + String(month)
+            currentMonth = month+1;
+            prevMonth = currentMonth-1;
+            nextMonth = currentMonth+1;
+
+            if (currentMonth < 10) {
+                currentMonth = "0" + String(currentMonth);
+            }
+            if (prevMonth< 10) {
+                prevMonth = "0" + String(prevMonth);
+            }
+            if (nextMonth < 10) {
+                nextMonth = "0" + String(nextMonth);
             }
 
-            var CurrentYearMonth = year+"/"+month+"/";
-            var CurrentDays = $("td.day").not('.new').not('.old') 
-            CurrentDays.each(function(index) {
-                var tableDayElement = $(this);
-                day = tableDayElement.text();
+            // Check when diaries are written on current month
+            var currentMonthDayElements = $("td.day").not('.new').not('.old');
+            currentMonthDayElements.each(function(index) {
+                var currentYearMonth = year+"/"+currentMonth+"/";
+                var currentMonthDayElement = $(this);
+                day = $(this).text();
                 if (day < 10) {
                     day = "0" + String(day)
                 }
-                var diaryDetailAPIUrl = "/api/diary/" + CurrentYearMonth+ day;
+                var diaryDetailAPIUrl = "/api/diary/"+currentYearMonth+day;
                 $.ajax({
                     type: "GET",
                     url: diaryDetailAPIUrl,
                     success: function(data) {
                         if(data.content) {
-                            tableDayElement.addClass('diary-written');
+                            currentMonthDayElement.addClass('diary-written');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            // Check when diaries are written on previous month
+            var prevMonthDayElements = $("td.old");
+            prevMonthDayElements.each(function(index) {
+                var prevYearMonth = year+"/"+prevMonth+"/";
+                var prevMonthDayElement= $(this);
+                day = prevMonthDayElement.text();
+                if (day < 10) {
+                    day = "0" + String(day)
+                }
+                var diaryDetailAPIUrl = "/api/diary/"+prevYearMonth+day;
+                $.ajax({
+                    type: "GET",
+                    url: diaryDetailAPIUrl,
+                    success: function(data) {
+                        if(data.content) {
+                            prevMonthDayElement.addClass('diary-written');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            // Check when diaries are written on next month
+            var nextMonthDayElements = $("td.new");
+            nextMonthDayElements.each(function(index) {
+                var nextYearMonth = year+"/"+nextMonth+"/";
+                var nextMonthDayElement= $(this);
+                day = nextMonthDayElement.text();
+                if (day < 10) {
+                    day = "0" + String(day)
+                }
+                var diaryDetailAPIUrl = "/api/diary/"+nextYearMonth+day;
+                $.ajax({
+                    type: "GET",
+                    url: diaryDetailAPIUrl,
+                    success: function(data) {
+                        if(data.content) {
+                            nextMonthDayElement.addClass('diary-written');
                         }
                     },
                     error: function(error) {
@@ -553,9 +611,9 @@
 				switch(target[0].nodeName.toLowerCase()) {
 					case 'th':
 						switch(target[0].className) {
-							case 'switch':
-								this.showMode(1);
-								break;
+							//case 'switch':
+								//this.showMode(1);
+								//break;
 							case 'prev':
 							case 'next':
 								var dir = DPGlobal.modes[this.viewMode].navStep * (target[0].className == 'prev' ? -1 : 1);
@@ -613,7 +671,6 @@
                                 $(this).removeClass('diary-selected');
                             });
                             target.addClass('diary-selected');
-                            prevTarget = target;
 
 							var day = parseInt(target.text(), 10)||1;
 							var year = this.viewDate.getUTCFullYear(),
@@ -645,13 +702,19 @@
                             var selectedDatetime = year+"/"+month+"/"+day;
                             var diaryDetailAPIUrl = "/api/diary/" + selectedDatetime;
                             var diaryContentTextareaElement = $("#diary-content");
+                            var diaryTranslatedContentTextareaElement = $("#diary-translated-content");
                             $('#diary-datetime').val(selectedDatetime);
                             $.ajax({
                                 type: "GET",
                                 url: diaryDetailAPIUrl,
                                 success: function(data) {
+                                    if(!data.content)
+                                        $('#diary-delete').attr("disabled", true);
+                                    else
+                                        $('#diary-delete').attr("disabled", false);
                                     var diaryContent = data.content;
                                     diaryContentTextareaElement.val(diaryContent);
+                                    diaryTranslatedContentTextareaElement.val("");
                                 },
                                 error: function(error) {
                                     diaryContentTextareaElement.val("");
