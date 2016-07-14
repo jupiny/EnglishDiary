@@ -4,3 +4,4 @@ djangorestframework
 requests
 beautifulsoup4
 pyperclip
+python-social-auth
