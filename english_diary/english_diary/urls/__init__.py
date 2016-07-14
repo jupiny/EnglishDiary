@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name="home"),
     url(r'^', include("users.urls", namespace="users")),
     url(r'^api/', include("english_diary.urls.api", namespace="api")),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ]
