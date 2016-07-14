@@ -5,3 +5,4 @@ requests
 beautifulsoup4
 pyperclip
 python-social-auth
+django-pipeline
