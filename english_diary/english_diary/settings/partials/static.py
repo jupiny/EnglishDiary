@@ -27,7 +27,8 @@ PIPELINE = {
             'source_filenames': (
               'css/application.css',
               'css/datepicker.css',
-              'css/heroc-features.css',
+              'css/heroic-features.css',
+              'css/home.css',
               'css/signin.css',
             ),
             'output_filename': 'css/english_diary.css',
