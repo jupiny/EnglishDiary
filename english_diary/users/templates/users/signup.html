@@ -10,12 +10,13 @@
                         <form action="{% url "users:signup" %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
+                                    <input id="email" name="email" placeholder="이메일" type="email" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
                                     <input id="username" name="username" placeholder="닉네임" type="text" required class="form-control input-username col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
                                     <input id="password" name="password" placeholder="비밀번호" type="password" required class="form-control input-password col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
-                                    <input id="email" name="email" placeholder="이메일" type="email" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
                                 <input type="submit" value="회원가입" class="btn btn-login col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                 <button class="btn btn-fb-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">페이스북으로 회원가입</button>
+                                <a class="btn-signin col-xl-12 col-sm-12 col-md-12 col-lg-12" href="{% url "users:signin" %}">로그인</a>
                             </div>
                         </form>
                     </div>
