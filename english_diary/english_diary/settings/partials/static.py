@@ -3,9 +3,11 @@
 import os
 
 from .base import BASE_DIR
+from .base import PROJECT_ROOT_DIR
 
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "english_diary", "static"),
 ]
+STATIC_ROOT = os.path.join(PROJECT_ROOT_DIR, "dist", "static")
