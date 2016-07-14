@@ -20,3 +20,26 @@ STATICFILES_FINDERS = (
 
     'pipeline.finders.PipelineFinder',
 )
+
+PIPELINE = {
+    'STYLESHEETS': {
+        'english_diary': {
+            'source_filenames': (
+              'css/application.css',
+              'css/datepicker.css',
+              'css/heroc-features.css',
+              'css/signin.css',
+            ),
+            'output_filename': 'css/english_diary.css',
+        },
+    },
+    'JAVASCRIPT': {
+        'english_diary': {
+            'source_filenames': (
+              'js/bootstrap-datepicker.js',
+              'js/home.js',
+            ),
+            'output_filename': 'js/english_diary.js',
+        }
+    }
+}
