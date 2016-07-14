@@ -1,4 +1,4 @@
-{% load staticfiles %}<!DOCTYPE html>
+{% load pipeline %}<!DOCTYPE html>
 
 <head>
 
@@ -23,11 +23,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link href="{% static "css/application.css" %}" rel="stylesheet">
-    <link href="{% static "css/heroic-features.css" %}" rel="stylesheet">
-    <link href="{% static "css/signin.css" %}" rel="stylesheet">
-    <link href="{% static "css/home.css" %}" rel="stylesheet">
-    <link href="{% static "css/datepicker.css" %}" rel="stylesheet">
+    {% stylesheet "english_diary" %}
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,10 +40,12 @@
     {% block content %}
     {% endblock content %}
     {% include "partials/footer.html" %}
-    <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="{% static "js/bootstrap-datepicker.js" %}"></script>
+
+
+    <!-- Custom JavaScript -->
+    {% javascript "english_diary" %} 
+
     {% block custom_javascripts %}
     {% endblock %}
 
