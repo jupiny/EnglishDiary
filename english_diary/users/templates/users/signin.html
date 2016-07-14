@@ -9,6 +9,7 @@
                     <div class="login-card">
                         <form action="{% url "users:signin" %}" method="POST">
                             {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.GET.next }}">
                             <div class="row">
                                 <!-- <div class="input-field col s12 m12 l12"> -->
                                     <input id="username" name="username" placeholder="닉네임" type="text" class="form-control input-email col-xl-12 col-sm-12 col-md-12 col-lg-12" required>
