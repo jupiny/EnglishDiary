@@ -6,7 +6,7 @@ from diaries.models import Diary
 def count_whole_words(request):
 
     whole_words = []
-    for diary in Diary.objects.all():
+    for diary in request.user.diary_set.all():
         whole_words += diary.content.split()
 
-    return HttpResponse(len(set(whole_words)))
+    return HttpResponse(set(whole_words))

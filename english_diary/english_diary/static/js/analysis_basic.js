@@ -3,6 +3,7 @@ $(document).ready(function() {
 
         var diaryWrittenElement = $(".day.diary-written").not(".new");
         var countDiaryWrittenElement = diaryWrittenElement.length; 
-        alert(countDiaryWrittenElement);
+        var message = "한 달중 쓴 총 일기 : "+countDiaryWrittenElement;
+        alert(message);
     });
 });
