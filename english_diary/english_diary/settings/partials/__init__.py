@@ -4,3 +4,4 @@ from .database import *
 from .internationalization import *
 from .static import *
 from .diary import *
+from .mailgun import *
