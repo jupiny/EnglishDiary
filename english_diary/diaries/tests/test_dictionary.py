@@ -73,11 +73,11 @@ class DictionaryTestCase(APITestCase):
 
     def test_dictionary_api_should_return_nothing_when_nonexistent_english_word(self):
 
-        test_nonexistent_korean_word = "asdf"
+        test_nonexistent_english_word = "asfasdfasdf"
         test_dictionary_url = reverse(
             "api:naver:dict",
             kwargs={
-                "find_word": test_nonexistent_korean_word,
+                "find_word": test_nonexistent_english_word,
             }
         )
         response = self.client.get(
