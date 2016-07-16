@@ -8,3 +8,4 @@ python-social-auth
 django-pipeline
 celery[redis]
 redis
+flower
