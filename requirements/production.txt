@@ -6,3 +6,6 @@ beautifulsoup4
 pyperclip
 python-social-auth
 django-pipeline
+celery[redis]
+redis
+flower
