@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from english_diary.views import *
-
+from diaries.utils import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^', include("users.urls", namespace="users")),
     url(r'^api/', include("english_diary.urls.api", namespace="api")),
     url('', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^analysis/$', count_whole_words),
 ]
