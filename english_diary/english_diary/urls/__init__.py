@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^', include("users.urls", namespace="users")),
     url(r'^api/', include("english_diary.urls.api", namespace="api")),
     url('', include('social.apps.django_app.urls', namespace='social')),
-    url(r'analysis/$', count_whole_words),
+    url(r'^analysis/$', count_whole_words),
 ]
