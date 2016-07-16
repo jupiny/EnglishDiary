@@ -4,10 +4,13 @@ from django.conf import settings
 
 from diaries.models import Diary
 
+from english_diary.celery import app
+
 
 class DiaryModelTestCase(TestCase):
 
     def setUp(self):
+        app.conf.update(CELERY_ALWAYS_EAGER=True)
 
         # Create a user
         self.user = get_user_model().objects.create_user(

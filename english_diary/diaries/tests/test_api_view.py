@@ -6,11 +6,13 @@ from rest_framework.test import APITestCase
 from rest_framework.test import APIClient
 
 from diaries.models import Diary
+from english_diary.celery import app
 
 
 class DiaryAPIViewTestCase(APITestCase):
 
     def setUp(self):
+        app.conf.update(CELERY_ALWAYS_EAGER=True)
         test_username = "test_username"
         test_password = "test_password"
 
