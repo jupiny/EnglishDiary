@@ -16,5 +16,7 @@ class SendWriteDiaryEmailTask(Task):
                 subject=settings.WRITE_DIARY_EMAIL_SUBJECT.format(
                     username=user.username,
                 ),
-                text=settings.WRITE_DIARY_EMAIL_TEXT,
+                text=settings.WRITE_DIARY_EMAIL_TEXT.format(
+                    username=user.username,
+                )
             )
