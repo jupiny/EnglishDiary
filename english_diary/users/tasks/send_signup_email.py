@@ -6,13 +6,15 @@ from celery import Task
 from users.utils.send_email import send_email
 
 
-class SendEmailTask(Task):
+class SendSignupEmailTask(Task):
 
     def run(self, user_id):
         user = get_user_model().objects.get(pk=user_id)
         send_email(
-            sender=settings.MAILGUN_SENDER_EMAIL,
+            sender=settings.ADMIN_SENDER_EMAIL,
             receiver=user.email,
-            subject=settings.MAILGUN_SUBJECT,
-            text=user.username+settings.MAILGUN_TEXT,
+            subject=settings.SIGNUP_EMAIL_SUBJECT,
+            text=settings.SIGNUP_EMAIL_TEXT.format(
+                username=user.username,
+            )
         )
