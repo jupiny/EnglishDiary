@@ -1,31 +1,12 @@
 from django.core.urlresolvers import reverse
-from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.test import APITestCase
-from rest_framework.test import APIClient
 
 from diaries.models import Diary
+from .base import DiaryBaseTestCase
 
 
-class DiaryAPIViewTestCase(APITestCase):
-
-    def setUp(self):
-        test_username = "test_username"
-        test_password = "test_password"
-
-        # Create a user
-        self.user = get_user_model().objects.create_user(
-            username=test_username,
-            password=test_password,
-        )
-
-        # Login
-        self.client = APIClient()
-        self.client.login(
-            username=test_username,
-            password=test_password,
-        )
+class DiaryAPIViewTestCase(DiaryBaseTestCase):
 
     def test_create_diary(self):
 
