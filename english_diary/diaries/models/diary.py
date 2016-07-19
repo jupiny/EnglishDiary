@@ -33,8 +33,8 @@ class Diary(models.Model):
     )
 
     @property
-    def word_count(self):
-        return len(self.content.split())
+    def words_count(self):
+        return len(set(self.content.split()))
 
     diary_type = models.PositiveSmallIntegerField(
         blank=True,
