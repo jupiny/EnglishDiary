@@ -49,5 +49,6 @@ class Diary(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     datetime = models.CharField(
-        max_length=10,
+        max_length=11,
+        default="",
     )
