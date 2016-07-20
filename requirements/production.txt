@@ -10,3 +10,4 @@ celery[redis]
 redis
 flower
 dj-database-url
+psycopg2
