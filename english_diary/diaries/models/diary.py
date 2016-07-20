@@ -33,8 +33,11 @@ class Diary(models.Model):
     )
 
     @property
-    def words_count(self):
-        return len(set(self.content.split()))
+    def used_words(self):
+        diary_content = self.content
+        for puctuation_mark in settings.PUCTUATION_MARKS:
+            diary_content = diary_content.replace(puctuation_mark, "")
+        return list(set(diary_content.split()))
 
     diary_type = models.PositiveSmallIntegerField(
         blank=True,
