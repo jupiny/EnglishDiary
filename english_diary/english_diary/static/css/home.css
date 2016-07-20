@@ -143,6 +143,12 @@ textarea#diary-translated-content {
     box-shadow: none;
 }
 
+.close:focus,
+.close:active:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 .btn-default:hover,
 .btn-default:active,
 .btn-default:focus, 
