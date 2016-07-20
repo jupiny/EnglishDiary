@@ -166,15 +166,32 @@ $( document ).ready(function() {
         var countDaysInMonth = $(".day").not(".new").not(".old").length;
 
         //calculate achievement
-        var achievementString =  Math.round(countDiaryWritten / countDaysInMonth * 100).toString() + "%";
+        var achievementInt = Math.round(countDiaryWritten / countDaysInMonth * 100);
+        var achievementString =  achievementInt.toString() + "%";
        
         //var achievementMessage = " 달성중"
 
+        // Setting progress bar
         $(".progress-bar").css({
             "width": achievementString
         });
-
         $(".progress-bar").text(achievementString);
+
+        // Clear existing class
+        $(".progress-bar")
+            .removeClass("progress-bar-danger")
+            .removeClass("progress-bar-warning")
+            .removeClass("progress-bar-info")
+            .removeClass("progress-bar-success")
+
+        if(achievementInt < 20)
+            $(".progress-bar").addClass("progress-bar-danger");
+        else if(achievementInt < 50)
+            $(".progress-bar").addClass("progress-bar-warning");
+        else if(achievementInt < 70)
+            $(".progress-bar").addClass("progress-bar-info");
+        else
+            $(".progress-bar").addClass("progress-bar-success");
 
         var currentYearMonth = $("#current-year-month").val();
         var currentYear = currentYearMonth.split("/")[0];
