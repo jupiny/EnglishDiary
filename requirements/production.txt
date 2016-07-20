@@ -9,3 +9,4 @@ django-pipeline
 celery[redis]
 redis
 flower
+dj-database-url
