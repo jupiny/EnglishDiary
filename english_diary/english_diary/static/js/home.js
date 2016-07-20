@@ -9,7 +9,7 @@ $( document ).ready(function() {
     $('#diary-save').click(function() {
         if($("form")[0].checkValidity()) {
             var diaryContent = $('#diary-content').val();
-            var diaryDatetime = $('#diary-datetime').val();
+            var diaryDatetime = $('#selected-datetime').val();
             var diaryCreateAPIUrl = "/api/diary/";
             var data = {
                 datetime: diaryDatetime,
@@ -39,7 +39,7 @@ $( document ).ready(function() {
 
     // Delete Diary
     $('#diary-delete').click(function() {
-        var diaryDatetime = $('#diary-datetime').val();
+        var diaryDatetime = $('#selected-datetime').val();
         var diaryDeleteAPIUrl = "/api/diary/" + diaryDatetime;
         var data = {
             datetime: diaryDatetime,
@@ -153,5 +153,64 @@ $( document ).ready(function() {
             }
         });
         return false;
+    });
+
+    // Analysis
+    $('#analysis-basic').click(function() {
+        
+        //count diary written
+        var diaryWrittenElement = $(".day.diary-written").not(".new").not(".old");
+        var countDiaryWritten = diaryWrittenElement.length; 
+        
+        //count days in a present month
+        var countDaysInMonth = $(".day").not(".new").not(".old").length;
+
+        //calculate achievement
+        var achievementInt = Math.round(countDiaryWritten / countDaysInMonth * 100);
+        var achievementString =  achievementInt.toString() + "%";
+       
+        //var achievementMessage = " 달성중"
+
+        // Setting progress bar
+        $(".progress-bar").css({
+            "width": achievementString
+        });
+        $(".progress-bar").text(achievementString);
+
+        // Clear existing class
+        $(".progress-bar")
+            .removeClass("progress-bar-danger")
+            .removeClass("progress-bar-warning")
+            .removeClass("progress-bar-info")
+            .removeClass("progress-bar-success")
+
+        if(achievementInt < 20)
+            $(".progress-bar").addClass("progress-bar-danger");
+        else if(achievementInt < 50)
+            $(".progress-bar").addClass("progress-bar-warning");
+        else if(achievementInt < 70)
+            $(".progress-bar").addClass("progress-bar-info");
+        else
+            $(".progress-bar").addClass("progress-bar-success");
+
+        var currentYearMonth = $("#current-year-month").val();
+        var currentYear = currentYearMonth.split("/")[0];
+        var currentMonth = currentYearMonth.split("/")[1].replace("0", "");
+        var formattedCurrentYearMonth = currentYear+"년 "+currentMonth+"월";
+        $("#count-days-in-month").text(countDaysInMonth);
+        $("#count-diary-written").text(countDiaryWritten);
+        $(".formatted-current-year-month").text(formattedCurrentYearMonth);
+
+        var diaryMonthlyWordsAPIUrl = "/api/diary/"+currentYearMonth+"words";
+        $.ajax({
+            type: "GET",
+            url: diaryMonthlyWordsAPIUrl,
+            success: function(data) {
+                $("#monthly-words-count").text(data.count);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     });
 });

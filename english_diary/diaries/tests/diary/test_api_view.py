@@ -140,3 +140,73 @@ class DiaryAPIViewTestCase(DiaryBaseTestCase):
                 response.data.get("result"),
                 False,
             )
+
+    def test_get_diary_monthly_words(self):
+        year = "2016"
+        month = "07"
+        day1 = "02"
+        day2 = "16"
+        day3 = "22"
+        test_datetime1 = year + "/" + month + "/" + day1
+        test_datetime2 = year + "/" + month + "/" + day2
+        test_datetime3 = year + "/" + month + "/" + day3
+
+        test_content1 = 'This is my first diary.'
+        test_content2 = 'I want to be a great developer'
+        test_content3 = 'Today, I was very busy...'
+
+        # Create a diary
+        self.diary = self.user.diary_set.create(
+            content=test_content1,
+            datetime=test_datetime1,
+        )
+        self.diary = self.user.diary_set.create(
+            content=test_content2,
+            datetime=test_datetime2,
+        )
+        self.diary = self.user.diary_set.create(
+            content=test_content3,
+            datetime=test_datetime3,
+        )
+
+        test_monthly_words_url = reverse(
+            'api:diary:monthly_words',
+            kwargs={
+                "year": year,
+                "month": month,
+            },
+        )
+
+        response = self.client.get(
+            test_monthly_words_url,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertEqual(
+            response.data.get("count"),
+            16,
+        )
+        self.assertEqual(
+            response.data.get("words").sort(),
+            [
+                "this",
+                "is",
+                "my",
+                "first",
+                "diary",
+                "i",
+                "want",
+                "to",
+                "be",
+                "a",
+                "great",
+                "developer",
+                "today",
+                "was",
+                "very",
+                "busy",
+            ].sort()
+        )
