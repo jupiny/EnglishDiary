@@ -2,6 +2,8 @@ language: python
 python:
     - "3.4"
     - "3.5"
+addons:
+    postgresql: '9.3'
 services:
     - redis-server
 install:
@@ -11,6 +13,8 @@ before_script:
     - make migrate
 script:
     - pep8 .
-    - make test
+    - python english_diary/manage.py test users diaries 
+    - coverage run english_diary/manage.py test users diaries
 notifications:
     slack: yujuteam:eWkDBQrRPDHZp8eyEfKpbLH7
+after_success: coveralls
