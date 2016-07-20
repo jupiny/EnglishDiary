@@ -16,7 +16,7 @@ class DiaryModelTestCase(DiaryBaseTestCase):
             5,
         )
         self.assertEqual(
-            ["Today", "I", "am", "very", "happy"].sort(),
+            ["today", "i", "am", "very", "happy"].sort(),
             self.diary.used_words.sort(),
         )
 
@@ -33,6 +33,6 @@ class DiaryModelTestCase(DiaryBaseTestCase):
             8,
         )
         self.assertEqual(
-            ["Today", "I", "am", "very", "happy", "going", "to", "crazy"].sort(),
+            ["today", "i", "am", "very", "happy", "going", "to", "crazy"].sort(),
             self.diary.used_words.sort(),
         )

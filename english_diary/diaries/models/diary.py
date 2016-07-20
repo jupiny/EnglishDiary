@@ -34,7 +34,7 @@ class Diary(models.Model):
 
     @property
     def used_words(self):
-        diary_content = self.content
+        diary_content = self.content.lower()
         for puctuation_mark in settings.PUCTUATION_MARKS:
             diary_content = diary_content.replace(puctuation_mark, "")
         return list(set(diary_content.split()))
