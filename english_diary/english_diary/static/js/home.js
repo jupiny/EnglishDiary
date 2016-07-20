@@ -9,7 +9,7 @@ $( document ).ready(function() {
     $('#diary-save').click(function() {
         if($("form")[0].checkValidity()) {
             var diaryContent = $('#diary-content').val();
-            var diaryDatetime = $('#diary-datetime').val();
+            var diaryDatetime = $('#selected-datetime').val();
             var diaryCreateAPIUrl = "/api/diary/";
             var data = {
                 datetime: diaryDatetime,
@@ -39,7 +39,7 @@ $( document ).ready(function() {
 
     // Delete Diary
     $('#diary-delete').click(function() {
-        var diaryDatetime = $('#diary-datetime').val();
+        var diaryDatetime = $('#selected-datetime').val();
         var diaryDeleteAPIUrl = "/api/diary/" + diaryDatetime;
         var data = {
             datetime: diaryDatetime,

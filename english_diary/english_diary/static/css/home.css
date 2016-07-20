@@ -101,13 +101,6 @@ textarea#diary-translated-content {
     width: 100%;
 }
 
-.btn-clipboard{
-    background-color: #FFF;
-    color: #333;
-    width: 100%;
-    border-color: #CCC;
-}
-
 .btn:hover,
 .btn:active,
 .btn:focus, 
@@ -117,10 +110,37 @@ textarea#diary-translated-content {
     box-shadow: none;
 }
 
+.btn-clipboard{
+    background-color: #FFF;
+    color: #333;
+    width: 100%;
+    border-color: #CCC;
+}
+
 .btn-clipboard:hover,
 .btn-clipboard:active,
-.btn-clipboard:focus {
+.btn-clipboard:focus, 
+.btn-clipboard:active:focus {
     color: #333;
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-analysis{
+    background-color: #FFF;
+    color: #333;
+    width: 100%;
+    border-color: #CCC;
+    margin-left: 30px;
+}
+
+.btn-analysis:hover,
+.btn-analysis:active,
+.btn-analysis:focus, 
+.btn-analysis:active:focus {
+    color: #333;
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-default:hover,
@@ -142,7 +162,7 @@ input#find-word:focus {
     font-weight: 500;
 }
 
-.modal-title {
+#dictionaryModal .modal-title {
     font-size: 15px
 }
 
@@ -152,4 +172,8 @@ input#find-word:focus {
 
 .modal-content {
     margin-top: 200px;
+}
+
+#analysisModal .modal-title {
+    font-size: 18px
 }

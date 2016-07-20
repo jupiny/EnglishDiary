@@ -7,13 +7,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 col-sm-12 col-xl-12">
-                <!-- TODO:button css 편집  -->
-                <button type="button" id="analysis-basic" class="btn btn-save" data-toggle="modal" data-target="#analysisModal">통계</button>
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xl-2">
+                        <button type="button" id="analysis-basic" class="btn btn-analysis" data-toggle="modal" data-target="#analysisModal">통계</button>
+                    </div>
+                </div>
                 <div id="datepicker" data-date="{{ today }}" data-date-format="yyyy-mm-dd"></div>
             </div>
             <div class="col-md-5 col-sm-12 col-xl-12">
                 <form>
-                    <input type="hidden" id="diary-datetime">
+                    <input type="hidden" id="selected-datetime">
+                    <input type="hidden" id="current-year-month">
                     <div class="row">
                         <div class="col-md-2 col-sm-2 col-xl-2">
                             <input type="submit" id="diary-save" class="btn btn-save" value="저장"/>
@@ -81,14 +85,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <p class="modal-title">통계</p>
+        <p class="modal-title"><span class="formatted-current-year-month"></span> 통계</p>
       </div>
       <div class="modal-body">
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="10" aria-valuemax="100" style="min-width: 2em;">
           </div>
         </div>
-        <p id="modal-analysis-content">2016년 7월달 총 20가지의 영어단어를 사용하였습니다.</p>
+        <p id="modal-analysis-content"><span id="count-days-in-month"></span>일 중에 <span id="count-diary-written"></span>일 성공하셨습니다.</p>
+        <p id="modal-analysis-content"><span class="formatted-current-year-month"></span> 총 <span id="monthly-words-count"></span>가지의 영어단어를 사용하였습니다.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

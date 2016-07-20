@@ -481,7 +481,7 @@
 		},
 
         showWrittenDiaryDate: function() {
-            var year = this.viewDate.getUTCFullYear(),
+            var currentYear= this.viewDate.getUTCFullYear(),
                 month = this.viewDate.getUTCMonth();
             currentMonth = month+1;
             prevMonth = currentMonth-1;
@@ -497,10 +497,16 @@
                 nextMonth = "0" + String(nextMonth);
             }
 
+            var currentYearMonth = currentYear+"/"+currentMonth+"/";
+            var prevYearMonth = currentYear+"/"+prevMonth+"/";
+            var nextYearMonth = currentYear+"/"+nextMonth+"/";
+
+            // Record Current Year and Month in hidden input field
+            $("#current-year-month").val(currentYearMonth);
+
             // Check when diaries are written on current month
             var currentMonthDayElements = $("td.day").not('.new').not('.old');
             currentMonthDayElements.each(function(index) {
-                var currentYearMonth = year+"/"+currentMonth+"/";
                 var currentMonthDayElement = $(this);
                 day = $(this).text();
                 if (day < 10) {
@@ -524,7 +530,6 @@
             // Check when diaries are written on previous month
             var prevMonthDayElements = $("td.old");
             prevMonthDayElements.each(function(index) {
-                var prevYearMonth = year+"/"+prevMonth+"/";
                 var prevMonthDayElement= $(this);
                 day = prevMonthDayElement.text();
                 if (day < 10) {
@@ -548,7 +553,6 @@
             // Check when diaries are written on next month
             var nextMonthDayElements = $("td.new");
             nextMonthDayElements.each(function(index) {
-                var nextYearMonth = year+"/"+nextMonth+"/";
                 var nextMonthDayElement= $(this);
                 day = nextMonthDayElement.text();
                 if (day < 10) {
@@ -703,7 +707,7 @@
                             var diaryDetailAPIUrl = "/api/diary/" + selectedDatetime;
                             var diaryContentTextareaElement = $("#diary-content");
                             var diaryTranslatedContentTextareaElement = $("#diary-translated-content");
-                            $('#diary-datetime').val(selectedDatetime);
+                            $('#selected-datetime').val(selectedDatetime);
                             $.ajax({
                                 type: "GET",
                                 url: diaryDetailAPIUrl,
