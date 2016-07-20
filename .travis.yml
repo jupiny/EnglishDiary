@@ -6,6 +6,9 @@ services:
     - redis-server
 install:
     - pip install -r requirements/development.txt
+before_script:
+    - psql -c 'CREATE DATABASE english_diary;' -U postgres
+    - make migrate
 script:
     - pep8 .
     - make test
