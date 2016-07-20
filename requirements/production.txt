@@ -11,3 +11,5 @@ redis
 flower
 dj-database-url
 psycopg2
+honcho
+gunicorn
