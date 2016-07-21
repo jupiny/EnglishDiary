@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social.apps.django_app.default',
     'pipeline',
+    'storages',
 
     'users',
     'diaries',

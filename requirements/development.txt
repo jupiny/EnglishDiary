@@ -3,3 +3,4 @@ pep8
 ipython[all]
 django-debug-toolbar
 django-extensions
+coveralls

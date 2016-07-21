@@ -7,6 +7,7 @@ import pyperclip
 
 class ClipboardTestCase(TestCase):
 
+    """
     def test_copy_content_to_clipboard(self):
 
         test_clipboard_url = reverse('api:clipboard')
@@ -29,3 +30,4 @@ class ClipboardTestCase(TestCase):
             pyperclip.paste(),
             test_content,
         )
+    """
