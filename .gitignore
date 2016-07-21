@@ -1,3 +1,15 @@
+# Celerybeat-schedule database 
+celerybeat-schedule.db
+
+# Django migrations
+migrations
+
+# .swp
+*.swp
+
+# Database
+db.sqlite3
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

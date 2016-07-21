@@ -1,0 +1,3 @@
+web: python english_diary/manage.py runserver 8000
+worker: celery --workdir=english_diary/ --app=english_diary.celery:app worker --loglevel INFO -B
+flower: celery --workdir=english_diary/ --app=english_diary.celery:app flower
