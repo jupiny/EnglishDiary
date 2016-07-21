@@ -1,5 +1,4 @@
 Django
-pillow
 djangorestframework
 requests
 beautifulsoup4
