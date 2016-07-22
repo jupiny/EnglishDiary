@@ -7,6 +7,11 @@ from django.views.generic import View
 class SigninView(View):
 
     def get(self, request, *args, **kwargs):
+
+        # maintain signed user
+        if request.user.is_authenticated():
+            return redirect("home")
+
         return render(
             request,
             "users/signin.html",
