@@ -6,26 +6,26 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-7 col-sm-12 col-xl-12">
+            <div class="col-md-7 col-sm-12 col-xs-12">
                 <div class="row">
-                    <div class="col-md-2 col-sm-2 col-xl-2">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
                         <button type="button" id="analysis-basic" class="btn btn-analysis" data-toggle="modal" data-target="#analysisModal">통계</button>
                     </div>
                 </div>
                 <div id="datepicker" data-date="{{ today }}" data-date-format="yyyy-mm-dd"></div>
             </div>
-            <div class="col-md-5 col-sm-12 col-xl-12">
+            <div class="col-md-5 col-sm-12 col-xs-12">
                 <form>
                     <input type="hidden" id="selected-datetime">
                     <input type="hidden" id="current-year-month">
                     <div class="row">
-                        <div class="col-md-2 col-sm-2 col-xl-2">
+                        <div class="col-md-2 col-sm-2 col-xs-2">
                             <input type="submit" id="diary-save" class="btn btn-save" value="저장"/>
                         </div>
-                        <div class="col-md-2 col-sm-2 col-xl-2">
+                        <div class="col-md-2 col-sm-2 col-xs-2">
                             <input type="submit" id="diary-delete" class="btn btn-delete" value="삭제"/>
                         </div>
-                        <div class="col-md-offset-6 col-sm-offset-6 col-xl-offset-6 col-md-2 col-sm-2 col-xl-2">
+                        <div class="col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-md-2 col-sm-2 col-xs-2">
                             <button type="submit" id="clipboard" class="btn btn-clipboard">
                                 <i class="fa fa-clipboard" aria-hidden="true"></i>
                             </button>
@@ -34,10 +34,10 @@
                     <textarea id="diary-content" name="" class="form-control" placeholder="일기를 적어주세요" required></textarea>
                 </form>
                 <div class="row">
-                    <div class="col-md-2 col-sm-2 col-xl-2">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
                         <input type="submit" id="diary-translate" class="btn btn-translate" value="번역"/>
                     </div>
-                    <div class="col-md-offset-3 col-sm-offset-3 col-xl-offset-3 col-md-7 col-sm-7 col-xl-7">
+                    <div class="col-md-offset-3 col-sm-offset-3 col-xs-offset-3 col-md-7 col-sm-7 col-xs-7">
                         <div class="input-group">
                             <input type="text" id="find-word" class="form-control" placeholder="사전 검색">
                             <span class="input-group-btn">
@@ -55,7 +55,6 @@
 </section>
 
 <!-- Dictionary Modal -->
-<section>
 <div id="dictionaryModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -74,10 +73,8 @@
     </div>
   </div>
 </div>
-</section>
 
 <!-- Analysis Modal -->
-<section>
 <div id="analysisModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -101,7 +98,6 @@
     </div>
   </div>
 </div>
-</section>
 {% endblock %}
 {% block custom_javascripts %}
 {% endblock %}

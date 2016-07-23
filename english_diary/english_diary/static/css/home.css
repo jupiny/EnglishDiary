@@ -1,6 +1,5 @@
 section {
-	padding-top: 1rem;
-	padding-bottom: 4rem;
+    min-height: 65vh;
 }
 
 button.prev:active,

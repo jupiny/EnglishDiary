@@ -5,7 +5,7 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 10vh; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     height: 100vh;
 }
 
@@ -23,6 +23,7 @@ header {
 
 footer {
 	background: #333;
-	min-height: 200px;
     display: block;
+    margin-top: 5vh;
+    height: 20vh;
 }
