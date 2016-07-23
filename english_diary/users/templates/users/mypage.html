@@ -2,5 +2,109 @@
 
 
 {% block content %}
-<h1>Mypage</h1>
+<section>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <div class="mypage-card">
+                <div class="row mypage-card-title">
+                    <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>이메일 변경</h3>
+                    </div>
+                </div>
+                <div class="row mypage-card-content">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h5>내 이메일</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <input type="email" class="form-control" placeholder="Email">
+                    </div>
+                </div>
+                <div class="row mypage-card-content">
+                    <div class="col-xl-12 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10">
+                        <button type="submit" id="btn-change-email" class="btn btn-modify">변경</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mypage-card">
+                <div class="row mypage-card-title">
+                    <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>비밀번호 변경</h3>
+                    </div>
+                </div>
+                <form>
+                    <div class="row mypage-card-content">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5>현재 비밀번호</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                            <input name="current_password" type="password" class="form-control" placeholder="Current password" required>
+                        </div>
+                    </div>
+                    <div class="row mypage-card-content">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5>새 비밀번호</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                            <input name="new_password" type="password" class="form-control" placeholder="New password" required>
+                        </div>
+                    </div>
+                    <div class="row mypage-card-content">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5>새 비밀번호 확인</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                            <input name="confirm_password" type="password" class="form-control" placeholder="Confirm new password" required>
+                        </div>
+                    </div>
+                    <div class="row mypage-card-content">
+                        <div class="col-xl-12 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10">
+                            <input type="submit" id="btn-change-password" class="btn btn-modify" value="변경">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mypage-card">
+                <div class="row mypage-card-title">
+                    <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>알림</h3>
+                    </div>
+                </div>
+                <div class="row mypage-card-content">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <p>일기를 쓰지 않았을 시 발송되는 알림 메일을 수신하겠습니다.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <label class="radio-inline"><input type="radio" name="optradio">ON</label>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <label class="radio-inline"><input type="radio" name="optradio">OFF</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mypage-card">
+                <div class="row mypage-card-title">
+                    <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>계정 삭제</h3>
+                    </div>
+                </div>
+                <div class="row mypage-card-content">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <p>계정 삭제를 하시게 되면, 회원님의 유저 정보, 일기까지 모두 삭제되며, 절대 다시 복구할 수 없습니다.<p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <button type="submit" id="btn-delete-user" class="btn btn-delete">계정 삭제</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</section>
 {% endblock content %}

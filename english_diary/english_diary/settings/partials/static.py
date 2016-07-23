@@ -25,11 +25,7 @@ PIPELINE = {
     'STYLESHEETS': {
         'english_diary': {
             'source_filenames': (
-              'css/application.css',
-              'css/datepicker.css',
-              'css/heroic-features.css',
-              'css/home.css',
-              'css/signin.css',
+              'css/*.css',
             ),
             'output_filename': 'css/english_diary.css',
         },
