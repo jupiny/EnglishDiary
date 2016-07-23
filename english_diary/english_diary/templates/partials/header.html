@@ -17,7 +17,7 @@
                 <ul class="nav navbar-nav">
                     {% if request.user.is_authenticated %}
                     <li>
-                        <a href="#">마이페이지</a>
+                    <a href="{% url "users:mypage" %}">마이페이지</a>
                     </li>
                     <li>
                         <a href="{% url "users:signout" %}">로그아웃</a>
