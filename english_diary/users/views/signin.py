@@ -21,6 +21,7 @@ class SigninView(View):
     def post(self, request, *args, **kwargs):
         username = request.POST.get("username")
         password = request.POST.get("password")
+        next_url = request.POST.get("next_url") or reverse("home")
 
         user = authenticate(
             username=username,
@@ -29,6 +30,6 @@ class SigninView(View):
 
         if user:
             login(request, user)
-            return redirect("home")
+            return redirect(next_url)
 
         return redirect(reverse("users:signin"))
