@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'social.apps.django_app.default',
     'pipeline',
     'storages',
+    'raven.contrib.django.raven_compat',
 
     'users',
     'diaries',

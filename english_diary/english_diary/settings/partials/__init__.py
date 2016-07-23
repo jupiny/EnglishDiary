@@ -6,3 +6,4 @@ from .static import *
 from .diary import *
 from .mailgun import *
 from .celery import *
+from .raven import *
