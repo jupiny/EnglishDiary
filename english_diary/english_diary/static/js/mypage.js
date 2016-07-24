@@ -81,7 +81,7 @@ $( document ).ready(function() {
     });
 
     // Change Email Notification
-    $('input[type="radio"]').click(function() {
+    $('input[name="radio"]').click(function() {
         var radioInputElement = $(this);
         var email_notification = $(radioInputElement).val();
         var userEmailNotificationAPIUrl= "/api/user/email_notification/";
@@ -101,5 +101,24 @@ $( document ).ready(function() {
             }
         });
         return false;
+    });
+
+    // Delete User 
+    $('#delete-user').click(function() {
+        var userDeleteAPIUrl= "/api/user/delete/";
+        
+        if (confirm('정말 계정을 삭제하시겠습니까?')) {
+            $.ajax({
+                type:"DELETE",
+                url: userDeleteAPIUrl,
+                success: function(data) {
+                    window.location.href = "/signin/";
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+            return false;
+        }
     });
 });
