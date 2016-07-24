@@ -81,7 +81,7 @@ $( document ).ready(function() {
     });
 
     // Change Email Notification
-    $('input[name="radio"]').click(function() {
+    $('input[type="radio"]').click(function() {
         var radioInputElement = $(this);
         var email_notification = $(radioInputElement).val();
         var userEmailNotificationAPIUrl= "/api/user/email_notification/";
