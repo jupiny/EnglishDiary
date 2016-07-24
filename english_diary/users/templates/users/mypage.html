@@ -9,6 +9,21 @@
             <div class="mypage-card">
                 <div class="row mypage-card-title">
                     <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>닉네임</h3>
+                    </div>
+                </div>
+                <div class="row mypage-card-content">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h5>내 닉네임</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <input type="text" class="form-control" placeholder="Email" value="{{ request.user.username }}" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="mypage-card">
+                <div class="row mypage-card-title">
+                    <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
                         <h3>이메일 변경</h3>
                     </div>
                 </div>
