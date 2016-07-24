@@ -264,3 +264,20 @@ class UserAPIViewTestCase(TestCase):
         self.assertTrue(
             get_user_model().objects.last().email_notification,
         )
+
+    def test_delete_user(self):
+
+        test_user_delete_url = reverse('api:user:delete')
+
+        response = self.client.delete(
+            test_user_delete_url,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertEqual(
+            get_user_model().objects.count(),
+            0,
+        )
