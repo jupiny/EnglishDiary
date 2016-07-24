@@ -1,9 +1,17 @@
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import UserManager
 from django.db import models
+
+
+class CustomUserManager(UserManager):
+
+    def agree_email_notification(self):
+        return self.filter(email_notification=True)
 
 
 class User(AbstractUser):
 
+    objects = CustomUserManager()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
