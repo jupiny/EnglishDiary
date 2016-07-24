@@ -25,7 +25,12 @@ PIPELINE = {
     'STYLESHEETS': {
         'english_diary': {
             'source_filenames': (
-              'css/*.css',
+              'css/application.css',
+              'css/datepicker.css',
+              'css/heroic-features.css',
+              'css/home.css',
+              'css/mypage.css',
+              'css/signin.css',
             ),
             'output_filename': 'css/english_diary.css',
         },
@@ -33,7 +38,9 @@ PIPELINE = {
     'JAVASCRIPT': {
         'english_diary': {
             'source_filenames': (
-              'js/*.js',
+              'js/bootstrap-datepicker.js',
+              'js/home.js',
+              'js/mypage.js',
             ),
             'output_filename': 'js/english_diary.js',
         }
