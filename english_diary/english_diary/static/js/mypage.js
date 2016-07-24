@@ -8,9 +8,9 @@ $( document ).ready(function() {
         url: userEmailNotificationAPIUrl,
         success: function(data) {
             if(data.email_notification)
-                $('#on').attr('checked', 'checked');
+                $('#on').prop('checked', true);
             else
-                $('#off').attr('checked', 'checked');
+                $('#off').prop('checked', true);
         },
         error: function(error) {
             console.log(error);
@@ -78,5 +78,28 @@ $( document ).ready(function() {
             });
             return true;
         }
+    });
+
+    // Change Email Notification
+    $('input[type="radio"]').click(function() {
+        var radioInputElement = $(this);
+        var email_notification = $(radioInputElement).val();
+        var userEmailNotificationAPIUrl= "/api/user/email_notification/";
+        var data = {
+            email_notification: email_notification, 
+        };
+        
+        $.ajax({
+            type:"PATCH",
+            data: data,
+            url: userEmailNotificationAPIUrl,
+            success: function(data) {
+                $(radioInputElement).prop('checked', true);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        return false;
     });
 });
