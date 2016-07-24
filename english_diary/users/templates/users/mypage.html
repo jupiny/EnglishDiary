@@ -12,19 +12,21 @@
                         <h3>이메일 변경</h3>
                     </div>
                 </div>
-                <div class="row mypage-card-content">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        <h5>내 이메일</h5>
+                <form>
+                    <div class="row mypage-card-content">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5>내 이메일</h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                            <input id="new-email" name="new_email" type="email" class="form-control" placeholder="Email" value="{{ request.user.email }}" required>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                        <input id="new-email" name="new_email" type="email" class="form-control" placeholder="Email" value="{{ request.user.email }}">
+                    <div class="row mypage-card-content">
+                        <div class="col-xl-12 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10">
+                            <input type="submit" id="change-email" class="btn btn-modify" value="변경">
+                        </div>
                     </div>
-                </div>
-                <div class="row mypage-card-content">
-                    <div class="col-xl-12 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10">
-                        <button type="submit" id="change-email" class="btn btn-modify">변경</button>
-                    </div>
-                </div>
+                </form>
             </div>
             <div class="mypage-card">
                 <div class="row mypage-card-title">
@@ -38,7 +40,7 @@
                             <h5>현재 비밀번호</h5>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                            <input name="current_password" type="password" class="form-control" placeholder="Current password" required>
+                            <input id="current-password" name="current_password" type="password" class="form-control" placeholder="Current password" required>
                         </div>
                     </div>
                     <div class="row mypage-card-content">
@@ -46,7 +48,7 @@
                             <h5>새 비밀번호</h5>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                            <input name="new_password" type="password" class="form-control" placeholder="New password" required>
+                            <input id="new-password" name="new_password" type="password" class="form-control" placeholder="New password" required>
                         </div>
                     </div>
                     <div class="row mypage-card-content">
@@ -54,7 +56,7 @@
                             <h5>새 비밀번호 확인</h5>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                            <input name="confirm_password" type="password" class="form-control" placeholder="Confirm new password" required>
+                            <input id="confirm-new-password" name="confirm_new_password" type="password" class="form-control" placeholder="Confirm new password" required>
                         </div>
                     </div>
                     <div class="row mypage-card-content">
