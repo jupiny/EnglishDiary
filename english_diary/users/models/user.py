@@ -37,8 +37,6 @@ class User(AbstractUser):
         return monthly_words
 
     def monthly_words_count(self, **kwargs):
-        monthly_words = self.monthly_words(
-            **kwargs,
-        )
+        monthly_words = self.monthly_words(**kwargs)
         monthly_words_count = len(set(monthly_words))
         return monthly_words_count
