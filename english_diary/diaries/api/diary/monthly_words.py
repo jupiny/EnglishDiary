@@ -9,13 +9,14 @@ class DiaryMontlyWordsAPIView(APIView):
 
         year = kwargs.get("year")
         month = kwargs.get("month")
-        datetime = year+"/"+month+"/"
-        diaries = request.user.diary_set.filter(datetime__contains=datetime)
-
-        monthly_words = []
-        for diary in diaries:
-            monthly_words += diary.used_words
-        monthly_words_count = len(set(monthly_words))
+        monthly_words = request.user.monthly_words(
+            year=year,
+            month=month,
+        )
+        monthly_words_count = request.user.monthly_words_count(
+            year=year,
+            month=month,
+        )
 
         return Response(
             status=status.HTTP_201_CREATED,
