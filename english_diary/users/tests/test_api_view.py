@@ -177,3 +177,42 @@ class UserAPIViewTestCase(TestCase):
         self.assertFalse(
             get_user_model().objects.last().check_password(test_new_password),
         )
+
+    def test_get_default_email_notification(self):
+
+        test_user_email_notification_url = reverse(
+            'api:user:email_notification',
+        )
+
+        response = self.client.get(
+            test_user_email_notification_url,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertTrue(
+            response.data.get("email_notification"),
+        )
+
+    def test_get_changed_email_notification(self):
+
+        test_user_email_notification_url = reverse(
+            'api:user:email_notification',
+        )
+
+        self.user.email_notification = False
+        self.user.save()
+
+        response = self.client.get(
+            test_user_email_notification_url,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertFalse(
+            response.data.get("email_notification"),
+        )
