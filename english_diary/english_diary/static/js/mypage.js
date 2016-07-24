@@ -118,7 +118,7 @@ $( document ).ready(function() {
                     console.log(error);
                 }
             });
-            return false;
         }
+        return false;
     });
 });
