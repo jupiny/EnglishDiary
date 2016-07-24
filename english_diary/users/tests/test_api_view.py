@@ -15,22 +15,22 @@ class UserAPIViewTestCase(TestCase):
         # Run celery task synchronous
         app.conf.update(CELERY_ALWAYS_EAGER=True)
 
-        test_username = "test_username"
-        test_password = "test_password"
-        test_email = "test@example.com"
+        self.test_username = "test_username"
+        self.test_password = "test_password"
+        self.test_email = "test@example.com"
 
         # Create a user
         self.user = get_user_model().objects.create_user(
-            username=test_username,
-            password=test_password,
-            email=test_email,
+            username=self.test_username,
+            password=self.test_password,
+            email=self.test_email,
         )
 
         # Login
         self.client = APIClient()
         self.client.login(
-            username=test_username,
-            password=test_password,
+            username=self.test_username,
+            password=self.test_password,
         )
 
     def test_user_change_email(self):
@@ -54,4 +54,126 @@ class UserAPIViewTestCase(TestCase):
         self.assertEqual(
             get_user_model().objects.last().email,
             test_new_email,
+        )
+
+    def test_user_change_password(self):
+
+        test_user_password_url = reverse('api:user:password')
+        test_new_password = "test_new_password"
+
+        test_data = {
+            'current_password': self.test_password,
+            'new_password': test_new_password,
+            'confirm_new_password': test_new_password,
+        }
+
+        response = self.client.patch(
+            test_user_password_url,
+            test_data,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertTrue(
+            response.data.get("is_current_password_valid"),
+        )
+        self.assertTrue(
+            response.data.get("does_match_confirm_password"),
+        )
+        self.assertTrue(
+            get_user_model().objects.last().check_password(test_new_password),
+        )
+
+    def test_user_enter_wrong_current_password(self):
+
+        test_user_password_url = reverse('api:user:password')
+        test_wrong_password = "test_wrong_password"
+        test_new_password = "test_new_password"
+
+        test_data = {
+            'current_password': test_wrong_password,
+            'new_password': test_new_password,
+            'confirm_new_password': test_new_password,
+        }
+
+        response = self.client.patch(
+            test_user_password_url,
+            test_data,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertFalse(
+            response.data.get("is_current_password_valid"),
+        )
+        self.assertTrue(
+            response.data.get("does_match_confirm_password"),
+        )
+        self.assertFalse(
+            get_user_model().objects.last().check_password(test_new_password),
+        )
+
+    def test_new_password_does_not_match_cofirmation(self):
+
+        test_user_password_url = reverse('api:user:password')
+        test_new_password = "test_new_password"
+
+        test_data = {
+            'current_password': self.test_password,
+            'new_password': test_new_password,
+            'confirm_new_password': test_new_password+"!",
+        }
+
+        response = self.client.patch(
+            test_user_password_url,
+            test_data,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertTrue(
+            response.data.get("is_current_password_valid"),
+        )
+        self.assertFalse(
+            response.data.get("does_match_confirm_password"),
+        )
+        self.assertFalse(
+            get_user_model().objects.last().check_password(test_new_password),
+        )
+
+    def test_user_enter_wrong_current_password_and_new_password_does_not_match_cofirmation(self):
+
+        test_user_password_url = reverse('api:user:password')
+        test_wrong_password = "test_wrong_password"
+        test_new_password = "test_new_password"
+
+        test_data = {
+            'current_password': test_wrong_password,
+            'new_password': test_new_password,
+            'confirm_new_password': test_new_password+"!",
+        }
+
+        response = self.client.patch(
+            test_user_password_url,
+            test_data,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertFalse(
+            response.data.get("is_current_password_valid"),
+        )
+        self.assertFalse(
+            response.data.get("does_match_confirm_password"),
+        )
+        self.assertFalse(
+            get_user_model().objects.last().check_password(test_new_password),
         )
