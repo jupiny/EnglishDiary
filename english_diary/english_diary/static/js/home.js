@@ -44,20 +44,21 @@ $( document ).ready(function() {
         var data = {
             datetime: diaryDatetime,
         };
-        $.ajax({
-            type: "DELETE",
-            url: diaryDeleteAPIUrl,
-            data: data,
-            success: function(data) {
-                alert("삭제되었습니다.");
-                $('#diary-content').val("");
-                $('#diary-translated-content').val("");
-                $('.diary-selected').removeClass('diary-written');
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
+        if (confirm('정말 일기를 삭제하시겠습니까?')) {
+            $.ajax({
+                type: "DELETE",
+                url: diaryDeleteAPIUrl,
+                data: data,
+                success: function(data) {
+                    $('#diary-content').val("");
+                    $('#diary-translated-content').val("");
+                    $('.diary-selected').removeClass('diary-written');
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
         return false;
     });
 
