@@ -17,12 +17,12 @@
                         <h5>내 이메일</h5>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input id="new-email" name="new_email" type="email" class="form-control" placeholder="Email" value="{{ request.user.email }}">
                     </div>
                 </div>
                 <div class="row mypage-card-content">
                     <div class="col-xl-12 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10">
-                        <button type="submit" id="btn-change-email" class="btn btn-modify">변경</button>
+                        <button type="submit" id="change-email" class="btn btn-modify">변경</button>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="row mypage-card-content">
                         <div class="col-xl-12 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10">
-                            <input type="submit" id="btn-change-password" class="btn btn-modify" value="변경">
+                            <input type="submit" id="change-password" class="btn btn-modify" value="변경">
                         </div>
                     </div>
                 </form>

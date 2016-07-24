@@ -33,8 +33,7 @@ PIPELINE = {
     'JAVASCRIPT': {
         'english_diary': {
             'source_filenames': (
-              'js/bootstrap-datepicker.js',
-              'js/home.js',
+              'js/*.js',
             ),
             'output_filename': 'js/english_diary.js',
         }
