@@ -1,5 +1,22 @@
 $( document ).ready(function() {
 
+    // Initialize radio button
+    var userEmailNotificationAPIUrl = "/api/user/email_notification/";
+    
+    $.ajax({
+        type:"GET",
+        url: userEmailNotificationAPIUrl,
+        success: function(data) {
+            if(data.email_notification)
+                $('#on').attr('checked', 'checked');
+            else
+                $('#off').attr('checked', 'checked');
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+
     // Change Email
     $('#change-email').click(function() {
         if($("form")[0].checkValidity()) {
