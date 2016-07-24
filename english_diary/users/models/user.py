@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager
 from django.db import models
+from datetime import datetime
 
 
 class CustomUserManager(UserManager):
@@ -18,6 +19,11 @@ class User(AbstractUser):
     email_notification = models.BooleanField(
         default=True,
     )
+
+    @property
+    def today_diary(self):
+        today = datetime.now().strftime("%Y/%m/%d")
+        return self.diary_set.get_or_none(datetime=today)
 
     def monthly_words(self, **kwargs):
         year = kwargs.get("year")
