@@ -1,0 +1,30 @@
+.mypage-card {
+	width: 100%;
+	box-shadow: 4px 4px 100px 2px #BABABA;
+    padding: 10px 30px 30px 30px;
+    margin: 20px 0;
+}
+
+.mypage-card-title {
+    margin-bottom: 5px;
+}
+
+.mypage-card-content {
+    margin-bottom: 15px;
+}
+
+.btn-modify{
+    background-color: #FFF;
+    color: #333;
+    width: 100%;
+    border-color: #CCC;
+}
+
+.btn-modify:hover,
+.btn-modify:active,
+.btn-modify:focus, 
+.btn-modify:active:focus {
+    color: #333;
+    outline: none;
+    box-shadow: none;
+}
