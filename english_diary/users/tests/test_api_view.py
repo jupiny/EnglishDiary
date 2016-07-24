@@ -216,3 +216,51 @@ class UserAPIViewTestCase(TestCase):
         self.assertFalse(
             response.data.get("email_notification"),
         )
+
+    def test_user_set_email_notification_true(self):
+
+        test_user_email_noficatoin_url = reverse('api:user:email_notification')
+
+        self.user.email_notification = True
+        self.user.save()
+
+        test_data = {
+            'email_notification': 'off',
+        }
+
+        response = self.client.patch(
+            test_user_email_noficatoin_url,
+            test_data,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertFalse(
+            get_user_model().objects.last().email_notification,
+        )
+
+    def test_user_set_email_notification_false(self):
+
+        test_user_email_noficatoin_url = reverse('api:user:email_notification')
+
+        self.user.email_notification = False
+        self.user.save()
+
+        test_data = {
+            'email_notification': 'on',
+        }
+
+        response = self.client.patch(
+            test_user_email_noficatoin_url,
+            test_data,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+        )
+        self.assertTrue(
+            get_user_model().objects.last().email_notification,
+        )
