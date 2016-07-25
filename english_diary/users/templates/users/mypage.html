@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load pipeline %}
 
 
 {% block content %}
@@ -127,3 +128,6 @@
 
 </section>
 {% endblock content %}
+{% block custom_javascripts %}
+{% javascript "mypage" %} 
+{% endblock %}
