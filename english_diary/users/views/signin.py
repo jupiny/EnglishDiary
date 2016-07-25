@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import View
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.auth import get_user_model
 
 
 class SigninView(View):
@@ -39,9 +40,18 @@ class SigninView(View):
             )
             return redirect(next_url)
 
+        if not get_user_model().objects.check_username(username):
+            # Nonexistent User
+            messages.add_message(
+                request,
+                messages.ERROR,
+                settings.SIGNIN_NONEXISTENT_USERNAME_MESSAGE,
+            )
+
+        # Wrong Password
         messages.add_message(
             request,
             messages.ERROR,
-            settings.SIGNIN_NONEXISTENT_USER_MESSAGE,
+            settings.SIGNIN_WRONG_PASSWORD_MESSAGE,
         )
         return redirect(reverse("users:signin"))
