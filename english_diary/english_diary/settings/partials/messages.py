@@ -1,0 +1,6 @@
+SIGNUP_SUCCESS_MESSAGE = "회원가입이 성공적으로 되었습니다."
+SIGNIN_SUCCESS_MESSAGE = "로그인이 성공적으로 되었습니다."
+SIGNOUT_SUCCESS_MESSAGE = "로그아웃이 성공적으로 되었습니다."
+SIGNUP_NONVALIDATED_USERNAME_MESSAGE = "이미 존재하는 닉네임입니다."
+SIGNUP_NONVALIDATED_EMAIL_MESSAGE = "이미 존재하는 이메일입니다."
+SIGNIN_NONEXISTENT_USER_MESSAGE = "존재하지 않는 회원입니다."

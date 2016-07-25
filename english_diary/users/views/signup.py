@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.conf import settings
 
 
 class SignupView(View):
@@ -24,7 +25,7 @@ class SignupView(View):
             messages.add_message(
                 request,
                 messages.ERROR,
-                "이미 존재하는 닉네임입니다.",
+                settings.SIGNUP_NONVALIDATED_USERNAME_MESSAGE,
             )
             return redirect(reverse("users:signup"))
 
@@ -33,7 +34,7 @@ class SignupView(View):
             messages.add_message(
                 request,
                 messages.ERROR,
-                "이미 존재하는 이메일입니다.",
+                settings.SIGNUP_NONVALIDATED_EMAIL_MESSAGE,
             )
             return redirect(reverse("users:signup"))
 
@@ -45,6 +46,6 @@ class SignupView(View):
         messages.add_message(
             request,
             messages.SUCCESS,
-            "회원가입이 성공적으로 되었습니다.",
+            settings.SIGNUP_SUCCESS_MESSAGE,
         )
         return redirect(reverse("users:signin"))

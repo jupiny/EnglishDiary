@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.views.generic import View
 from django.contrib import messages
+from django.conf import settings
 
 
 class SigninView(View):
@@ -34,13 +35,13 @@ class SigninView(View):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                "로그인이 성공적으로 되었습니다.",
+                settings.SIGNIN_SUCCESS_MESSAGE,
             )
             return redirect(next_url)
 
         messages.add_message(
             request,
             messages.ERROR,
-            "존재하지 않는 회원입니다.",
+            settings.SIGNIN_NONEXISTENT_USER_MESSAGE,
         )
         return redirect(reverse("users:signin"))
