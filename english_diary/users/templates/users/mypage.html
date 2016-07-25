@@ -43,6 +43,7 @@
                     </div>
                 </form>
             </div>
+            {% if not request.user.social_auth.exists() %}
             <div class="mypage-card">
                 <div class="row mypage-card-title">
                     <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
@@ -81,6 +82,7 @@
                     </div>
                 </form>
             </div>
+            {% endif %}
             <div class="mypage-card">
                 <div class="row mypage-card-title">
                     <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
