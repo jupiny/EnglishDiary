@@ -31,6 +31,7 @@ PIPELINE = {
               'css/home.css',
               'css/mypage.css',
               'css/signin.css',
+              'css/messages.css',
             ),
             'output_filename': 'css/english_diary.css',
         },
@@ -38,11 +39,24 @@ PIPELINE = {
     'JAVASCRIPT': {
         'english_diary': {
             'source_filenames': (
-              'js/bootstrap-datepicker.js',
-              'js/home.js',
-              'js/mypage.js',
+              'js/application.js',
+              'js/messages.js',
+              'js/google_analytics.js',
             ),
             'output_filename': 'js/english_diary.js',
-        }
+        },
+        'home': {
+            'source_filenames': (
+              'js/bootstrap-datepicker.js',
+              'js/home.js',
+            ),
+            'output_filename': 'js/home.js',
+        },
+        'mypage': {
+            'source_filenames': (
+              'js/mypage.js',
+            ),
+            'output_filename': 'js/mypage.js',
+        },
     }
 }

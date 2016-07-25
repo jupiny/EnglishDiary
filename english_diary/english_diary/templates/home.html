@@ -1,6 +1,5 @@
 {% extends 'base.html' %} 
-{% load staticfiles %}
-
+{% load pipeline %}
 
 {% block content %}
 <section>
@@ -26,8 +25,8 @@
                             <input type="submit" id="diary-delete" class="btn btn-delete" value="삭제"/>
                         </div>
                         <div class="col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-md-2 col-sm-2 col-xs-2">
-                            <button type="submit" id="clipboard" class="btn btn-clipboard">
-                                <i class="fa fa-clipboard" aria-hidden="true"></i>
+                            <button data-toggle="tooltip" title="Copied!" type="button" id="clipboard" class="btn btn-clipboard" data-clipboard-target="#diary-content">
+                                <img src="data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwMCAxMDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPG1ldGFkYXRhPiBTdmcgVmVjdG9yIEljb25zIDogaHR0cDovL3d3dy5vbmxpbmV3ZWJmb250cy5jb20vaWNvbiA8L21ldGFkYXRhPgogIDxnPjxnPjxwYXRoIGQ9Ik03NjEuMyw5MjQuN0gxMDh2LTU4OGg2NTMuM3YxOTZoNjUuM1YyMDZjMC0zNS43LTI5LjYtNjUuMy02NS4zLTY1LjNoLTE5NkM1NjUuMyw2OC4yLDUwNy4xLDEwLDQzNC43LDEwQzM2Mi4yLDEwLDMwNCw2OC4yLDMwNCwxNDAuN0gxMDhjLTM1LjcsMC02NS4zLDI5LjYtNjUuMyw2NS4zdjcxOC43YzAsMzUuNywyOS42LDY1LjMsNjUuMyw2NS4zaDY1My4zYzM1LjcsMCw2NS4zLTI5LjYsNjUuMy02NS4zVjc5NGgtNjUuM1Y5MjQuN3ogTTIzOC43LDIwNmMyOS42LDAsMjkuNiwwLDY1LjMsMHM2NS4zLTI5LjYsNjUuMy02NS4zYzAtMzUuNywyOS42LTY1LjMsNjUuMy02NS4zYzM1LjcsMCw2NS4zLDI5LjYsNjUuMyw2NS4zYzAsMzUuNywzMi43LDY1LjMsNjUuMyw2NS4zYzMyLjcsMCwzMy43LDAsNjUuMywwczY1LjMsMjkuNiw2NS4zLDY1LjNIMTczLjNDMTczLjMsMjMxLjUsMjAxLjksMjA2LDIzOC43LDIwNnogTTE3My4zLDcyOC43SDMwNHYtNjUuM0gxNzMuM1Y3MjguN3ogTTYzMC43LDU5OFY0NjcuM2wtMjYxLjMsMTk2bDI2MS4zLDE5NlY3MjguN2gzMjYuN1Y1OThINjMwLjd6IE0xNzMuMyw4NTkuM2gxOTZWNzk0aC0xOTZWODU5LjN6IE01MDAsNDAySDE3My4zdjY1LjNINTAwVjQwMnogTTMwNCw1MzIuN0gxNzMuM1Y1OThIMzA0VjUzMi43eiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+CiAg" width="16" height="16">
                             </button>
                         </div>
                     </div>
@@ -100,4 +99,5 @@
 </div>
 {% endblock %}
 {% block custom_javascripts %}
+{% javascript "home" %} 
 {% endblock %}

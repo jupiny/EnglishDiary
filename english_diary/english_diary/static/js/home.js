@@ -134,27 +134,15 @@ $( document ).ready(function() {
         }
     });
 
-    // Clipboard 
-    $('#clipboard').click(function() {
-        var diaryClipboardAPIUrl = "/api/clipboard/";
-        var diaryContent = $("#diary-content").val();
-        var data = {
-            content: diaryContent
-        };
-        
-        $.ajax({
-            type:"POST",
-            data: data,
-            url: diaryClipboardAPIUrl,
-            success: function(data) {
-                alert("클립보드에 복사되었습니다.");
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-        return false;
+    // Clipboard
+    var clipboard = new Clipboard('#clipboard');
+    clipboard.on('success', function(e) {
+        e.clearSelection();
     });
+    $('[data-toggle="tooltip"]').tooltip({
+            trigger : 'focus'
+    }) 
+
 
     // Analysis
     $('#analysis-basic').click(function() {
