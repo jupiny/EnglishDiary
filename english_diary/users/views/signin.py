@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.views.generic import View
+from django.contrib import messages
 
 
 class SigninView(View):
@@ -30,6 +31,16 @@ class SigninView(View):
 
         if user:
             login(request, user)
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                "로그인이 성공적으로 되었습니다.",
+            )
             return redirect(next_url)
 
+        messages.add_message(
+            request,
+            messages.ERROR,
+            "존재하지 않는 회원입니다.",
+        )
         return redirect(reverse("users:signin"))
