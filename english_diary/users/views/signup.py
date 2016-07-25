@@ -26,6 +26,7 @@ class SignupView(View):
                 request,
                 messages.ERROR,
                 settings.SIGNUP_NONVALIDATED_USERNAME_MESSAGE,
+                extra_tags="danger",
             )
             return redirect(reverse("users:signup"))
 
@@ -35,6 +36,7 @@ class SignupView(View):
                 request,
                 messages.ERROR,
                 settings.SIGNUP_NONVALIDATED_EMAIL_MESSAGE,
+                extra_tags="danger",
             )
             return redirect(reverse("users:signup"))
 

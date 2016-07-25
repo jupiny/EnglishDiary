@@ -1,11 +1,12 @@
 $( document ).ready(function() {
     // https://github.com/ifightcrime/bootstrap-growl
-    var message = $('#message').text();
+    var message = $('#message').val();
+    var messageTags = $('#message-tags').val();
 
     if(message) {
         $.bootstrapGrowl(message, {
               ele: 'body', // which element to append to
-          type: 'success', // (null, 'info', 'danger', 'success')
+          type: messageTags, // (null, 'info', 'danger', 'success')
             offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
           align: 'right', // ('left', 'right', or 'center')
             width: 250, // (integer, or 'auto')

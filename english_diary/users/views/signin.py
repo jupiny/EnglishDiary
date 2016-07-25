@@ -46,6 +46,7 @@ class SigninView(View):
                 request,
                 messages.ERROR,
                 settings.SIGNIN_NONEXISTENT_USERNAME_MESSAGE,
+                extra_tags="danger",
             )
 
         # Wrong Password
@@ -53,5 +54,6 @@ class SigninView(View):
             request,
             messages.ERROR,
             settings.SIGNIN_WRONG_PASSWORD_MESSAGE,
+            extra_tags="danger",
         )
         return redirect(reverse("users:signin"))
