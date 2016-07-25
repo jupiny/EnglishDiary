@@ -20,7 +20,7 @@ class SignupView(View):
         email = request.POST.get("email")
 
         # Validate username
-        if get_user_model().objects.filter(username=username).exists():
+        if get_user_model().objects.check_username(username):
             messages.add_message(
                 request,
                 messages.ERROR,
@@ -29,7 +29,7 @@ class SignupView(View):
             return redirect(reverse("users:signup"))
 
         # Validate email
-        if get_user_model().objects.filter(email=email).exists():
+        if get_user_model().objects.check_email(email):
             messages.add_message(
                 request,
                 messages.ERROR,

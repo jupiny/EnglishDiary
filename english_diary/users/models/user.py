@@ -9,6 +9,12 @@ class CustomUserManager(UserManager):
     def agree_email_notification(self):
         return self.filter(email_notification=True)
 
+    def check_username(self, username):
+        return self.filter(username=username).exists()
+
+    def check_email(self, email):
+        return self.filter(email=email).exists()
+
 
 class User(AbstractUser):
 
