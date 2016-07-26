@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager
 from django.db import models
 from datetime import datetime
+from users.storage import OverwriteStorage
 
 
 class CustomUserManager(UserManager):
@@ -28,7 +29,8 @@ class User(AbstractUser):
 
     word_cloud = models.ImageField(
         blank=True,
-        null=True
+        null=True,
+        storage=OverwriteStorage(),
     )
 
     @property
