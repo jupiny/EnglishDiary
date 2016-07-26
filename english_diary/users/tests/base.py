@@ -1,14 +1,19 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save
 
 from rest_framework.test import APIClient
 
 from english_diary.celery import app
+from users.signals.post_save import post_save_user
 
 
 class UserBaseTestCase(TestCase):
 
     def setUp(self):
+
+        # Disable Signals
+        post_save.disconnect(post_save_user, sender=get_user_model())
 
         # Run celery task synchronous
         app.conf.update(CELERY_ALWAYS_EAGER=True)
