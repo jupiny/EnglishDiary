@@ -8,3 +8,4 @@ MEDIA_ROOT = os.path.join(
     "dist",
     "media",
 )
+MEDIA_URL = "/media/"
