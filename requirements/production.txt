@@ -15,3 +15,4 @@ gunicorn
 django-storages-redux
 boto
 raven
+Pillow
