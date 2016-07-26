@@ -1,6 +1,7 @@
 from django.core.files.base import ContentFile
 from django.http.response import HttpResponse
 from django.conf import settings
+from django.contrib.auth import get_user_model
 
 from PIL import Image
 from io import BytesIO
@@ -9,8 +10,9 @@ from wordcloud import WordCloud
 from diaries.utils import analysis
 
 
-def save_wordcloud(user):
+def save_wordcloud(user_id):
 
+    user = get_user_model().objects.get(pk=user_id)
     whole_used_words = " ".join(user.whole_used_words())
     wc = WordCloud(
         background_color="white", width=800, height=600,
