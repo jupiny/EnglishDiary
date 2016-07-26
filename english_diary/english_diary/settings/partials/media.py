@@ -9,3 +9,5 @@ MEDIA_ROOT = os.path.join(
     "media",
 )
 MEDIA_URL = "/media/"
+
+IMAGE_FILENAME_FORMAT = "img-wordcloud-{username}.png"

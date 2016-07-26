@@ -1,11 +1,12 @@
-from wordcloud import WordCloud
-
+from django.core.files.base import ContentFile
 from django.http.response import HttpResponse
-from diaries.utils import analysis
+from django.conf import settings
 
 from PIL import Image
 from io import BytesIO
-from django.core.files.base import ContentFile
+from wordcloud import WordCloud
+
+from diaries.utils import analysis
 
 
 def save_wordcloud(user):
@@ -18,8 +19,14 @@ def save_wordcloud(user):
     wordcloud_img = wc.generate(whole_used_words).to_image()
 
     f = BytesIO()
+    wordcloud_img_name = settings.IMAGE_FILENAME_FORMAT.format(
+        username=user.username,
+    )
     try:
         wordcloud_img.save(f, format='png')
-        user.word_cloud.save("wordcloud.png", ContentFile(f.getvalue()))
+        user.word_cloud.save(
+            wordcloud_img_name,
+            ContentFile(f.getvalue()),
+        )
     finally:
         f.close()
