@@ -14,5 +14,5 @@ honcho
 gunicorn
 django-storages-redux
 boto
-raveon
+raven
 Pillow

@@ -26,6 +26,11 @@ class User(AbstractUser):
         default=True,
     )
 
+    mywords_words_cloud = models.ImageField(
+        blank=True,
+        null=True
+    )
+
     @property
     def today_diary(self):
         today = datetime.now().strftime("%Y/%m/%d")

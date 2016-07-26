@@ -1,9 +1,4 @@
-mport matplotlib.pyplot as plt
-
 from wordcloud import WordCloud
-
-from pylab import figure, axes, pie, title
-from matplotlib.backends.backend_agg import FigureCanvasAgg
 
 from django.http.response import HttpResponse
 from diaries.utils import analysis
