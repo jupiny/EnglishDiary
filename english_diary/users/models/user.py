@@ -26,7 +26,7 @@ class User(AbstractUser):
         default=True,
     )
 
-    mywords_words_cloud = models.ImageField(
+    word_cloud = models.ImageField(
         blank=True,
         null=True
     )
