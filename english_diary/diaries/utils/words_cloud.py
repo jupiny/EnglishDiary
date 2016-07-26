@@ -16,17 +16,22 @@ def save_wordcloud(user):
         background_color="white", width=800, height=600,
         max_words=100, max_font_size=150, scale=0.8
     )
-    wordcloud_img = wc.generate(whole_used_words).to_image()
+    if whole_used_words:
+        wordcloud_img = wc.generate(whole_used_words).to_image()
 
-    f = BytesIO()
-    wordcloud_img_name = settings.IMAGE_FILENAME_FORMAT.format(
-        username=user.username,
-    )
-    try:
-        wordcloud_img.save(f, format='png')
-        user.word_cloud.save(
-            wordcloud_img_name,
-            ContentFile(f.getvalue()),
+        f = BytesIO()
+        wordcloud_img_name = settings.IMAGE_FILENAME_FORMAT.format(
+            username=user.username,
         )
-    finally:
-        f.close()
+        try:
+            wordcloud_img.save(f, format='png')
+            user.word_cloud.save(
+                wordcloud_img_name,
+                ContentFile(f.getvalue()),
+            )
+        finally:
+            f.close()
+    else:
+        # If user has no words
+        user.word_cloud = None
+        user.save()
