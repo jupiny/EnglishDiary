@@ -20,12 +20,27 @@ class DiaryCreateAPIView(APIView):
 
         result = False
         if not has_korean:
+            diary = request.user.diary_set.get_or_none(datetime=datetime)
+            if diary:
+                # Diary Update
+                diary.datetime = datetime
+                diary.content = content
+                diary.save(update_fields=['content'])
+
+            else:
+                # Diary Create
+                request.user.diary_set.create(
+                    datetime=datetime,
+                    content=content,
+                )
+            """
             request.user.diary_set.update_or_create(
                 datetime=datetime,
                 defaults={
                     "content": content,
                 }
             )
+            """
             result = True
 
         return Response(
