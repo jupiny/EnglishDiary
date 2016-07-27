@@ -1,5 +1,12 @@
-# EnglishDiary
-영어일기 웹페이지 (영어작문 훈련 매니저)
+## 홈페이지
+[https://engdiary.dsds101.info/](https://engdiary.dsds101.info/)
+
+
+## 소개
+- 깐깐하게 쓰는 영어일기(영어작문 훈련 매니저)
+- English Diary (Write, English dairy the HARD WAY)
+
+
 ## 개발신조
 - 변수, 함수 이름은 최대한 명시적으로
 - 테스트 코드는 최대한 많이 작성
