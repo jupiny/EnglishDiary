@@ -4,12 +4,30 @@
 
 {% block content %}
 <section>
-{% if request.user.word_cloud %}
-    <img src={{ request.user.word_cloud.url }}>
-{% endif %}
 <div class="container">
     <div class="row">
         <div class="col-xl-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <div class="mypage-card">
+                <div class="row mypage-card-title">
+                    <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3>내가 사용한 단어들</h3>
+                    </div>
+                </div>
+                <div class="row mypage-card-content">
+                    {% if request.user.word_cloud %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h5>자주 사용한 단어일수록 큰 글씨로 나타납니다.</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <img class="word-cloud" src={{ request.user.word_cloud.url }}>
+                    </div>
+                    {% else %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h5>작성된 일기가 없습니다.</h5>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
             <div class="mypage-card">
                 <div class="row mypage-card-title">
                     <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12">
@@ -37,7 +55,7 @@
                             <h5>내 이메일</h5>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                            <input id="new-email" name="new_email" type="email" class="form-control" placeholder="Email" value="{{ request.user.email }}" required>
+                            <input id="new-email" name="new_email" type="email" class="form-control" placeholder="Email" value="{{ request.user.email }}" >
                         </div>
                     </div>
                     <div class="row mypage-card-content">
