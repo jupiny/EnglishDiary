@@ -15,3 +15,6 @@ gunicorn
 django-storages-redux
 boto
 raven
+Pillow
+WordCloud
+numpy

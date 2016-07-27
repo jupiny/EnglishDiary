@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager
 from django.db import models
 from datetime import datetime
+from users.storage import OverwriteStorage
 
 
 class CustomUserManager(UserManager):
@@ -26,6 +27,12 @@ class User(AbstractUser):
         default=True,
     )
 
+    word_cloud = models.ImageField(
+        blank=True,
+        null=True,
+        storage=OverwriteStorage(),
+    )
+
     @property
     def today_diary(self):
         today = datetime.now().strftime("%Y/%m/%d")
@@ -46,3 +53,9 @@ class User(AbstractUser):
         monthly_words = self.monthly_words(**kwargs)
         monthly_words_count = len(set(monthly_words))
         return monthly_words_count
+
+    def whole_used_words(self):
+        whole_used_words = []
+        for diary in self.diary_set.all():
+            whole_used_words += diary.used_words
+        return whole_used_words

@@ -28,3 +28,7 @@
     outline: none;
     box-shadow: none;
 }
+
+img.word-cloud {
+    width: 100%;
+}

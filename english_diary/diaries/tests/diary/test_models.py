@@ -10,14 +10,21 @@ class DiaryModelTestCase(DiaryBaseTestCase):
             content="Today I am very happy!",
             datetime="2016/07/01",
         )
+        test_used_words = [
+            "today",
+            "i",
+            "am",
+            "very",
+            "happy",
+        ]
 
         self.assertEqual(
             len(self.diary.used_words),
             5,
         )
         self.assertEqual(
-            ["today", "i", "am", "very", "happy"].sort(),
-            self.diary.used_words.sort(),
+            sorted(test_used_words),
+            sorted(self.diary.used_words),
         )
 
     def test_diary_model_should_have_correct_used_words_without_overlapping(self):
@@ -27,12 +34,22 @@ class DiaryModelTestCase(DiaryBaseTestCase):
             content="Today I am very happy! I am going to crazy",
             datetime="2016/07/01",
         )
+        test_used_words = [
+            "today",
+            "i",
+            "am",
+            "very",
+            "happy",
+            "going",
+            "to",
+            "crazy"
+        ]
 
         self.assertEqual(
             len(self.diary.used_words),
             8,
         )
         self.assertEqual(
-            ["today", "i", "am", "very", "happy", "going", "to", "crazy"].sort(),
-            self.diary.used_words.sort(),
+            sorted(test_used_words),
+            sorted(self.diary.used_words),
         )
