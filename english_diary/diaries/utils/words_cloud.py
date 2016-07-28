@@ -2,6 +2,7 @@ from django.core.files.base import ContentFile
 from django.http.response import HttpResponse
 from django.conf import settings
 from django.contrib.auth import get_user_model
+import datetime
 
 from PIL import Image
 from io import BytesIO
@@ -22,6 +23,7 @@ def save_wordcloud(user_id):
         f = BytesIO()
         wordcloud_img_name = settings.IMAGE_FILENAME_FORMAT.format(
             username=user.username,
+            datetime=datetime.datetime.now().strftime("%Y%m%d%H%M%S"),
         )
         try:
             wordcloud_img.save(f, format='png')
