@@ -30,7 +30,8 @@ class User(AbstractUser):
     word_cloud = models.ImageField(
         blank=True,
         null=True,
-        storage=OverwriteStorage(),
+        upload_to="images/",
+        # storage=OverwriteStorage(),
     )
 
     @property
