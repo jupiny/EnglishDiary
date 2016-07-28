@@ -18,3 +18,4 @@ AWS_S3_CUSTOM_DOMAIN = 'd37e57jyfliafg.cloudfront.net'
 AWS_S3_URL_PROTOCOL = 'https'
 
 STATIC_URL = "https://d37e57jyfliafg.cloudfront.net/"
+MEDIA_URL = "https://d37e57jyfliafg.cloudfront.net/"
