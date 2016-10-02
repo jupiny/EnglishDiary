@@ -9,3 +9,4 @@ from .celery import *
 from .raven import *
 from .messages import *
 from .media import *
+from .wordcloud import *
