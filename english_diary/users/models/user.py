@@ -5,6 +5,15 @@ from datetime import datetime
 from users.storage import OverwriteStorage
 
 
+# http://hjh5488.tistory.com/12
+def user_directory_path(instance, filename):
+    path = "images/{username}/{filename}".format(
+        username=instance.username,
+        filename=filename,
+    )
+    return path
+
+
 class CustomUserManager(UserManager):
 
     def agree_email_notification(self):
@@ -30,7 +39,7 @@ class User(AbstractUser):
     word_cloud = models.ImageField(
         blank=True,
         null=True,
-        upload_to="images/",
+        upload_to=user_directory_path,
         # storage=OverwriteStorage(),
     )
 
