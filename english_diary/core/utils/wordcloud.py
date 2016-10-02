@@ -12,7 +12,7 @@ from wordcloud import WordCloud
 def format_wordcloud_name(username):
     wordcloud_name = settings.IMAGE_FILENAME_FORMAT.format(
         username=username,
-        datetime=datetime.datetime.now().strftime("%Y%m%d%H%M%S"),
+        datetime=datetime.datetime.now().strftime("%Y-%m-%d-%H%M%S"),
     )
     return wordcloud_name
 
