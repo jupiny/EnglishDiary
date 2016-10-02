@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 from celery import Task
 
-from users.utils.send_email import send_email
+from core.utils.email import send_email
 
 
 class SendSignupEmailTask(Task):
