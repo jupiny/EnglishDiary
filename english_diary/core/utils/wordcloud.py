@@ -34,8 +34,7 @@ def set_wordcloud_image(words):
     return None
 
 
-def save_wordcloud(user_id):
-    user = get_user_model().objects.get(pk=user_id)
+def save_wordcloud(user):
     whole_used_words = " ".join(user.whole_used_words())
     wordcloud_img = set_wordcloud_image(whole_used_words)
 
