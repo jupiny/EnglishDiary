@@ -1,6 +1,6 @@
 from celery import Task
 
-from diaries.utils.words_cloud import save_wordcloud
+from core.utils.wordcloud import save_wordcloud
 
 
 class SaveWordCloudTask(Task):

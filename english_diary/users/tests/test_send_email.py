@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-from users.utils.send_email import send_email
+from core.utils.email import send_email
 
 
 class SendEmailTestCase(TestCase):
