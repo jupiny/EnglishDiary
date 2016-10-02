@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/jupiny/EnglishDiary.svg?branch=develop)](https://travis-ci.org/jupiny/EnglishDiary)
+[![Coverage Status](https://coveralls.io/repos/github/jupiny/EnglishDiary/badge.svg?branch=develop)](https://coveralls.io/github/jupiny/EnglishDiary?branch=develop)
+
 ## 홈페이지
 [https://engdiary.dsds101.info/](https://engdiary.dsds101.info/)
 
