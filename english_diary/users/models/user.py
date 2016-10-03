@@ -72,3 +72,9 @@ class User(AbstractUser):
         for diary in self.diary_set.all():
             whole_used_words += diary.used_words
         return whole_used_words
+
+    def distinct_whole_used_words(self):
+        return set(self.whole_used_words())
+
+    def distinct_whole_used_words_count(self):
+        return len(self.distinct_whole_used_words())

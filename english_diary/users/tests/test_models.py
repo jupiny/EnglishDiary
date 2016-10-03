@@ -157,3 +157,10 @@ class UserModelTestCase(UserBaseTestCase):
             sorted(test_whole_used_words),
             sorted(self.user.whole_used_words()),
         )
+
+    def test_user_has_correct_distinct_whole_used_words_count(self):
+
+        self.assertEqual(
+            29,
+            self.user.distinct_whole_used_words_count(),
+        )
