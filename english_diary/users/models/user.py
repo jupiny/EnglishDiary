@@ -59,10 +59,13 @@ class User(AbstractUser):
             monthly_words += diary.used_words
         return monthly_words
 
-    def monthly_words_count(self, **kwargs):
-        monthly_words = self.monthly_words(**kwargs)
-        monthly_words_count = len(set(monthly_words))
-        return monthly_words_count
+    def distinct_monthly_words(self, **kwargs):
+        return set(self.monthly_words(**kwargs))
+
+    def distinct_monthly_words_count(self, **kwargs):
+        distinct_monthly_words = self.distinct_monthly_words(**kwargs)
+        distinct_monthly_words_count = len(distinct_monthly_words)
+        return distinct_monthly_words_count
 
     def whole_used_words(self):
         whole_used_words = []

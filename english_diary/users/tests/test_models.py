@@ -93,18 +93,18 @@ class UserModelTestCase(UserBaseTestCase):
             ),
         )
 
-    def test_user_has_correct_monthly_words_count(self):
+    def test_user_has_correct_distinct_monthly_words_count(self):
 
         self.assertEqual(
             16,
-            self.user.monthly_words_count(
+            self.user.distinct_monthly_words_count(
                 year="2016",
                 month="07",
             ),
         )
         self.assertEqual(
             20,
-            self.user.monthly_words_count(
+            self.user.distinct_monthly_words_count(
                 year="2016",
                 month="08",
             ),

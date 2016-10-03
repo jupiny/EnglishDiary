@@ -13,7 +13,7 @@ class DiaryMontlyWordsAPIView(APIView):
             year=year,
             month=month,
         )
-        monthly_words_count = request.user.monthly_words_count(
+        distinct_monthly_words_count = request.user.distinct_monthly_words_count(
             year=year,
             month=month,
         )
@@ -22,6 +22,6 @@ class DiaryMontlyWordsAPIView(APIView):
             status=status.HTTP_201_CREATED,
             data={
                 "words": monthly_words,
-                "count": monthly_words_count,
+                "count": distinct_monthly_words_count,
             },
         )
