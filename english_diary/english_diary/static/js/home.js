@@ -184,7 +184,7 @@ $( document ).ready(function() {
 
         var currentYearMonth = $("#current-year-month").val();
         var currentYear = currentYearMonth.split("/")[0];
-        var currentMonth = currentYearMonth.split("/")[1].replace("0", "");
+        var currentMonth = Number(currentYearMonth.split("/")[1]);
         var formattedCurrentYearMonth = currentYear+"년 "+currentMonth+"월";
         $("#count-days-in-month").text(countDaysInMonth);
         $("#count-diary-written").text(countDiaryWritten);

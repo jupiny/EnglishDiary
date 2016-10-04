@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.template.loader import render_to_string
 
 from celery import Task
 
@@ -19,5 +20,11 @@ class SendWriteDiaryEmailTask(Task):
                     ),
                     text=settings.WRITE_DIARY_EMAIL_TEXT.format(
                         username=user.username,
-                    )
+                    ),
+                    html=render_to_string(
+                        "emails/write_diary.html",
+                        context={
+                            "username": user.username,
+                        },
+                    ),
                 )
