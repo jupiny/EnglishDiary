@@ -25,8 +25,6 @@ class SendWriteDiaryEmailTask(Task):
                         "emails/write_diary.html",
                         context={
                             "username": user.username,
-                            "diaries_count": user.diary_set.count(),
-                            "words_count": user.distinct_whole_used_words_count(),
                         },
                     ),
                 )
