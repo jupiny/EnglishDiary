@@ -32,3 +32,11 @@
 img.word-cloud {
     width: 100%;
 }
+
+span.diaries-count {
+    color: #337ab7;
+}
+
+span.whole-words-count {
+    color: #337ab7;
+}
