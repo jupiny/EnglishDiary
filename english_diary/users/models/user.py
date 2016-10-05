@@ -67,14 +67,17 @@ class User(AbstractUser):
         distinct_monthly_words_count = len(distinct_monthly_words)
         return distinct_monthly_words_count
 
+    @property
     def whole_used_words(self):
         whole_used_words = []
         for diary in self.diary_set.all():
             whole_used_words += diary.used_words
         return whole_used_words
 
+    @property
     def distinct_whole_used_words(self):
-        return set(self.whole_used_words())
+        return set(self.whole_used_words)
 
+    @property
     def distinct_whole_used_words_count(self):
-        return len(self.distinct_whole_used_words())
+        return len(self.distinct_whole_used_words)
