@@ -23,6 +23,7 @@ class SendEmailVerificationTask(Task):
                     "emails/email_verification.html",
                     context={
                         "username": user.username,
+                        "verification_key": user.profile.verification_key,
                     },
                 ),
             )
