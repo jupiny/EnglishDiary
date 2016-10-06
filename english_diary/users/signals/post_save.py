@@ -15,7 +15,7 @@ def post_save_user(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(
             user=instance,
-            activation_key=generate_user_activation_key(instance.id),
+            verification_key=generate_user_activation_key(instance.id),
             key_expires=datetime.datetime.strftime(
                 datetime.datetime.now()+datetime.timedelta(days=settings.KEY_EXPIRES_DAY),
                 "%Y-%m-%d %H:%M:%S",
