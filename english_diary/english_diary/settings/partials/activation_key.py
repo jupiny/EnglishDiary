@@ -1,0 +1,1 @@
+KEY_EXPIRES_DAY = 2
