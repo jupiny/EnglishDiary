@@ -43,6 +43,10 @@ class User(AbstractUser):
         # storage=OverwriteStorage(),
     )
 
+    is_verified = models.BooleanField(
+        default=False,
+    )
+
     @property
     def today_diary(self):
         today = datetime.now().strftime("%Y/%m/%d")
