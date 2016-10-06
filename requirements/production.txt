@@ -18,3 +18,4 @@ raven
 Pillow
 WordCloud
 numpy
+hashids
