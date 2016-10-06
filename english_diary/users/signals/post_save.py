@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import datetime
 
-from users.tasks.send_signup_email import SendSignupEmailTask
+from users.tasks.send_email_verification import SendEmailVerificationTask
 from users.utils import generate_user_activation_key
 from users.models import Profile
 
@@ -22,5 +22,5 @@ def post_save_user(sender, instance, created, **kwargs):
             ),
         )
 
-        task = SendSignupEmailTask()
+        task = SendEmailVerificationTask()
         task.delay(instance.id)

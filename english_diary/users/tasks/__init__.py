@@ -1,2 +1,2 @@
-from .send_signup_email import SendSignupEmailTask
+from .send_email_verification import SendEmailVerificationTask
 from .send_write_diary_email import SendWriteDiaryEmailTask
