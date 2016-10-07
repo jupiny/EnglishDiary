@@ -36,6 +36,8 @@ class SigninView(View):
 
             # Check if user email is verified
             if user.is_verified:
+
+                # Login success
                 login(request, user)
                 messages.add_message(
                     request,
@@ -44,10 +46,11 @@ class SigninView(View):
                 )
                 return redirect(next_url)
 
+            # Email erification is incompleted
             messages.add_message(
                 request,
                 messages.ERROR,
-                settings.SIGNIN_INCOMPLETE_EMAIL_VERIFICATION_MESSAGE,
+                settings.EMAIL_VERIFICATION_INCOMPLETE_MESSAGE,
                 extra_tags="danger",
             )
 
