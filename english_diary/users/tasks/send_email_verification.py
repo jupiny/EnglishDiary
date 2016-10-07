@@ -15,9 +15,8 @@ class SendEmailVerificationTask(Task):
             send_email(
                 sender=settings.ADMIN_SENDER_EMAIL,
                 receiver=user.email,
-                subject=settings.EMAIL_VERIFICATION_SUBJECT,
-                text=settings.EMAIL_VERIFICATION_TEXT.format(
-                    username=user.username,
+                subject=settings.EMAIL_VERIFICATION_SUBJECT.format(
+                    username=user.username
                 ),
                 html=render_to_string(
                     "emails/email_verification.html",

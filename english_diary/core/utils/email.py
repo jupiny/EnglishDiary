@@ -8,7 +8,6 @@ def send_email(*args, **kwargs):
     sender = kwargs.get("sender")
     receiver = kwargs.get("receiver")
     subject = kwargs.get("subject")
-    text = kwargs.get("text")
     html = kwargs.get("html")
 
     response = requests.post(
@@ -20,7 +19,6 @@ def send_email(*args, **kwargs):
                 receiver,
             ],
             "subject": subject,
-            "text": text,
             "html": html,
         })
     return response

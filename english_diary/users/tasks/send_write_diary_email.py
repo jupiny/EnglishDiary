@@ -18,9 +18,6 @@ class SendWriteDiaryEmailTask(Task):
                     subject=settings.WRITE_DIARY_EMAIL_SUBJECT.format(
                         username=user.username,
                     ),
-                    text=settings.WRITE_DIARY_EMAIL_TEXT.format(
-                        username=user.username,
-                    ),
                     html=render_to_string(
                         "emails/write_diary.html",
                         context={
