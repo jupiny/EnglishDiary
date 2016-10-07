@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^signup/$', SignupView.as_view(), name="signup"),
     url(r'^mypage/$', MypageView.as_view(), name="mypage"),
     url(r'^verify/(?P<verification_key>\w+)/$', EmailVerificationView.as_view(), name="email_verification"),
+    url(r'^verify/(?P<verification_key>\w+)/expire/$', KeyExpiresView.as_view(), name="key_expires"),
 ]
