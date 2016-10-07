@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load pipeline %}
+
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+                    <div class="login-card">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+<p>인증 메일의 유효기간이 지났습니다.</p>
+<p>아래의 버튼을 눌러 다시 이메일 인증을 완료해주세요.</p>
+                                <button class="btn btn-login col-xl-12 col-sm-12 col-md-12 col-lg-12" type="submit" name="action">인증 메일 재전송</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
+{% block custom_javascripts %}
+{% javascript "mypage" %} 
+{% endblock %}
