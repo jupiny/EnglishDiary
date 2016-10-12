@@ -6,7 +6,6 @@ from django.conf import settings
 from rest_framework.test import APIClient
 
 from english_diary.celery import app
-from users.signals.post_save import post_save_user
 from diaries.signals.post_save import post_save_diary
 from diaries.models import Diary
 
