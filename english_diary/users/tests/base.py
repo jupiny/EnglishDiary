@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
+from django.conf import settings
 
 from rest_framework.test import APIClient
 
@@ -15,7 +16,6 @@ class UserBaseTestCase(TestCase):
     def setUp(self):
 
         # Disable Signals
-        post_save.disconnect(post_save_user, sender=get_user_model())
         post_save.disconnect(post_save_diary, sender=Diary)
 
         # Run celery task synchronous
@@ -23,7 +23,7 @@ class UserBaseTestCase(TestCase):
 
         self.test_username = "test_username"
         self.test_password = "test_password"
-        self.test_email = "test@example.com"
+        self.test_email = settings.TEST_EMAIL
 
         # Create a user
         self.user = get_user_model().objects.create_user(
