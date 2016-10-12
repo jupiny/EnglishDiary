@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import Client
-from django.conf import settings
 import datetime
 
 from .base import UserBaseTestCase
+from users.utils import set_expiration_date
 
 
 class UserVerifyEmaillTestCase(UserBaseTestCase):
@@ -51,10 +51,7 @@ class UserVerifyEmaillTestCase(UserBaseTestCase):
     def test_user_verification_key_expires(self):
 
         # Make verification_key expire
-        self.user.profile.key_expires = datetime.datetime.strftime(
-            datetime.datetime.now()-datetime.timedelta(days=settings.KEY_EXPIRES_DAY+1),
-            "%Y-%m-%d %H:%M:%S",
-        )
+        self.user.profile.key_expires = set_expiration_date(-1)
         self.user.profile.save()
 
         client = Client()
