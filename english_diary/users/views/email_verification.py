@@ -3,7 +3,6 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.conf import settings
 from django.views.generic import View
-import datetime
 
 from users.models import Profile
 
@@ -19,7 +18,7 @@ class EmailVerificationView(View):
         if not user.is_verified:
 
             # Check if user verification_key expires
-            if datetime.datetime.now() > profile.key_expires:
+            if profile.is_expired_key:
                 return redirect(
                     reverse(
                         "users:key_expires",

@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.views.generic import View
 
-import datetime
-
 from users.models import Profile
 
 
@@ -15,7 +13,7 @@ class KeyExpiresView(View):
         user = profile.user
 
         # Check if user is verified or user verification_key expires
-        if user.is_verified or datetime.datetime.now() <= profile.key_expires:
+        if user.is_verified or not profile.is_expired_key:
             return redirect(reverse("home"))
 
         return render(
