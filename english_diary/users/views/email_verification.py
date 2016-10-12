@@ -28,7 +28,11 @@ class EmailVerificationView(View):
                         }
                     )
                 )
+
+            # User email verification is completed
             user.is_verified = True
+            user.save()
+
             messages.add_message(
                 request,
                 messages.SUCCESS,
