@@ -9,9 +9,12 @@ from profiles.utils import set_expiration_date
 
 class ProfileViewTestCase(BaseTestCase):
 
+    def setUp(self):
+        super(ProfileViewTestCase, self).setUp()
+        self.client = Client()
+
     def test_verify_user_verification_key(self):
-        client = Client()
-        response = client.get(
+        response = self.client.get(
             reverse(
                 "profiles:email_verification",
                 kwargs={
@@ -41,8 +44,7 @@ class ProfileViewTestCase(BaseTestCase):
         self.user.profile.key_expires = set_expiration_date(-1)
         self.user.profile.save()
 
-        client = Client()
-        response = client.get(
+        response = self.client.get(
             reverse(
                 "profiles:email_verification",
                 kwargs={
