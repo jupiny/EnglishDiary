@@ -1,32 +1,19 @@
-from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
 from django.test import Client
+from django.core.urlresolvers import reverse
+from django.contrib.auth import get_user_model
 import datetime
 
-from .base import UserBaseTestCase
-from users.utils import set_expiration_date
+from core.tests.base import BaseTestCase
+from profiles.utils import set_expiration_date
 
 
-class UserVerifyEmaillTestCase(UserBaseTestCase):
-
-    def test_user_has_verification_key(self):
-        self.assertTrue(
-            self.user.profile.verification_key,
-        )
-
-        self.assertFalse(
-            get_user_model().objects.last().profile.is_expired_key,
-        )
-
-        self.assertFalse(
-            get_user_model().objects.last().is_verified,
-        )
+class ProfileViewTestCase(BaseTestCase):
 
     def test_verify_user_verification_key(self):
         client = Client()
         response = client.get(
             reverse(
-                "users:email_verification",
+                "profiles:email_verification",
                 kwargs={
                     "verification_key": self.user.profile.verification_key,
                 }
@@ -57,7 +44,7 @@ class UserVerifyEmaillTestCase(UserBaseTestCase):
         client = Client()
         response = client.get(
             reverse(
-                "users:email_verification",
+                "profiles:email_verification",
                 kwargs={
                     "verification_key": self.user.profile.verification_key,
                 }
@@ -77,7 +64,7 @@ class UserVerifyEmaillTestCase(UserBaseTestCase):
         self.assertRedirects(
             response,
             reverse(
-                "users:key_expires",
+                "profiles:key_expires",
                 kwargs={
                     "verification_key": self.user.profile.verification_key,
                 }

@@ -9,8 +9,12 @@ from english_diary.celery import app
 from diaries.signals.post_save import post_save_diary
 from diaries.models import Diary
 
+TEST_USERNAME = "test_username"
+TEST_PASSWORD = "test_password"
+TEST_EMAIL = settings.TEST_EMAIL
 
-class UserBaseTestCase(TestCase):
+
+class BaseTestCase(TestCase):
 
     def setUp(self):
 
@@ -20,9 +24,9 @@ class UserBaseTestCase(TestCase):
         # Run celery task synchronous
         app.conf.update(CELERY_ALWAYS_EAGER=True)
 
-        self.test_username = "test_username"
-        self.test_password = "test_password"
-        self.test_email = settings.TEST_EMAIL
+        self.test_username = TEST_USERNAME
+        self.test_password = TEST_PASSWORD
+        self.test_email = TEST_EMAIL
 
         # Create a user
         self.user = get_user_model().objects.create_user(
@@ -38,20 +42,7 @@ class UserBaseTestCase(TestCase):
             password=self.test_password,
         )
 
-        # Create diaries
-        self.user.diary_set.create(
-            datetime="2016/07/02",
-            content="Today it was very hot!",
-        )
-        self.user.diary_set.create(
-            datetime="2016/07/15",
-            content="I went to the concert. And I had dinner with my friends",
-        )
-        self.user.diary_set.create(
-            datetime="2016/08/11",
-            content="I watched a action movie with my family. It was so exciting.",
-        )
-        self.user.diary_set.create(
-            datetime="2016/08/29",
-            content="I was so tired today. I don`t want to do no more",
-        )
+    def tearDown(self):
+
+        # Logout
+        self.client.logout()

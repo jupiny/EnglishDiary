@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 
-from .user import User
+from users.models import User
 
 
 class Profile(models.Model):

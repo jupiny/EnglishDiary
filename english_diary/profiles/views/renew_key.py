@@ -4,10 +4,10 @@ from django.core.urlresolvers import reverse
 from django.views.generic import View
 from django.contrib import messages
 
-from users.utils import generate_user_activation_key
-from users.utils import set_expiration_date
+from profiles.utils import generate_user_activation_key
+from profiles.utils import set_expiration_date
+from profiles.models import Profile
 from users.tasks.send_email_verification import SendEmailVerificationTask
-from users.models import Profile
 
 
 class RenewKeyView(View):

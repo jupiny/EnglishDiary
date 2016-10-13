@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name="home"),
     url(r'^', include("users.urls", namespace="users")),
+    url(r'^account/', include("profiles.urls", namespace="profiles")),
     url(r'^api/', include("english_diary.urls.api", namespace="api")),
     url('', include('social.apps.django_app.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

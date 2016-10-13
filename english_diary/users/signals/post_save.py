@@ -3,10 +3,10 @@ from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
+from profiles.utils import generate_user_activation_key
+from profiles.utils import set_expiration_date
+from profiles.models import Profile
 from users.tasks.send_email_verification import SendEmailVerificationTask
-from users.utils import generate_user_activation_key
-from users.utils import set_expiration_date
-from users.models import Profile
 
 
 @receiver(post_save, sender=get_user_model())

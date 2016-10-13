@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.generic import View
 
-from users.models import Profile
+from profiles.models import Profile
 
 
 class EmailVerificationView(View):
@@ -21,7 +21,7 @@ class EmailVerificationView(View):
             if profile.is_expired_key:
                 return redirect(
                     reverse(
-                        "users:key_expires",
+                        "profiles:key_expires",
                         kwargs={
                             "verification_key": verification_key,
                         }
