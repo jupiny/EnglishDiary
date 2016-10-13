@@ -19,5 +19,7 @@ class KeyExpiresView(View):
         return render(
             request,
             "users/key_expires.html",
-            context={},
+            context={
+                "verification_key": verification_key,
+            },
         )
