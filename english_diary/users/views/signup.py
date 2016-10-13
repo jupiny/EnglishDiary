@@ -48,6 +48,6 @@ class SignupView(View):
         messages.add_message(
             request,
             messages.SUCCESS,
-            settings.SIGNUP_SUCCESS_MESSAGE,
+            settings.SEND_EMAIL_VERIFICATION_MESSAGE,
         )
         return redirect(reverse("users:signin"))
