@@ -44,6 +44,10 @@ class ProfileViewTestCase(BaseTestCase):
         self.user.profile.key_expires = set_expiration_date(-1)
         self.user.profile.save()
 
+        self.assertTrue(
+            get_user_model().objects.last().profile.is_expired_key,
+        )
+
         response = self.client.get(
             reverse(
                 "profiles:email_verification",
@@ -52,10 +56,6 @@ class ProfileViewTestCase(BaseTestCase):
                 }
             ),
             follow=True,
-        )
-
-        self.assertTrue(
-            get_user_model().objects.last().profile.is_expired_key,
         )
 
         self.assertEqual(
@@ -71,4 +71,46 @@ class ProfileViewTestCase(BaseTestCase):
                     "verification_key": self.user.profile.verification_key,
                 }
             ),
+        )
+
+    def test_renew_user_verification_key(self):
+
+        # Make verification_key expire
+        self.user.profile.key_expires = set_expiration_date(-1)
+        self.user.profile.save()
+
+        self.assertTrue(
+            get_user_model().objects.last().profile.is_expired_key,
+        )
+
+        # Save previous user verification key
+        prev_verification_key = self.user.profile.verification_key
+
+        response = self.client.post(
+            reverse(
+                "profiles:renew_key",
+            ),
+            data={
+                "verification_key": self.user.profile.verification_key,
+            },
+            follow=True,
+        )
+
+        self.assertEqual(
+           response.status_code,
+           200,
+        )
+
+        self.assertRedirects(
+            response,
+            "/signin/?next=/",
+        )
+
+        self.assertFalse(
+            get_user_model().objects.last().profile.is_expired_key,
+        )
+
+        self.assertNotEqual(
+            prev_verification_key,
+            get_user_model().objects.last().profile.verification_key,
         )
