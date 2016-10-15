@@ -29,20 +29,16 @@
                         <h5><span class="whole-words-count">{{ request.user.distinct_whole_used_words_count }}</span> 단어</h5>
                     </div>
                 </div>
+                {% if request.user.word_cloud %}
                 <div class="row mypage-card-content">
-                    {% if request.user.word_cloud %}
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h5>내가 사용한 단어들 (자주 사용한 단어일수록 큰 글씨로 나타납니다.)</h5>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <img class="word-cloud" src={{ request.user.word_cloud.url }}>
                     </div>
-                    {% else %}
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h5>작성된 일기가 없습니다.</h5>
-                    </div>
-                    {% endif %}
                 </div>
+                {% endif %}
             </div>
             <div class="mypage-card">
                 <div class="row mypage-card-title">

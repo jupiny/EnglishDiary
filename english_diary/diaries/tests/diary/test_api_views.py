@@ -3,10 +3,10 @@ from django.core.urlresolvers import reverse
 from rest_framework import status
 
 from diaries.models import Diary
-from .base import DiaryBaseTestCase
+from core.tests.base import BaseTestCase
 
 
-class DiaryAPIViewTestCase(DiaryBaseTestCase):
+class DiaryAPIViewTestCase(BaseTestCase):
 
     def test_create_diary(self):
 

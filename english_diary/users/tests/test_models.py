@@ -1,9 +1,30 @@
 from django.contrib.auth import get_user_model
 
-from .base import UserBaseTestCase
+from core.tests.base import BaseTestCase
 
 
-class UserModelTestCase(UserBaseTestCase):
+class UserModelTestCase(BaseTestCase):
+
+    def setUp(self):
+        super(UserModelTestCase, self).setUp()
+
+        # Create sample diaries
+        self.user.diary_set.create(
+            datetime="2016/07/02",
+            content="Today it was very hot!",
+        )
+        self.user.diary_set.create(
+            datetime="2016/07/15",
+            content="I went to the concert. And I had dinner with my friends",
+        )
+        self.user.diary_set.create(
+            datetime="2016/08/11",
+            content="I watched a action movie with my family. It was so exciting.",
+        )
+        self.user.diary_set.create(
+            datetime="2016/08/29",
+            content="I was so tired today. I don`t want to do no more",
+        )
 
     def test_check_username_in_user_model(self):
 
@@ -155,12 +176,12 @@ class UserModelTestCase(UserBaseTestCase):
 
         self.assertEqual(
             sorted(test_whole_used_words),
-            sorted(self.user.whole_used_words()),
+            sorted(self.user.whole_used_words),
         )
 
     def test_user_has_correct_distinct_whole_used_words_count(self):
 
         self.assertEqual(
             29,
-            self.user.distinct_whole_used_words_count(),
+            self.user.distinct_whole_used_words_count,
         )

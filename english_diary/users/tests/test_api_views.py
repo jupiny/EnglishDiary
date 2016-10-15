@@ -3,10 +3,10 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import status
 
-from .base import UserBaseTestCase
+from core.tests.base import BaseTestCase
 
 
-class UserAPIViewTestCase(UserBaseTestCase):
+class UserAPIViewTestCase(BaseTestCase):
 
     def test_user_change_email(self):
 

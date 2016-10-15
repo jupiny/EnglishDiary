@@ -10,11 +10,12 @@ install:
     - pip install -r requirements/development.txt
 before_script:
     - psql -c 'CREATE DATABASE english_diary;' -U postgres
-    - make migrate
+    - python english_diary/manage.py makemigrations users diaries profiles 
+    - python english_diary/manage.py migrate
 script:
     - pep8 .
-    - python english_diary/manage.py test users diaries 
-    - coverage run --source=english_diary english_diary/manage.py test users diaries
+    - python english_diary/manage.py test users diaries profiles 
+    - coverage run --source=english_diary english_diary/manage.py test users diaries profiles
 notifications:
     slack: yujuteam:eWkDBQrRPDHZp8eyEfKpbLH7
 after_success: coveralls
