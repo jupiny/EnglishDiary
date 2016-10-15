@@ -21,17 +21,11 @@ class ProfileViewTestCase(BaseTestCase):
                     "verification_key": self.user.profile.verification_key,
                 }
             ),
-            follow=True,
         )
 
         self.assertEqual(
            response.status_code,
-           200,
-        )
-
-        self.assertRedirects(
-            response,
-            "/signin/?next=/",
+           302,
         )
 
         self.assertTrue(
@@ -55,12 +49,11 @@ class ProfileViewTestCase(BaseTestCase):
                     "verification_key": self.user.profile.verification_key,
                 }
             ),
-            follow=True,
         )
 
         self.assertEqual(
            response.status_code,
-           200,
+           302,
         )
 
         self.assertRedirects(
@@ -93,17 +86,11 @@ class ProfileViewTestCase(BaseTestCase):
             data={
                 "verification_key": self.user.profile.verification_key,
             },
-            follow=True,
         )
 
         self.assertEqual(
            response.status_code,
-           200,
-        )
-
-        self.assertRedirects(
-            response,
-            "/signin/?next=/",
+           302,
         )
 
         self.assertFalse(
