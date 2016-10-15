@@ -16,7 +16,7 @@ class ProfileViewTestCase(BaseTestCase):
     def test_verify_user_verification_key(self):
         response = self.client.get(
             reverse(
-                "profiles:email_verification",
+                "profiles:verify_email",
                 kwargs={
                     "verification_key": self.user.profile.verification_key,
                 }
@@ -50,7 +50,7 @@ class ProfileViewTestCase(BaseTestCase):
 
         response = self.client.get(
             reverse(
-                "profiles:email_verification",
+                "profiles:verify_email",
                 kwargs={
                     "verification_key": self.user.profile.verification_key,
                 }
