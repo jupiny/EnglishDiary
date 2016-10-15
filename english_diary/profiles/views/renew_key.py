@@ -7,7 +7,7 @@ from django.contrib import messages
 from profiles.utils import generate_user_activation_key
 from profiles.utils import set_expiration_date
 from profiles.models import Profile
-from users.tasks import SendVerificationEmailTask
+from users.tasks import ResendVerificationEmailTask
 
 
 class RenewKeyView(View):
@@ -22,7 +22,8 @@ class RenewKeyView(View):
         profile.key_expires = set_expiration_date(settings.KEY_EXPIRES_DAY)
         profile.save()
 
-        task = SendVerificationEmailTask()
+        # Resend user verification email
+        task = ResendVerificationEmailTask()
         task.delay(user.id)
 
         messages.add_message(
