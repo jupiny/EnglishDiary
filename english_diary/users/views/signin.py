@@ -31,14 +31,28 @@ class SigninView(View):
             password=password,
         )
 
+        # Check if user account is exist
         if user:
-            login(request, user)
+
+            # Check if user email is verified
+            if user.is_verified:
+
+                # Login success
+                login(request, user)
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    settings.SIGNIN_SUCCESS_MESSAGE,
+                )
+                return redirect(next_url)
+
+            # Email erification is incompleted
             messages.add_message(
                 request,
-                messages.SUCCESS,
-                settings.SIGNIN_SUCCESS_MESSAGE,
+                messages.ERROR,
+                settings.EMAIL_VERIFICATION_INCOMPLETE_MESSAGE,
+                extra_tags="danger",
             )
-            return redirect(next_url)
 
         if not get_user_model().objects.check_username(username):
             # Nonexistent User

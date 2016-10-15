@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 
     'users',
     'diaries',
+    'profiles',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -47,6 +48,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # DebugToolbarMiddleware
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'english_diary.urls'

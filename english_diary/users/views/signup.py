@@ -18,6 +18,7 @@ class SignupView(View):
     def post(self, request, *args, **kwargs):
         username = request.POST.get("username")
         password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
         email = request.POST.get("email")
 
         # Validate username
@@ -40,6 +41,16 @@ class SignupView(View):
             )
             return redirect(reverse("users:signup"))
 
+        # Confirm password
+        if password != confirm_password:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                settings.SIGNUP_NOT_MATCH_PASSWORD_MESSAGE,
+                extra_tags="danger",
+            )
+            return redirect(reverse("users:signup"))
+
         user = get_user_model().objects.create_user(
             username=username,
             password=password,
@@ -48,6 +59,6 @@ class SignupView(View):
         messages.add_message(
             request,
             messages.SUCCESS,
-            settings.SIGNUP_SUCCESS_MESSAGE,
+            settings.SEND_EMAIL_VERIFICATION_MESSAGE,
         )
         return redirect(reverse("users:signin"))

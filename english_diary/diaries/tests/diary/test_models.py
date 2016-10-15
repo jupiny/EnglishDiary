@@ -1,7 +1,7 @@
-from .base import DiaryBaseTestCase
+from core.tests.base import BaseTestCase
 
 
-class DiaryModelTestCase(DiaryBaseTestCase):
+class DiaryModelTestCase(BaseTestCase):
 
     def test_diary_model_should_have_correct_used_words(self):
 
