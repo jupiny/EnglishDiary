@@ -11,7 +11,7 @@ class SendWriteDiaryEmailTask(Task):
 
     def run(self):
         for user in get_user_model().objects.agree_email_notification():
-            if not user.today_diary and user.email:
+            if not user.today_diary and user.is_verified:
                 send_email(
                     sender=settings.ADMIN_SENDER_EMAIL,
                     receiver=user.email,
