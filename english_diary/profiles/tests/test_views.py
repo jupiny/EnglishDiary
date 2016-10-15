@@ -56,14 +56,8 @@ class ProfileViewTestCase(BaseTestCase):
            302,
         )
 
-        self.assertRedirects(
-            response,
-            reverse(
-                "profiles:key_expires",
-                kwargs={
-                    "verification_key": self.user.profile.verification_key,
-                }
-            ),
+        self.assertFalse(
+            get_user_model().objects.last().is_verified,
         )
 
     def test_renew_user_verification_key(self):
