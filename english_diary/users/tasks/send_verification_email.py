@@ -5,7 +5,7 @@ from celery import Task
 from users.mixins import SendVerificationEmailTaskMixin
 
 
-class SendEmailVerificationTask(SendVerificationEmailTaskMixin, Task):
+class SendVerificationEmailTask(SendVerificationEmailTaskMixin, Task):
 
     email_sender = settings.ADMIN_SENDER_EMAIL
     email_subject = settings.VERIFICATION_EMAIL_SUBJECT
