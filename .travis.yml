@@ -12,7 +12,6 @@ before_script:
     - psql -c 'CREATE DATABASE english_diary;' -U postgres
     - python english_diary/manage.py makemigrations users diaries profiles 
     - python english_diary/manage.py migrate
-    - echo yes | python english_diary/manage.py collectstatic
 script:
     - pep8 .
     - python english_diary/manage.py test users diaries profiles 
