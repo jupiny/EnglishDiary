@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from core.utils.email import send_email
 
 
-class SendEmailVerificationTaskMixin(object):
+class SendVerificationEmailTaskMixin(object):
 
     @property
     def email_sender(self):

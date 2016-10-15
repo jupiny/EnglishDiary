@@ -2,10 +2,10 @@ from django.conf import settings
 
 from celery import Task
 
-from users.mixins import SendEmailVerificationTaskMixin
+from users.mixins import SendVerificationEmailTaskMixin
 
 
-class SendEmailVerificationTask(SendEmailVerificationTaskMixin, Task):
+class SendEmailVerificationTask(SendVerificationEmailTaskMixin, Task):
 
     email_sender = settings.ADMIN_SENDER_EMAIL
     email_subject = settings.EMAIL_VERIFICATION_SUBJECT

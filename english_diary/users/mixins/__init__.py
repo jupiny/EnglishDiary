@@ -1,1 +1,1 @@
-from .tasks import SendEmailVerificationTaskMixin
+from .tasks import SendVerificationEmailTaskMixin
