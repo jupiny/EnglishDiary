@@ -5,7 +5,7 @@ beautifulsoup4
 pyperclip
 python-social-auth
 django-pipeline
-celery[redis]
+celery==3.1.23
 redis
 flower
 dj-database-url
