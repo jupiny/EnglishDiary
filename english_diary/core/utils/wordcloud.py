@@ -35,7 +35,7 @@ def set_wordcloud_image(words):
 
 
 def save_wordcloud(user):
-    whole_used_words = " ".join(user.whole_used_words())
+    whole_used_words = " ".join(user.whole_used_words)
     wordcloud_img = set_wordcloud_image(whole_used_words)
 
     if wordcloud_img:
