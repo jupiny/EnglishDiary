@@ -5,37 +5,6 @@ $( document ).ready(function() {
     $('.active').trigger('click');
     $('.active').addClass('diary-selected');
 
-    // Auto Save(diary-save)
-    // TODO : timer save 추가
-    setTimeout(autoSave, 1000)
-    function autoSave(){
-      if($("form")[0].checkValidity()) {
-          var diaryContent = $('#diary-content').val();
-          var diaryDatetime = $('#selected-datetime').val();
-          var diaryCreateAPIUrl = "/api/diary/";
-          var data = {
-              datetime: diaryDatetime,
-              content: diaryContent
-          };
-          $.ajax({
-              type: "POST",
-              url: diaryCreateAPIUrl,
-              data: data,
-              success: function(data) {
-                  if(data.result) {
-                      alert("자동 저장되었습니다.");
-                      $('.diary-selected').addClass('diary-written');
-                      $('#diary-delete').attr("disabled", false);
-                  }
-              },
-              error: function(error) {
-                  console.log(error);
-              }
-          });
-          return false;
-    }
-  }
-
     // Create Diary
     $('#diary-save').click(function() {
         if($("form")[0].checkValidity()) {
@@ -234,3 +203,40 @@ $( document ).ready(function() {
         });
     });
 });
+
+function autoSave(){
+if($("form")[0].checkValidity()) {
+    var diaryContent = $('#diary-content').val();
+    var diaryDatetime = $('#selected-datetime').val();
+    var diaryCreateAPIUrl = "/api/diary/";
+    var data = {
+        datetime: diaryDatetime,
+        content: diaryContent
+    };
+    $.ajax({
+        type: "POST",
+        url: diaryCreateAPIUrl,
+        data: data,
+        success: function(data) {
+            if(data.result) {
+                $.bootstrapGrowl("자동저장 되었습니다.", {
+                      ele: 'body', // which element to append to
+                  type: 'info', // (null, 'info', 'danger', 'success')
+                    offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+                  align: 'right', // ('left', 'right', or 'center')
+                    width: 250, // (integer, or 'auto')
+                      delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                  allow_dismiss: true, // If true then will display a cross to close the popup.
+                  stackup_spacing: 10 // spacing between consecutively stacked growls.
+                });
+                $('.diary-selected').addClass('diary-written');
+                $('#diary-delete').attr("disabled", false);
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+    return false;
+  }
+}
