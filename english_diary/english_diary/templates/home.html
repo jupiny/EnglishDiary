@@ -1,6 +1,5 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load pipeline %}
-
 {% block content %}
 <section>
     <div class="container">
@@ -41,7 +40,7 @@
                             <input type="text" id="find-word" class="form-control" placeholder="사전 검색">
                             <span class="input-group-btn">
                                 <button type="button" id="dictionary" class="btn btn-dictionary" data-toggle="modal" data-target="#dictionaryModal">
-                                   <i class="fa fa-search" aria-hidden="true"></i> 
+                                   <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
                             </span>
                         </div>
@@ -99,5 +98,5 @@
 </div>
 {% endblock %}
 {% block custom_javascripts %}
-{% javascript "home" %} 
+{% javascript "home" %}
 {% endblock %}

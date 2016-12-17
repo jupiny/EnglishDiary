@@ -5,6 +5,37 @@ $( document ).ready(function() {
     $('.active').trigger('click');
     $('.active').addClass('diary-selected');
 
+    // Auto Save(diary-save)
+    // TODO : timer save 추가
+    setTimeout(autoSave, 1000)
+    function autoSave(){
+      if($("form")[0].checkValidity()) {
+          var diaryContent = $('#diary-content').val();
+          var diaryDatetime = $('#selected-datetime').val();
+          var diaryCreateAPIUrl = "/api/diary/";
+          var data = {
+              datetime: diaryDatetime,
+              content: diaryContent
+          };
+          $.ajax({
+              type: "POST",
+              url: diaryCreateAPIUrl,
+              data: data,
+              success: function(data) {
+                  if(data.result) {
+                      alert("자동 저장되었습니다.");
+                      $('.diary-selected').addClass('diary-written');
+                      $('#diary-delete').attr("disabled", false);
+                  }
+              },
+              error: function(error) {
+                  console.log(error);
+              }
+          });
+          return false;
+    }
+  }
+
     // Create Diary
     $('#diary-save').click(function() {
         if($("form")[0].checkValidity()) {
@@ -110,17 +141,17 @@ $( document ).ready(function() {
             var diaryTranslateAPIUrl = "/api/naver/translate/";
             var diaryContentTextareaElement = $("#diary-content");
             var diaryTranslatedContentTextareaElement = $("#diary-translated-content");
-           
+
             // input 타입의 .val()로 받으세요(.text로 썼기에 에러났었음)
             var data = {
                 content: diaryContentTextareaElement.val()
             };
-            
+
             $.ajax({
                 type:"POST",
                 data: data,
                 url: diaryTranslateAPIUrl,
-           
+
                 // translate.py 의 response 받기
                 success: function(data) {
                     var diaryTranslatedContent = data.content;
@@ -141,23 +172,23 @@ $( document ).ready(function() {
     });
     $('[data-toggle="tooltip"]').tooltip({
             trigger : 'focus'
-    }) 
+    })
 
 
     // Analysis
     $('#analysis-basic').click(function() {
-        
+
         //count diary written
         var diaryWrittenElement = $(".day.diary-written").not(".new").not(".old");
-        var countDiaryWritten = diaryWrittenElement.length; 
-        
+        var countDiaryWritten = diaryWrittenElement.length;
+
         //count days in a present month
         var countDaysInMonth = $(".day").not(".new").not(".old").length;
 
         //calculate achievement
         var achievementInt = Math.round(countDiaryWritten / countDaysInMonth * 100);
         var achievementString =  achievementInt.toString() + "%";
-       
+
         //var achievementMessage = " 달성중"
 
         // Setting progress bar
