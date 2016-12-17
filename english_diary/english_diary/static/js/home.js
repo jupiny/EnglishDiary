@@ -21,7 +21,7 @@ $( document ).ready(function() {
                 data: data,
                 success: function(data) {
                     if(data.result) {
-                        alert("저장되었습니다.");
+                        toastr.success('저장되었습니다.');
                         $('.diary-selected').addClass('diary-written');
                         $('#diary-delete').attr("disabled", false);
                     }
