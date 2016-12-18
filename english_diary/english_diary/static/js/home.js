@@ -21,9 +21,9 @@ $( document ).ready(function() {
                 data: data,
                 success: function(data) {
                     if(data.result) {
-                        toastr.success('저장되었습니다.');
                         $('.diary-selected').addClass('diary-written');
                         $('#diary-delete').attr("disabled", false);
+                        toastr.success('일기가 저장되었습니다.');
                     }
                     else {
                         alert("한글을 쓰시면 안되요!");
@@ -53,6 +53,7 @@ $( document ).ready(function() {
                     $('#diary-content').val("");
                     $('#diary-translated-content').val("");
                     $('.diary-selected').removeClass('diary-written');
+                    toastr.warning("일기가 삭제되었습니다.");
                 },
                 error: function(error) {
                     console.log(error);
@@ -208,9 +209,10 @@ $( document ).ready(function() {
 var autosave_trigger = 0;
 
 function autoSave(event) {
-  // autoSave trigger is each three space.
-  if(event.key == " ") { ++autosave_trigger; }
-    if(autosave_trigger >= 3)
+  // if(event.key == " ") { ++autosave_trigger; }
+  ++autosave_trigger;
+
+    if(autosave_trigger >= 20)
     {
       autosave_trigger = 0;
 
@@ -229,6 +231,7 @@ function autoSave(event) {
               if(data.result) {
                   $('.diary-selected').addClass('diary-written');
                   $('#diary-delete').attr("disabled", false);
+                  toastr.success('일기가 자동저장 되었습니다.');
               }
           },
           error: function(error) {
