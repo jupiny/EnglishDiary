@@ -21,9 +21,9 @@ $( document ).ready(function() {
                 data: data,
                 success: function(data) {
                     if(data.result) {
-                        alert("저장되었습니다.");
                         $('.diary-selected').addClass('diary-written');
                         $('#diary-delete').attr("disabled", false);
+                        toastr.success('일기가 저장되었습니다.');
                     }
                     else {
                         alert("한글을 쓰시면 안되요!");
@@ -53,6 +53,7 @@ $( document ).ready(function() {
                     $('#diary-content').val("");
                     $('#diary-translated-content').val("");
                     $('.diary-selected').removeClass('diary-written');
+                    toastr.warning("일기가 삭제되었습니다.");
                 },
                 error: function(error) {
                     console.log(error);
@@ -110,17 +111,17 @@ $( document ).ready(function() {
             var diaryTranslateAPIUrl = "/api/naver/translate/";
             var diaryContentTextareaElement = $("#diary-content");
             var diaryTranslatedContentTextareaElement = $("#diary-translated-content");
-           
+
             // input 타입의 .val()로 받으세요(.text로 썼기에 에러났었음)
             var data = {
                 content: diaryContentTextareaElement.val()
             };
-            
+
             $.ajax({
                 type:"POST",
                 data: data,
                 url: diaryTranslateAPIUrl,
-           
+
                 // translate.py 의 response 받기
                 success: function(data) {
                     var diaryTranslatedContent = data.content;
@@ -141,23 +142,23 @@ $( document ).ready(function() {
     });
     $('[data-toggle="tooltip"]').tooltip({
             trigger : 'focus'
-    }) 
+    })
 
 
     // Analysis
     $('#analysis-basic').click(function() {
-        
+
         //count diary written
         var diaryWrittenElement = $(".day.diary-written").not(".new").not(".old");
-        var countDiaryWritten = diaryWrittenElement.length; 
-        
+        var countDiaryWritten = diaryWrittenElement.length;
+
         //count days in a present month
         var countDaysInMonth = $(".day").not(".new").not(".old").length;
 
         //calculate achievement
         var achievementInt = Math.round(countDiaryWritten / countDaysInMonth * 100);
         var achievementString =  achievementInt.toString() + "%";
-       
+
         //var achievementMessage = " 달성중"
 
         // Setting progress bar
@@ -203,3 +204,40 @@ $( document ).ready(function() {
         });
     });
 });
+
+//autoSave
+var autosave_trigger = 0;
+
+function autoSave(event) {
+  // if(event.key == " ") { ++autosave_trigger; }
+  ++autosave_trigger;
+
+    if(autosave_trigger >= 20)
+    {
+      autosave_trigger = 0;
+
+      var diaryContent = $('#diary-content').val();
+      var diaryDatetime = $('#selected-datetime').val();
+      var diaryCreateAPIUrl = "/api/diary/";
+      var data = {
+          datetime: diaryDatetime,
+          content: diaryContent
+      };
+      $.ajax({
+          type: "POST",
+          url: diaryCreateAPIUrl,
+          data: data,
+          success: function(data) {
+              if(data.result) {
+                  $('.diary-selected').addClass('diary-written');
+                  $('#diary-delete').attr("disabled", false);
+                  toastr.success('일기가 자동저장 되었습니다.');
+              }
+          },
+          error: function(error) {
+              console.log(error);
+          }
+      });
+    return false;
+  }
+}
