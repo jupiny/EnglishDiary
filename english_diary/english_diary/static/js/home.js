@@ -26,7 +26,8 @@ $( document ).ready(function() {
                         toastr.success('일기가 저장되었습니다.');
                     }
                     else {
-                        alert("한글을 쓰시면 안되요!");
+                        toastr.error('한글을 쓰시면 안되요.\n일기를 저장하지 않습니다!');
+
                     }
                 },
                 error: function(error) {
