@@ -203,41 +203,45 @@ $( document ).ready(function() {
             }
         });
     });
+
+    //autoSave
+    var autosave_trigger = 0;
+
+    function autoSave() {
+        // if(event.key == " ") { ++autosave_trigger; }
+        ++autosave_trigger;
+
+        if(autosave_trigger >= 20) {
+            autosave_trigger = 0;
+
+            var diaryContent = $('#diary-content').val();
+            var diaryDatetime = $('#selected-datetime').val();
+            var diaryCreateAPIUrl = "/api/diary/";
+            var data = {
+                datetime: diaryDatetime,
+                content: diaryContent
+            };
+            $.ajax({
+                type: "POST",
+                url: diaryCreateAPIUrl,
+                data: data,
+                success: function(data) {
+                    if(data.result) {
+                        $('.diary-selected').addClass('diary-written');
+                        $('#diary-delete').attr("disabled", false);
+                        toastr.success('일기가 자동저장 되었습니다.');
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+            return false;
+        }
+    }
+
+    $("#diary-content").keyup( function(){
+        autoSave();
+    });
+
 });
-
-//autoSave
-var autosave_trigger = 0;
-
-function autoSave(event) {
-  // if(event.key == " ") { ++autosave_trigger; }
-  ++autosave_trigger;
-
-    if(autosave_trigger >= 20)
-    {
-      autosave_trigger = 0;
-
-      var diaryContent = $('#diary-content').val();
-      var diaryDatetime = $('#selected-datetime').val();
-      var diaryCreateAPIUrl = "/api/diary/";
-      var data = {
-          datetime: diaryDatetime,
-          content: diaryContent
-      };
-      $.ajax({
-          type: "POST",
-          url: diaryCreateAPIUrl,
-          data: data,
-          success: function(data) {
-              if(data.result) {
-                  $('.diary-selected').addClass('diary-written');
-                  $('#diary-delete').attr("disabled", false);
-                  toastr.success('일기가 자동저장 되었습니다.');
-              }
-          },
-          error: function(error) {
-              console.log(error);
-          }
-      });
-    return false;
-  }
-}
