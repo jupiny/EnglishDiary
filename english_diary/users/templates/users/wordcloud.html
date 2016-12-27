@@ -85,16 +85,29 @@ function wordCloud(selector) {
 
 //Prepare one of the sample sentences by removing punctuation,
 // creating an array of words and computing a size attribute.
-var words = [$("#data").data("words")];
+var words = $("#data").data("words");
+var regExpAndSub = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+// TODO: 영단어에서 중요하지 않은것 제외(주어, 지시어, 관사)
+//var regSungject = /( I )( you )( he )( she )( this )/gi;
+
 function getWords(i) {
-    var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
-    return words[i]
-            // 특수문자제거
-            .replace(regExp, '')
-            .split(' ')
-            .map(function(d) {
-                console.log(d);
-                return {text: d, size: 100};
+    var wordsjs = words.replace(regExp, '').split(' ')
+    function wordFrequency(txt){
+      var newArray = [];
+      var wordObj;
+      wordsjs.forEach(function(word) {
+        wordObj = newArray.filter(function (w){
+          return w.text == word;
+        });
+        if (wordObj.length) { wordObj[0].size += 1; }
+        else { newArray.push({text: word, size: 1}); }
+      });
+      return newArray;
+    };
+
+    return wordFrequency(words)
+            .map(function(w) {
+                return {text:w.text, size:50 * ( 1+Math.sqrt(w.size) )}
             })
 }
 
