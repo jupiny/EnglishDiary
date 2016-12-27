@@ -3,131 +3,81 @@
 
 
 {% block content %}
-  <div id="data" data-words="{{ request.user.whole_used_words }}">
-  </div>
+<div id="data" data-words="{{ request.user.whole_used_words }}">
+</div>
 
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
-  <script>
-
-//Simple animated example of d3-cloud - https://github.com/jasondavies/d3-cloud
-//Based on https://github.com/jasondavies/d3-cloud/blob/master/examples/simple.html
-
-// Encapsulate the word cloud functionality
-function wordCloud(selector) {
-
-    var fill = d3.scale.category20();
-
-    //Construct the word cloud's SVG element
-    var svg = d3.select(selector).append("svg")
-        .attr("class", "word-cloud")
-        .attr("width", 500)
-        .attr("height", 500)
-        .append("g")
-        .attr("transform", "translate(250,250)");
-
-
-    //Draw the word cloud
-    function draw(words) {
-        var cloud = svg.selectAll("g text")
-                        .data(words, function(d) { return d.text; })
-
-        //Entering words
-        cloud.enter()
-            .append("text")
-            .style("font-family", "Impact")
-            .style("fill", function(d, i) { return fill(i); })
-            .attr("text-anchor", "middle")
-            .attr('font-size', 1)
-            .text(function(d) { return d.text; });
-
-        //Entering and existing words
-        cloud
-            .transition()
-                .duration(600)
-                .style("font-size", function(d) { console.log(d); return d.size + "px"; })
-                .attr("transform", function(d) {
-                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                })
-                .style("fill-opacity", 1);
-
-        //Exiting words
-        cloud.exit()
-            .transition()
-                .duration(200)
-                .style('fill-opacity', 1e-6)
-                .attr('font-size', 1)
-                .remove();
-    }
-
-
-    //Use the module pattern to encapsulate the visualisation code. We'll
-    // expose only the parts that need to be public.
-    return {
-
-        //Recompute the word cloud for a new set of words. This method will
-        // asycnhronously call draw when the layout has been computed.
-        //The outside world will need to call this function, so make it part
-        // of the wordCloud return value.
-        update: function(words) {
-            d3.layout.cloud().size([500, 500])
-                .words(words)
-                .padding(5)
-                .rotate(function() { return ~~(Math.random() * 2) * 90; })
-                .font("Impact")
-                .fontSize(function(d) { return d.size; })
-                .on("end", draw)
-                .start();
-        }
-    }
-
-}
-
-//Prepare one of the sample sentences by removing punctuation,
-// creating an array of words and computing a size attribute.
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+<script>
+var fill = d3.scale.category20();
+var minimumFontsize = 14;
+var maximumFontsize = 150;
 var words = $("#data").data("words");
-var regExpAndSub = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
-// TODO: 영단어에서 중요하지 않은것 제외(주어, 지시어, 관사)
-//var regSungject = /( I )( you )( he )( she )( this )/gi;
+var regExpSpecial = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"\“\”\’]/gi;
+var regExpNumber = /[0-9]/g;
 
-function getWords(i) {
-    var wordsjs = words.replace(regExp, '').split(' ')
-    function wordFrequency(txt){
-      var newArray = [];
-      var wordObj;
-      wordsjs.forEach(function(word) {
-        wordObj = newArray.filter(function (w){
-          return w.text == word;
-        });
-        if (wordObj.length) { wordObj[0].size += 1; }
-        else { newArray.push({text: word, size: 1}); }
-      });
-      return newArray;
-    };
+words = words
+  .replace(regExpSpecial, '')
+  .replace(regExpNumber, '')
+  .split(' ');
+words = wordFrequency(words).map(function(d) {
+  // if word's length is smaller 2, do not show on wordcloud
+  // 100th frequency is font-size mixium
+  if( d.text.length >= 3){ return {text: d.text, size: maximumFontsize/2 * ( Math.log10(d.size) )}; }
+  return {text: "", size:0 };
+})//.concat([{text:"OneBigWord", size: 150}]);
 
-    return wordFrequency(words)
-            .map(function(w) {
-                return {text:w.text, size:50 * ( 1+Math.sqrt(w.size) )}
-            })
+var maxSize = d3.max(words, function(d) { return d.size; });
+var minSize = d3.min(words, function(d) { return d.size; });
+var fontScale = d3.scale.linear() // scale algo which is used to map the domain to the range
+  .domain([minSize, maxSize]) //set domain which will be mapped to the range values
+  .range([minimumFontsize, maximumFontsize]); // set min/max font size
+
+function draw(words) {
+  d3.select("body").append("svg")
+    .attr("width", 500)
+    .attr("height", 500)
+    .style("background-color", "#000000")
+  .append("g")
+    .attr("transform", "translate(250,250)")
+  .selectAll("text")
+    .data(words)
+  .enter().append("text")
+    .style("font-size", function(d) { return d.size + "px"; })
+    .style("font-family", "Arial")
+    .style("fill", function(d, i) { return fill(i); })
+    .attr("text-anchor", "middle")
+    .attr("transform", function(d) {
+      return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+    })
+    .text(function(d) { return d.text; });
 }
 
-//This method tells the word cloud to redraw with a new set of words.
-//In reality the new words would probably come from a server request,
-// user input or some other source.
-function showNewWords(vis, i) {
-    i = i || 0;
+function wordFrequency(words){
+  var newArray = [];
+  var wordObj;
+  words.forEach(function(word) {
+    wordObj = newArray.filter(function (w){
+      return w.text == word;
+    });
+    if (wordObj.length) { wordObj[0].size += 1; }
+    else { newArray.push({text: word, size: 1}); }
+  });
+  return newArray;
+};
 
-    vis.update(getWords(i ++ % words.length))
-
-    //setTimeout(function() { showNewWords(vis, i + 1)}, 2000)
-}
-
-//Create a new instance of the word cloud visualisation.
-var myWordCloud = wordCloud('body');
-
-//Start cycling through the demo data
-showNewWords(myWordCloud);
-
+// TODO:분리
+d3.layout.cloud().size([500, 500])
+  .words(words)
+  .padding(5)
+  .rotate(function() {
+    // return ~~(Math.random() * 2) * 90;
+    return 0;
+  })
+  // .font("Impact")
+  .fontSize(function(d) { return fontScale(d.size) }) // the d3 scale function is used here
+  .on("end", draw)
+  .start();
 
 </script>
 
