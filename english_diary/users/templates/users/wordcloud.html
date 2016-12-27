@@ -3,12 +3,8 @@
 
 
 {% block content %}
-    <section>
-      <h3></h3>
-      <p>
-      {{ request.user.whole_used_words }}
-      </p>
-  </section>
+  <div id="data" data-words="{{ request.user.whole_used_words }}">
+  </div>
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
@@ -87,12 +83,9 @@ function wordCloud(selector) {
 
 }
 
-var whole_used_words_array = "{{ request.user.whole_used_words }}".replace(/&#39;/g, "");
-whole_used_words = String(whole_used_words_array);
-var words = [whole_used_words];
-
 //Prepare one of the sample sentences by removing punctuation,
 // creating an array of words and computing a size attribute.
+var words = [$("#data").data("words")];
 function getWords(i) {
     var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
     return words[i]
@@ -112,6 +105,7 @@ function showNewWords(vis, i) {
     i = i || 0;
 
     vis.update(getWords(i ++ % words.length))
+
     //setTimeout(function() { showNewWords(vis, i + 1)}, 2000)
 }
 
