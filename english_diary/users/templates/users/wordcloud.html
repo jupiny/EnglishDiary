@@ -12,20 +12,22 @@
 var fill = d3.scale.category20();
 var minimumFontsize = 14;
 var maximumFontsize = 150;
-var words = $("#data").data("words");
+var wholeWords = $("#data").data("words");
 var regExpSpecial = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"\“\”\’]/gi;
 var regExpNumber = /[0-9]/g;
 
-words = words
+wholeWordsOnlyAlpha = wholeWords
   .replace(regExpSpecial, '')
   .replace(regExpNumber, '')
   .split(' ');
-words = wordFrequency(words).map(function(d) {
+wordsObj = wordsFrequencies(wholeWordsOnlyAlpha);
+words = Object.keys(wordsObj).map(function(word) {
   // if word's length is smaller 2, do not show on wordcloud
   // 100th frequency is font-size mixium
-  if( d.text.length >= 3){ return {text: d.text, size: maximumFontsize/2 * ( Math.log10(d.size) )}; }
-  return {text: "", size:0 };
-})//.concat([{text:"OneBigWord", size: 150}]);
+  if( word.length >= 3){
+    return {text: word, size: maximumFontsize/2 * ( Math.log10(wordsObj[word]) )}; }
+  else { return {text: "", size:0 }; }
+})//.concat([{text:"OneBigWord", size: 50}]);
 
 var maxSize = d3.max(words, function(d) { return d.size; });
 var minSize = d3.min(words, function(d) { return d.size; });
@@ -53,18 +55,12 @@ function draw(words) {
     .text(function(d) { return d.text; });
 }
 
-function wordFrequency(words){
-  var newArray = [];
-  var wordObj;
-  words.forEach(function(word) {
-    wordObj = newArray.filter(function (w){
-      return w.text == word;
-    });
-    if (wordObj.length) { wordObj[0].size += 1; }
-    else { newArray.push({text: word, size: 1}); }
-  });
-  return newArray;
-};
+function wordsFrequencies(words) {
+    return words.reduce(function(frequencies, word) {
+        frequencies[word] = (frequencies[word] || 0) + 1;
+        return frequencies;
+    }, {});
+}
 
 // TODO:분리
 d3.layout.cloud().size([500, 500])
