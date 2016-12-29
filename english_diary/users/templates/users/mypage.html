@@ -32,10 +32,11 @@
 
                 <!-- D3 wordcloud -->
                 <div class="row mypage-card-content">
-                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div id="wordcloud" data-words="{{ request.user.whole_used_words }}"></div>
-                    <script type="text/javascript" src="wordcloud.js"></script>
-                  </div>
+                  <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
+                    <div class="wordcloud-container">
+                      <div id="wordcloud" data-words="{{ request.user.whole_used_words }}"></div>
+                    </div>
+                  <!-- </div> -->
                 </div>
 
                 {% if request.user.word_cloud %}

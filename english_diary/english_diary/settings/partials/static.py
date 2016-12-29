@@ -33,6 +33,7 @@ PIPELINE = {
               'css/signin.css',
               'css/messages.css',
               'css/toastr.css',
+              'css/wordcloud.css',
             ),
             'output_filename': 'css/english_diary.css',
         },
