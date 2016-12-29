@@ -8,5 +8,4 @@ urlpatterns = [
     url(r'^signout/$', SignoutView.as_view(), name="signout"),
     url(r'^signup/$', SignupView.as_view(), name="signup"),
     url(r'^mypage/$', MypageView.as_view(), name="mypage"),
-    url(r'^wordcloud/$', WordcloudView.as_view(), name="wordcloud"),
 ]

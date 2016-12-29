@@ -57,6 +57,7 @@ PIPELINE = {
         'mypage': {
             'source_filenames': (
               'js/mypage.js',
+              'js/wordcloud.js',
             ),
             'output_filename': 'js/mypage.js',
         },
