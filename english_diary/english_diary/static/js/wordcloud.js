@@ -13,8 +13,8 @@ $( document ).ready(function() {
           wordNumbers = /[0-9]/g,
           punctuation = /[\{\}\[\]\/?.,;:|\)*~`!^\_+<>@\#$%&\\\=\(\'\"\“\”\‘\’]/gi;
 
-      var fill = d3.scale.category20(),
-          minimumFontsize = 14,
+      var fill = d3.scale.category10(),
+          minimumFontsize = 20,
           maximumFontsize = 100;
 
       wholeWordsOnlyAlpha = wholeWords
@@ -32,9 +32,9 @@ $( document ).ready(function() {
         word = word.replace(stopWords, '');
 
         // if word's length is smaller 2, do not show on wordcloud
-        // 100th frequency is font-size mixium
+        // 500th frequency is font-size mixium
         if( word.length >= 3){
-          return {text: word, size: maximumFontsize/2 * ( Math.log10(wordsObj[word]) )}; }
+          return {text: word, size: maximumFontsize/2 * ( Math.log10(wordsObj[word]/5) )}; }
         else { return {text: "", size:0 }; }
       })//.concat([{text:"OneBigWord", size: 50}]);
 
@@ -48,7 +48,7 @@ $( document ).ready(function() {
         d3.select("#wordcloud").append("svg")
           .attr("width", "100%")
           // .attr("height", h)
-          .style("background-color", "#000000")
+          // .style("background-color", "#000000")
           .attr("viewBox", "0 0 "+ w + " " + h)
           .attr("preserveAspectRatio", "xMinYMin meet")
         .append("g")
