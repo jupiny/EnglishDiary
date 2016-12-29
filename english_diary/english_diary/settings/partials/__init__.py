@@ -9,6 +9,5 @@ from .celery import *
 from .raven import *
 from .messages import *
 from .media import *
-from .wordcloud import *
 from .activation_key import *
 from .email import *
