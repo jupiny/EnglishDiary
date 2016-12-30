@@ -26,7 +26,8 @@ $( document ).ready(function() {
                         toastr.success('일기가 저장되었습니다.');
                     }
                     else {
-                        alert("한글을 쓰시면 안되요!");
+                        toastr.error("한글을 쓰시면 안되요!", "저장 실패");
+
                     }
                 },
                 error: function(error) {
@@ -77,7 +78,7 @@ $( document ).ready(function() {
         if(findWord) {
             // Check blank and special letters
             if(special_pattern.test(findWord))
-                alert("특수문자는 입력할 수 없습니다.");
+                toastr.error("특수문자는 입력할 수 없습니다.");
             else {
                 // Blank => "+"
                 findWord.replace(" ","+");
@@ -100,7 +101,7 @@ $( document ).ready(function() {
             }
         }
         else {
-            alert("검색어를 입력하세요");
+            toastr.error("검색어를 입력하세요");
         }
         return false;
     });

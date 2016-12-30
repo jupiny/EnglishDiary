@@ -29,13 +29,23 @@
                         <h5><span class="whole-words-count">{{ request.user.distinct_whole_used_words_count }}</span> 단어</h5>
                     </div>
                 </div>
+
+                <!-- D3 wordcloud -->
+                <div class="row mypage-card-content">
+                  <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
+                    <div class="wordcloud-container">
+                      <div id="wordcloud" data-words="{{ request.user.whole_used_words }}"></div>
+                    </div>
+                  <!-- </div> -->
+                </div>
+
                 {% if request.user.word_cloud %}
                 <div class="row mypage-card-content">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h5>내가 사용한 단어들 (자주 사용한 단어일수록 큰 글씨로 나타납니다.)</h5>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <img class="word-cloud" src={{ request.user.word_cloud.url }}>
+                        <img class="wordcloud" src={{ request.user.word_cloud.url }}>
                     </div>
                 </div>
                 {% endif %}
@@ -154,13 +164,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-
 </section>
 {% endblock content %}
 {% block custom_javascripts %}
-{% javascript "mypage" %} 
+{% javascript "mypage" %}
 {% endblock %}
